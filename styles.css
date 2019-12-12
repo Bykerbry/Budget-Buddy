@@ -2,6 +2,7 @@
     font-family: 'Lato', sans-serif;
     background-color: #2D5D7C;
     color: #FEEEDA;
+    box-sizing: border-box;
 }
 
 header {
@@ -29,7 +30,7 @@ button {
     border-style: none; 
     border-radius: 30px; 
     height: 50px; 
-    width: 300px; 
+    width: 200px; 
     padding: 20px; 
 }
 
