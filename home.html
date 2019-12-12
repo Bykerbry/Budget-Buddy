@@ -15,8 +15,24 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <label for=""></label>
-        <input type="text">
+        <header>
+            <h1>Budget Buddy</h1>
+        </header>
+        <div>
+            <form class="Income_Form">
+                    Your Income:<br>
+                    <input type="text" name="Income" id="Income"><br>
+                    Paycheck Occurence:<br>
+                    <select id="Occurence">
+                        <option value="Weekly" id="Weekly">Weekly</option>
+                        <option value="BiWeekly" id="BiWeekly">Bi-Weekly</option>
+                        <option value="Monthly"  id="Monthly">Monthly</option>
+                        <option value="Yearly" id="Yearly">Yearly</option>
+                    </select>
+            </form>                
+            <button><a href="expenses.html">Submit</a></button>
+            <a href="#" id="Account">Create Account</a>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>
