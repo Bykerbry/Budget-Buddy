@@ -26,6 +26,17 @@ button {
     border-radius: 30px; 
 }
 
+#Income {
+    background-color: white;
+}
+
+#Occurence {
+    background-color: white;
+}
+
+#Account {
+    text-decoration: none;
+}
 
 
 
