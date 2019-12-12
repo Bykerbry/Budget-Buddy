@@ -3,3 +3,10 @@
     background-color: #2D5D7C;
     color: #FEEEDA;
 }
+
+button {
+    background:#FEEEDA; 
+    color: #2D5D7C; 
+    border-style: none; 
+    border-radius: 30px; 
+}
