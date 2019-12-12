@@ -1,0 +1,54 @@
+*{
+    font-family: 'Lato', sans-serif;
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+}
+
+header {
+
+}
+
+body {
+    margin: ;
+
+}
+
+/* form {} */
+
+input {
+    
+}
+
+button {
+    background:#FEEEDA; 
+    color: #2D5D7C; 
+    border-style: none; 
+    border-radius: 30px; 
+}
+
+#Income {
+    background-color: white;
+}
+
+#Occurence {
+    background-color: white;
+}
+
+#Account {
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
