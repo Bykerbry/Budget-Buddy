@@ -5,17 +5,17 @@
     box-sizing: border-box;
 }
 
-header {
+.upper-bar {
     font-size: 40px; 
-
 }
+
 
 body {
     display: flex; 
     flex-direction: column; 
-    justify-content: center;
-    margin: 10px; 
-
+    align-items: center; 
+    margin: 10px;
+    height: 100vh; 
 }
 
 /* form {} */
@@ -28,10 +28,20 @@ button {
     background:#FEEEDA; 
     color: #2D5D7C; 
     border-style: none; 
-    border-radius: 30px; 
+    border-radius: 50px; 
     height: 50px; 
     width: 200px; 
     padding: 20px; 
+    font-size: 15px; 
+    font-weight: bold;
+    text-align: center; 
+    
+}
+
+a {
+    text-decoration: none;
+    background:#FEEEDA; 
+    color: #2D5D7C; 
 }
 
 p {
