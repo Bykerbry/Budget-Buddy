@@ -5,17 +5,21 @@
     box-sizing: border-box;
 }
 
-header {
+.upper-bar {
     font-size: 40px; 
-
 }
+
 
 body {
     display: flex; 
     flex-direction: column; 
-    justify-content: center;
-    margin: 10px; 
+    align-items: center; 
+    margin: 10px;
+}
 
+header {
+    font-size: 2em;
+    font-weight: bold;
 }
 
 /* form {} */
@@ -24,19 +28,32 @@ input {
 
 }
 
+.emoji{
+    font-size: 20px; 
+    margin: 10px;  
+}
+
 button {
     background:#FEEEDA; 
     color: #2D5D7C; 
     border-style: none; 
-    border-radius: 30px; 
+    border-radius: 50px; 
     height: 50px; 
-    width: 200px; 
-    padding: 20px; 
+    width: 200px;   
+    font-size: 15px; 
+    font-weight: bold;
+     
+    
+}
+
+a {
     text-decoration: none;
+    background:#FEEEDA; 
+    color: #2D5D7C; 
 }
 
 p {    
-    text-decoration: none;
+    
 }
 
 #Homepage_form {
@@ -64,6 +81,8 @@ p {
 #Account {
     text-decoration: none;
     padding: 10px;
+    background-color: #2D5D7C;
+    color: #FEEEDA;
 }
 #exp-header {
     display: flex;
@@ -86,7 +105,6 @@ p {
 #exp-form > input, #exp-form > select {
     display: block;
 }
-
 
 
 
