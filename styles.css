@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'Lato', sans-serif;
     background-color: #2D5D7C;
     color: #FEEEDA;
@@ -24,10 +24,17 @@ button {
     color: #2D5D7C; 
     border-style: none; 
     border-radius: 30px; 
+    height: 50px; 
+    width: 200px; 
+    padding: 20px; 
     text-decoration: none;
 }
 
-.Homepage_form {
+p {    
+    text-decoration: none;
+}
+
+#Homepage_form {
     display: flex;
     flex: 1;
     justify-content: space-between;
@@ -35,17 +42,23 @@ button {
     flex-direction: column;
 }
 
-#Income {
-    background-color: white;
+#Income_form {
+    margin: 35px;
 }
 
-#Occurence {
+#Income {
     background-color: white;
-    text-decoration-color: black;
+    color: black;
+    width: 200px;
+    border-radius: 30px; 
+    border-color: gray;
+    padding: 15px 0px;
+    font-size: large;
 }
 
 #Account {
     text-decoration: none;
+    padding: 10px;
 }
 
 
