@@ -34,6 +34,12 @@ button {
     padding: 20px; 
     text-decoration: none;
 }
+button:hover {
+    cursor: pointer;
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
 
 p {    
     text-decoration: none;
@@ -65,12 +71,15 @@ p {
     text-decoration: none;
     padding: 10px;
 }
+select:hover{
+    cursor: pointer;
+}
 #exp-header {
     display: flex;
 }
 #exp-title {
-    font-size: 5vh;
     display: flex;
+    font-size: 5vh;
 }
 #exp-header-left{
     display: flex;
@@ -83,10 +92,26 @@ p {
     font-size: 3vh;
     align-items: center;
 }
-#exp-form > input, #exp-form > select {
+.exp-form-child {
     display: block;
 }
-
+.exp-form-child > * {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+.exp-form-child > input {
+    border-radius: 10px;
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    border: 1px solid #2D5D7C
+}
+#exp-form > input {
+    margin: auto;
+}
+#exp-add-btn{
+    margin: auto;
+}
 
 
 
