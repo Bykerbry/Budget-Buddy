@@ -16,8 +16,12 @@ body {
     flex-direction: column; 
     align-content: center;
     align-items: center; 
-    margin: 10px; 
-    width: 100vw; 
+    margin: 10px;
+}
+
+header {
+    font-size: 2em;
+    font-weight: bold;
 }
 
 /* form {} */
@@ -31,6 +35,7 @@ input {
     margin-bottom: 16px; 
     
 }
+
 button {
     background:#FEEEDA; 
     color: #2D5D7C; 
@@ -82,9 +87,6 @@ a {
     color: #FEEEDA;
     background: none; 
 }
-
-
-
 
 
 
