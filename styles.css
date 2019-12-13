@@ -36,6 +36,15 @@ button {
 
 p {
     
+    text-decoration: none;
+}
+
+.Homepage_form {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
 }
 
 #Income {
@@ -44,6 +53,7 @@ p {
 
 #Occurence {
     background-color: white;
+    text-decoration-color: black;
 }
 
 #Account {
