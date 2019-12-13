@@ -17,6 +17,11 @@ body {
     margin: 10px;
 }
 
+header {
+    font-size: 2em;
+    font-weight: bold;
+}
+
 /* form {} */
 
 input {
@@ -27,6 +32,7 @@ input {
     font-size: 20px; 
     margin: 10px;  
 }
+
 button {
     background:#FEEEDA; 
     color: #2D5D7C; 
