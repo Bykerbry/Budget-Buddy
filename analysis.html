@@ -12,17 +12,20 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <header>Analysis</header>
+        <div class="upper-bar">
+            <header>Analysis</header>
+        </div>
         <p>See how your weekly expenses break down!</p>
-            <div id="graphic-representations">
-                <ul id="percentages">
-                </ul>
-            </div>
-        <p>Budgeting is hard. Let us help you.</p>
-        <button id="report">VIEW BUDGET BUDDY REPORT</button>
+            <div id="piechart"></div>
+        <p>Budgeting is hard. Let us help!</p>
+        <div class="emoji">&#x1F447</div>
+        <button id="report">
+            <a href="report.html">VIEW REPORT</a>
+        </button>
 
 
         
         <script src="script.js" async defer></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     </body>
 </html>
