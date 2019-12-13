@@ -5,14 +5,16 @@
     box-sizing: border-box;
 }
 
-.upper-bar {
+.upper-bar,header {
     font-size: 40px; 
+    font-weight: 900; 
 }
 
 
 body {
     display: flex; 
     flex-direction: column; 
+    align-content: center;
     align-items: center; 
     margin: 10px;
 }
@@ -29,8 +31,9 @@ input {
 }
 
 .emoji{
-    font-size: 20px; 
-    margin: 10px;  
+    font-size: 30px; 
+    margin-bottom: 16px; 
+    
 }
 
 button {
@@ -58,8 +61,8 @@ button:hover {
     border: 1px solid #FEEEDA;
 }
 
-p {    
-    
+.page-explanation {  
+    font-size: 16px;   
 }
 
 #Homepage_form {
@@ -87,7 +90,6 @@ p {
 #Account {
     text-decoration: none;
     padding: 10px;
-    background-color: #2D5D7C;
     color: #FEEEDA;
 }
 select:hover{
