@@ -69,6 +69,7 @@ p {
 }
 
 #Income {
+    content: "$";
     background-color: white;
     color: black;
     width: 200px;
