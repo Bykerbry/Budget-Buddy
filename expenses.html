@@ -11,27 +11,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
         <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <header>
-            <div>
-                <h1>Expenses</h1>
-                <div>
-                    <p>Weekly Budget</p>
-                    <p>$2000</p>
-                </div>
+        <header id="exp-header">
+            <div id="exp-header-left">
+                <i class="material-icons menu-icon">menu</i>
+                <h1 id="exp-title">Expenses</h1>
+            </div>
+            <div id="exp-header-right">
+                <p>Weekly Budget</p>
+                <p>$2000</p>
             </div>
         </header>
         <main>
-            <form action="submit" id="expense-form">
-                <div>
+            <form action="submit" id="exp-form">
+                <div class="exp-form-child">
                     <label for="exp-description">Description</label>
                     <input type="text" name="exp-description" id="exp-description">
+                </div>
+                <div class="exp-form-child">
                     <label for="exp-amount">Amount</label>
-                    <input type="text" id="exp-amount">
+                    <input type="text" id="exp-amount"> 
+                </div>
+                <div class="exp-form-child">
                     <label for="category"></label>
                     <select name="category" id="category">
                         <option value="default">Pick a Category</option>
@@ -41,8 +47,12 @@
                         <option value="Bills">Bills</option>
                         <option value="Other">Other</option>
                     </select>
+                </div>
+                <div class="exp-form-child">
                     <label for="recurring">Recurring?</label>
                     <input type="checkbox" id="recurring">
+                </div>
+                <div class="exp-form-child">
                     <label for="frequency">How often do you pay this amount?</label>
                     <select name="frequency" id="frequency">
                         <option value="Not recurring">Not recurring</option>
@@ -53,8 +63,9 @@
                         <option value="Annually">Annually</option>
                     </select>
                 </div>
+                <button type="submit" id="exp-add-btn">Add</button>
             </form>
-
+            <button id="exp-finish-btn" href="analysis.html">Finish</button>
         </main>
         <script src="script.js" async defer></script>
     </body>

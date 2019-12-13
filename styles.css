@@ -5,14 +5,16 @@
     box-sizing: border-box;
 }
 
-.upper-bar {
+.upper-bar,header {
     font-size: 40px; 
+    font-weight: 900; 
 }
 
 
 body {
     display: flex; 
     flex-direction: column; 
+    align-content: center;
     align-items: center; 
     margin: 10px;
 }
@@ -29,8 +31,9 @@ input {
 }
 
 .emoji{
-    font-size: 20px; 
-    margin: 10px;  
+    font-size: 30px; 
+    margin-bottom: 16px; 
+    
 }
 
 button {
@@ -51,9 +54,15 @@ a {
     background:#FEEEDA; 
     color: #2D5D7C; 
 }
+button:hover {
+    cursor: pointer;
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
 
-p {    
-    
+.page-explanation {  
+    font-size: 16px;   
 }
 
 #Homepage_form {
@@ -82,12 +91,49 @@ p {
 #Account {
     text-decoration: none;
     padding: 10px;
-    background-color: #2D5D7C;
     color: #FEEEDA;
 }
-
-
-
+select:hover{
+    cursor: pointer;
+}
+#exp-header {
+    display: flex;
+}
+#exp-title {
+    display: flex;
+    font-size: 5vh;
+}
+#exp-header-left{
+    display: flex;
+    align-items: center;
+}
+#exp-header-right{
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    font-size: 3vh;
+    align-items: center;
+}
+.exp-form-child {
+    display: block;
+}
+.exp-form-child > * {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+.exp-form-child > input {
+    border-radius: 10px;
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    border: 1px solid #2D5D7C
+}
+#exp-form > input {
+    margin: auto;
+}
+#exp-add-btn{
+    margin: auto;
+}
 
 
 
