@@ -5,17 +5,19 @@
     box-sizing: border-box;
 }
 
-.upper-bar {
+.upper-bar,header {
     font-size: 40px; 
+    font-weight: 900; 
 }
 
 
 body {
     display: flex; 
     flex-direction: column; 
+    align-content: center;
     align-items: center; 
-    margin: 10px;
-    height: 100vh; 
+    margin: 10px; 
+    width: 100vw; 
 }
 
 /* form {} */
@@ -25,8 +27,9 @@ input {
 }
 
 .emoji{
-    font-size: 20px; 
-    margin: 10px;  
+    font-size: 30px; 
+    margin-bottom: 16px; 
+    
 }
 button {
     background:#FEEEDA; 
@@ -47,8 +50,8 @@ a {
     color: #2D5D7C; 
 }
 
-p {    
-    
+.page-explanation {  
+    font-size: 16px;   
 }
 
 #Homepage_form {
@@ -76,6 +79,8 @@ p {
 #Account {
     text-decoration: none;
     padding: 10px;
+    color: #FEEEDA;
+    background: none; 
 }
 
 
