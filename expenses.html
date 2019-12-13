@@ -17,45 +17,43 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <header>
-            <div>
-                <i class="material-icons">menu</i>
-                <h1>Expenses</h1>
+        <header id="exp-header">
+            <div id="exp-header-left">
+                <i class="material-icons menu-icon">menu</i>
+                <h1 id="exp-title">Expenses</h1>
             </div>
-            <div>
+            <div id="exp-header-right">
                 <p>Weekly Budget</p>
                 <p>$2000</p>
             </div>
         </header>
         <main>
-            <form action="submit" id="expense-form">
-                <div>
-                    <label for="exp-description">Description</label>
-                    <input type="text" name="exp-description" id="exp-description">
-                    <label for="exp-amount">Amount</label>
-                    <input type="text" id="exp-amount">
-                    <label for="category"></label>
-                    <select name="category" id="category">
-                        <option value="default">Pick a Category</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="Food">Food</option>
-                        <option value="Clothing">Clothing</option>
-                        <option value="Bills">Bills</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <label for="recurring">Recurring?</label>
-                    <input type="checkbox" id="recurring">
-                    <label for="frequency">How often do you pay this amount?</label>
-                    <select name="frequency" id="frequency">
-                        <option value="Not recurring">Not recurring</option>
-                        <option value="Weekly">Weekly</option>
-                        <option value="Bi-Weekly">Bi-Weekly</option>
-                        <option value="Monthly">Monthly</option>
-                        <option value="Semi-Annually">Semi-Annually</option>
-                        <option value="Annually">Annually</option>
-                    </select>
-                    <button type="submit">Add</button>
-                </div>
+            <form action="submit" id="exp-form">
+                <label for="exp-description">Description</label>
+                <input type="text" name="exp-description" id="exp-description">
+                <label for="exp-amount">Amount</label>
+                <input type="text" id="exp-amount">
+                <label for="category"></label>
+                <select name="category" id="category">
+                    <option value="default">Pick a Category</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Food">Food</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+                </select>
+                <label for="recurring">Recurring?</label>
+                <input type="checkbox" id="recurring">
+                <label for="frequency">How often do you pay this amount?</label>
+                <select name="frequency" id="frequency">
+                    <option value="Not recurring">Not recurring</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Bi-Weekly">Bi-Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Semi-Annually">Semi-Annually</option>
+                    <option value="Annually">Annually</option>
+                </select>
+                <button type="submit">Add</button>
             </form>
             <button id="exp-finish-btn">Finish</button>
         </main>

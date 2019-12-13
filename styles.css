@@ -49,8 +49,27 @@ p {
 #Account {
     text-decoration: none;
 }
-
-
+#exp-header {
+    display: flex;
+}
+#exp-title {
+    font-size: 5vh;
+    display: flex;
+}
+#exp-header-left{
+    display: flex;
+    align-items: center;
+}
+#exp-header-right{
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    font-size: 3vh;
+    align-items: center;
+}
+#exp-form > input, #exp-form > select {
+    display: block;
+}
 
 
 
