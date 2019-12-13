@@ -26,8 +26,7 @@ input {
 
 .emoji{
     font-size: 20px; 
-    margin: 10px;
-    padding-bottom: 20px;  
+    margin: 10px;  
 }
 button {
     background:#FEEEDA; 
@@ -46,13 +45,10 @@ a {
     text-decoration: none;
     background:#FEEEDA; 
     color: #2D5D7C; 
-    width: 200px; 
-    padding: 20px; 
-    text-decoration: none;
 }
 
 p {    
-    text-decoration: none;
+    
 }
 
 #Homepage_form {
