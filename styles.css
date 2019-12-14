@@ -10,7 +10,6 @@
     font-weight: 900; 
 }
 
-
 body {
     display: flex; 
     flex-direction: column; 
@@ -23,19 +22,9 @@ header {
     font-size: 2em;
     font-weight: bold;
 }
-
-/* form {} */
-
-input {
-
+select{
+    cursor: pointer;
 }
-
-.emoji{
-    font-size: 30px; 
-    margin-bottom: 16px; 
-    
-}
-
 button {
     background:#FEEEDA; 
     color: #2D5D7C; 
@@ -45,20 +34,24 @@ button {
     width: 200px;   
     font-size: 15px; 
     font-weight: bold;
-     
-    
+    cursor: pointer;
+}
+button:hover {
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
+/* form {} */
+
+.emoji{
+    font-size: 30px; 
+    margin-bottom: 16px; 
 }
 
 a {
     text-decoration: none;
     background:#FEEEDA; 
     color: #2D5D7C; 
-}
-button:hover {
-    cursor: pointer;
-    background-color: #2D5D7C;
-    color: #FEEEDA;
-    border: 1px solid #FEEEDA;
 }
 
 .page-explanation {  
@@ -93,50 +86,89 @@ button:hover {
     padding: 10px;
     color: #FEEEDA;
 }
-select:hover{
+select{
     cursor: pointer;
+}
+
+/**** Expenses Section ****/
+/* Header */
+.exp-body {
+    display: block
 }
 #exp-header {
     display: flex;
-}
-#exp-title {
-    display: flex;
-    font-size: 5vh;
 }
 #exp-header-left{
     display: flex;
     align-items: center;
 }
+#exp-title {
+    display: flex;
+    font-size: 1em;
+    padding-left: 2vw;
+}
 #exp-header-right{
     display: flex;
     flex: 1;
-    justify-content: flex-end;
-    font-size: 3vh;
-    align-items: center;
+    justify-content: center;
+    font-size: .5em;
+    align-items: flex-end;
+    flex-direction: column;
 }
+#exp-header-right > p {
+    margin: .25em 0 .25em 0;
+}
+/* Exp Form */
 .exp-form-child {
     display: block;
+    padding: 2vh;
 }
 .exp-form-child > * {
     display: block;
     margin: auto;
     text-align: center;
+    padding: .25em;
+}
+.exp-form-child > label {
+    font-size: 1.25em;
 }
 .exp-form-child > input {
-    border-radius: 10px;
+    font-size: 1em;
+    border-radius: 2em;
     color: #2D5D7C;
     background-color: #FEEEDA;
-    border: 1px solid #2D5D7C
+    border: 1px solid #2D5D7C;
+    padding: .5em;
+}
+.exp-form-child > input:focus, .exp-form-child > select {
+    outline: none;
+}
+.exp-form-child > select {
+    padding: .5em;
+    margin-top: .5em;
+    font-size: 1em;
+    /* Both for improved browser support */
+    text-align: center;
+    text-align-last: center;
 }
 #exp-form > input {
     margin: auto;
 }
-#exp-add-btn{
-    margin: auto;
+#exp-add-btn-container, #exp-finish-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
 }
-.exp-body {
-    display: block
+#recurring {
+    cursor: pointer;
 }
+.menu-icon:hover {
+    color: #FEEEDA;
+    opacity: 50%;
+}
+/* Expense list */
+
+
 
 
 
