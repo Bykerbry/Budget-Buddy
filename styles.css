@@ -133,8 +133,9 @@ select:hover{
 #exp-add-btn{
     margin: auto;
 }
-
-
+.exp-body {
+    display: block
+}
 
 
 
