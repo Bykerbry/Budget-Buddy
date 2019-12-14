@@ -118,8 +118,8 @@ select{
 #exp-header-right > div {
     text-align: center;
 }
-#exp-header-right > p {
-    margin: .25em 0 .25em 0;
+#exp-header-right > div > p {
+    margin: .5em 0 .5em 0;
 }
 /* Exp Form */
 .exp-form-child {
