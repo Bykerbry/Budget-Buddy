@@ -115,6 +115,9 @@ select{
     align-items: flex-end;
     flex-direction: column;
 }
+#exp-header-right > div {
+    text-align: center;
+}
 #exp-header-right > p {
     margin: .25em 0 .25em 0;
 }
