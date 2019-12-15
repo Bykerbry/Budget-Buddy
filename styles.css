@@ -70,7 +70,7 @@ a {
     margin: 35px;
 }
 
-#Income {
+.Income {
     content: "$";
     background-color: white;
     color: black;
