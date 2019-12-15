@@ -4,11 +4,7 @@
     color: #FEEEDA;
     box-sizing: border-box;
 }
-
-.upper-bar,header {
-    font-size: 40px; 
-    font-weight: 900; 
-}
+    
 
 body {
     display: flex; 
@@ -20,7 +16,7 @@ body {
 
 header {
     font-size: 2em;
-    font-weight: bold;
+    font-weight: 900;
 }
 select{
     cursor: pointer;
@@ -85,7 +81,9 @@ a {
 #Account {
     text-decoration: none;
     padding: 10px;
-    color: #FEEEDA;
+    background: none;
+    color: white; 
+
 }
 select{
     cursor: pointer;
