@@ -11,18 +11,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
     </head>
-    <body>
-        <div class="upper-bar">
-            <header>Analysis</header>
+    <body id="exp-body">
+        <header id="exp-header">
+                <div id="exp-header-left">
+                    <a id="nav-toggle" href="#">&#9776;</a>
+                    <h1 id="exp-title">Analysis</h1>
+                </div>
+                <div id="exp-header-right">
+                    <div>
+                        <p>Weekly Budget</p>
+                        <p id="weekly-budget">$1000</p>
+                    </div>
+                </div>
+            </header>
             <hr>
-        </div>
-        <p class="page-explanation">See how your weekly expenses break down!</p>
-            <div id="piechart"></div>
-        <p>Budgeting is hard. Let us help!</p>
-        <div class="emoji">&#x1F447</div>
-        <button id="report">
-            <a href="report.html">View Report</a>
-        </button>
+        <main id="analysis-main">
+            <p class="page-explanation">See how your weekly expenses break down!</p>
+                <div id="piechart"></div>
+            <p>Budgeting is hard. Let us help!</p>
+            <div class="emoji">&#x1F447</div>
+            <button id="report">
+                <a href="report.html">View Report</a>
+            </button>
+        </main>
 
 
         

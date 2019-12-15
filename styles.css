@@ -18,9 +18,24 @@ header {
     font-size: 2em;
     font-weight: 900;
 }
-select{
+
+#nav-toggle {
+    color: #FEEEDA;
+    background: none; 
+    font-size: 30px; 
+}
+
+select {
     cursor: pointer;
 }
+
+#analysis-main {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 button {
     background:#FEEEDA; 
     color: #2D5D7C; 
@@ -33,12 +48,18 @@ button {
     cursor: pointer;
     outline: none;
 }
+
 button:hover {
     background-color: #2D5D7C;
     color: #FEEEDA;
     border: 1px solid #FEEEDA;
 }
-/* form {} */
+
+a:hover {
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    border: none; 
+}
 
 .emoji{
     font-size: 30px; 
