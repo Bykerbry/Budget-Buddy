@@ -46,7 +46,7 @@ if(incSubmit) {
 };
 
 // Retrieves the value of weekly budget from home.html
-document.addEventListener('readystatechange', function(){
+document.addEventListener('readystatechange', _ => {
   if(weeklyBudget) {
     weeklyBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
