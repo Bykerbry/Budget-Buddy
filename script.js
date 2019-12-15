@@ -1,8 +1,8 @@
 
 const inc = document.getElementById('Income');
-const weeklyBudget = document.getElementById('weekly-budget');
 const incFrequency = document.getElementById('inc-frequency');
-const incSubmit = document.getElementById('inc-submit');
+const incSubmitBtn = document.getElementById('inc-submit');
+const weeklyBudget = document.getElementById('weekly-budget');
 
 // Values assigned to below variables upon submit btn click.
 let incFrequencyValue;
@@ -11,14 +11,14 @@ let incValue;
 /** Default incFrequencyValue is 'Weekly'. This listens for changes. */
 const getIncFrequency = e => {
   incFrequencyValue = e.target.value;
-}
+};
 
 /** On submit btn click, uses inc & incFrequency values to set incValue. */
 const weeklyBudgetCalc = _ => {
   let valueStr = inc.value.split('').filter(i => i !== '$').join('');
   if (Number(valueStr)) {
     let value = Number(valueStr);
-
+    
     switch(incFrequencyValue) {
       case 'BiWeekly':
         incValue = value / 2;
@@ -40,9 +40,9 @@ const weeklyBudgetCalc = _ => {
 };
 
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
-if(incSubmit) {
-  incSubmit.addEventListener('click', weeklyBudgetCalc);
+if(incSubmitBtn) {
   incFrequency.addEventListener('change', getIncFrequency);
+  incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
 };
 
 // Retrieves the value of weekly budget from home.html
