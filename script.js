@@ -69,6 +69,7 @@ class Expense {
 }
 
 document.getElementById("exp-add-btn").addEventListener("click", new Expense (category, amount));
+document.getElementById("exp-finish-btn").addEventListener("click", );
 
 // function to add object to array 
 let addExpense = (category, amount) => {
