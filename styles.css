@@ -1,3 +1,6 @@
+/***************
+Global Selectors 
+***************/
 * {
     font-family: 'Lato', sans-serif;
     background-color: #2D5D7C;
@@ -5,7 +8,6 @@
     box-sizing: border-box;
 }
     
-
 body {
     display: flex; 
     flex-direction: column; 
@@ -19,21 +21,8 @@ header {
     font-weight: 900;
 }
 
-#nav-toggle {
-    color: #FEEEDA;
-    background: none; 
-    font-size: 20px; 
-}
-
 select {
     cursor: pointer;
-}
-
-#analysis-main {
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 button {
@@ -55,21 +44,42 @@ button:hover {
     border: 1px solid #FEEEDA;
 }
 
+a {
+    text-decoration: none;
+    background:#FEEEDA; 
+    color: #2D5D7C; 
+}
+
 a:hover {
     background-color: #2D5D7C;
     color: #FEEEDA;
     border: none; 
 }
 
+select{
+    cursor: pointer;
+}
+
+/***************
+    Analysis 
+***************/
+
+#analysis-main {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#nav-toggle {
+    color: #FEEEDA;
+    background: none; 
+    font-size: 30px; 
+}
+
 .emoji{
     font-size: 30px; 
     margin-bottom: 16px; 
-}
-
-a {
-    text-decoration: none;
-    background:#FEEEDA; 
-    color: #2D5D7C; 
 }
 
 .page-explanation {  
@@ -106,27 +116,32 @@ a {
     color: white; 
 
 }
-select{
-    cursor: pointer;
-}
 
-/**** Expenses Section ****/
-/* Header */
+/***************
+    Expenses 
+***************/
+
+/*** Header ***/
+
 #exp-body {
     display: block
 }
+
 #exp-header {
     display: flex;
 }
+
 #exp-header-left{
     display: flex;
     align-items: center;
 }
+
 #exp-title {
     display: flex;
     font-size: 1em;
     padding-left: 2vw;
 }
+
 #exp-header-right{
     display: flex;
     flex: 1;
@@ -135,26 +150,33 @@ select{
     align-items: flex-end;
     flex-direction: column;
 }
+
 #exp-header-right > div {
     text-align: center;
 }
+
 #exp-header-right > div > p {
-    margin: .5em 0 .5em 0;
+    margin: .5em 0;
 }
-/* Exp Form */
+
+/*** Exp Form ***/
+
 .exp-form-child {
     display: block;
     padding: 2vh;
 }
+
 .exp-form-child > * {
     display: block;
     margin: auto;
     text-align: center;
     padding: .25em;
 }
+
 .exp-form-child > label {
     font-size: 1.25em;
 }
+
 .exp-form-child > input {
     font-size: 1em;
     border-radius: 2em;
@@ -163,9 +185,11 @@ select{
     border: 1px solid #2D5D7C;
     padding: .5em;
 }
+
 .exp-form-child > input, .exp-form-child > select {
     outline: none;
 }
+
 .exp-form-child > select {
     padding: .5em;
     margin-top: .5em;
@@ -174,22 +198,27 @@ select{
     text-align: center;
     text-align-last: center;
 }
+
 #exp-form > input {
     margin: auto;
 }
+
 .exp-btn-container {
     display: flex;
     justify-content: center;
     margin-top: 1em;
 }
+
 #recurring {
     cursor: pointer;
 }
+
 .menu-icon:hover {
     cursor: pointer;
     opacity: 50%;
 }
-/* Expense list */
+
+/*** Expense list ***/
 
 
 
