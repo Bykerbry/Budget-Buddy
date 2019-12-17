@@ -116,8 +116,6 @@ select{
 
 #Income {
     content: "$";
-    background-color: white;
-    color: black;
     width: 200px;
     border-radius: 30px; 
     border-color: gray;
@@ -127,8 +125,6 @@ select{
 }
 
 #Income2 {
-    background-color: white;
-    color: black;
     width: 200px;
     border-radius: 30px; 
     border-color: gray;
