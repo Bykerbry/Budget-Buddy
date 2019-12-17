@@ -41,9 +41,7 @@ button {
     height: 50px; 
     width: 200px;   
     font-size: 15px; 
-    font-weight: bold;
-     
-    
+    font-weight: bold;    
 }
 
 a {
@@ -68,8 +66,35 @@ p {
     margin: 35px;
 }
 
+#Dollar {
+    position: absolute;
+    align-items: center;
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 50%;
+    padding: 15px;  
+    box-sizing: border-box;
+    height: 54px;
+    width: 55px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 #Income {
     content: "$";
+    background-color: white;
+    color: black;
+    width: 200px;
+    border-radius: 30px; 
+    border-color: gray;
+    padding: 15px 0px;
+    font-size: large;
+    text-align: right;
+}
+
+#Income2 {
     background-color: white;
     color: black;
     width: 200px;

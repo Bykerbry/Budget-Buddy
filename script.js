@@ -1,9 +1,27 @@
+"use strict"
 
+// Pass on values from the form at homepage to Expenses Report into local storage
 
+const submit = function(e) {
+  let income = income();
+}
 
+let btn = document.getElementById("Submit");
+if(btn){
+  btn.addEventListener('click', function(event){
+    event.preventDefault();
+    localStorage.setItem('income', document.getElementById('Income').value);
 
+    const e = document.getElementById('Income2');
+    const strUser = e.options[e.selectedIndex].value;
+    localStorage.setItem('Income2', strUser);
+    window.document.location = 'expenses.html';
+  }); 
+}
 
-
+const income = function(e){
+  let expensesIncome = document.getElementById('Income') - localStorage.getElementById('Income');
+}
 
 /**
  * Shows piechart of user spending
