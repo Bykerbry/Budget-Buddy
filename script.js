@@ -15,7 +15,10 @@ const expFrequency = document.getElementById("exp-frequency-selector");
 // Values assigned to below variables upon submit btn click.
 let incFrequencyValue;
 let incValue;
-let expCategorySums;
+
+/******************* 
+    Home Section 
+********************/
 
 /** Default incFrequencyValue is 'Weekly'. This listens for changes. */
 const getIncFrequency = e => {
@@ -24,9 +27,7 @@ const getIncFrequency = e => {
 
 /** On submit btn click, uses inc & incFrequency values to set incValue. */
 const weeklyBudgetCalc = _ => {
-  let valueStr = inc.value.split('').filter(i => i !== '$').join('');
-  console.log(valueStr);
-  console.log("btn-clicked");
+  let valueStr = inc.value.split('').filter(i => i !== '$').join(''); 
   if (Number(valueStr)) {
     let value = Number(valueStr);
     
@@ -43,7 +44,6 @@ const weeklyBudgetCalc = _ => {
       default:  
         incValue = value;
     };
-    console.log(incValue);
     localStorage.setItem('incomeValue', incValue);
   } else {
     // Maybe call a function here that throws an error & tells user to input a number.
@@ -61,12 +61,12 @@ document.addEventListener('readystatechange', _ => {
 
 
 
-
-
-
+/******************* 
+  Expenses Section 
+********************/
 
 // initialize an empty array, that will be filled when user adds expense
-let expenses = []
+let expenses = [];
 
 class Expense {
   constructor (description, category, amount, recurring, frequency){
@@ -75,55 +75,31 @@ class Expense {
     this.amount=amount;
     this.recurring=recurring;
     this.frequency=frequency; 
-  }
-}
+  };
+};
 
 let createExpense = () => {
-  description = expDescription.value;
-  category = expCategory.value;
-  amount = Number(expAmount.value); 
-  recurring = expRecurring.checked;
-  frequency = expFrequency.value;
-  expenses.push(new Expense(description, category, amount, recurring, frequency));
+  expenses.push(new Expense(expDescription.value, expCategory.value, 
+    Number(expAmount.value), expRecurring.checked, expFrequency.value));
   console.log(expenses);
 };
 
-/** Loops through expenses array & sets expCategorySums equal to an object containing the sum of each category */
+/** Loops through expenses array, creates & stores an object containing category sums. */
 const getExpData = _ => {
-  let entertainment = 0;
-  let food = 0;
-  let clothing = 0;
-  let bills = 0;
-  let other = 0;
-
-  expenses.map(i => {
-    switch(i.category) {
-      case 'entertainment':
-        entertainment += i.amount;
-        break;
-      case 'food':
-        food += i.amount;
-        break;
-      case 'clothing':
-        clothing += i.amount;
-        break;
-      case 'bills':
-        bills =+ i.amount;
-        break;
-      default:
-        other += i.amount;
-    };
-  });
-  
-  expCategorySums = {
-    "entertainment" : entertainment, 
-    "food" : food, 
-    "clothing" : clothing, 
-    "bills" : bills, 
-    "other" : other
+  // 1. Initialize empty object & iterate through expCategory options to set object keys.
+  let expCategorySums = {}
+  for (let i = 1; i < expCategory.options.length; i++) {
+    expCategorySums[expCategory.options[i].value] = 0;
   };
-  console.log(expCategorySums);
+  // 2. Iterate through expenses array, sum amounts & set as values in expCategorySums object.
+  expenses.map(i => Object.keys(expCategorySums).map(c => {
+    if (c === i.category) {
+      expCategorySums[c] += i.amount;
+    };
+  }));
+  // 3. Store newly created expCategorySums object for use in analysis.html
   localStorage.setItem('expenseCategorySums', expCategorySums);
+  console.log(expCategorySums);
 };
 
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
@@ -136,6 +112,12 @@ if(expAddBtn) {
   expAddBtn.addEventListener("click", createExpense);
   expFinishBtn.addEventListener("click", getExpData);
 };
+
+
+
+/******************* 
+  Analysis Section 
+********************/
 
 
 
