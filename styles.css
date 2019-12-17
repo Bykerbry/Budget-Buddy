@@ -108,26 +108,31 @@ select{
     border-radius: 50%;
     padding: 15px;  
     box-sizing: border-box;
-    height: 54px;
+    height: 50px;
     width: 55px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    border: none;
 }
 
 #Income {
     content: "$";
+    color: #2D5D7C;
+    background-color: #FEEEDA;
     width: 200px;
+    border: none;
     border-radius: 30px; 
-    border-color: gray;
     padding: 15px 0px;
     font-size: large;
     text-align: right;
 }
 
 #Income2 {
+    color: #2D5D7C;
+    background-color: #FEEEDA;
     width: 200px;
+    border: none;
     border-radius: 30px; 
-    border-color: gray;
     padding: 15px 0px;
     font-size: large;
 }
