@@ -87,7 +87,7 @@ let createExpense = () => {
   let expAmountValue = convertToWeekly(expFrequency.value, Number(expAmount.value));
   expenses.push(new Expense(expDescription.value, expAmountValue, 
     expFrequency.value, expCategory.value));
-
+    console.log(expenses);
   expListOutput.insertAdjacentHTML('beforeend', 
   `<div class="list-item">
     <div class="item-description">${expDescription.value}</div>
@@ -97,6 +97,12 @@ let createExpense = () => {
   liveBudget -= expAmountValue;
   console.log(liveBudget);
   weeklyBudget.innerText = `$ ${Math.round(liveBudget)}`; 
+
+  expDescription.value = '';
+  expAmount.value = '';
+  expFrequency.value = expFrequency.options[0].value;
+  expCategory.value = expCategory.options[0].value;
+  expDescription.select()
 };
 
 
