@@ -42,12 +42,6 @@ const weeklyBudgetCalc = _ => {
   }
 };
 
-// Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
-if(incSubmitBtn) {
-  incFrequency.addEventListener('change', getIncFrequency);
-  incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
-};
-
 // Retrieves the value of weekly budget from home.html
 document.addEventListener('readystatechange', _ => {
   if(weeklyBudget) {
@@ -121,10 +115,18 @@ const getExpData = _ => {
   localStorage.setItem('expenseCategorySums', expCategorySums);
 };
 
+// Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
+if(incSubmitBtn) {
+  incFrequency.addEventListener('change', getIncFrequency);
+  incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
+};
+
 if(expAddBtn) {
   expAddBtn.addEventListener("click", createExpense);
   expFinishBtn.addEventListener("click", getExpData);
 };
+
+
 
 /*** Commented out Pie Chart section so console would not through errors */
 
