@@ -1,29 +1,5 @@
 "use strict"
 
-<<<<<<< HEAD
-// Pass on values from the form at homepage to Expenses Report into local storage
-
-const submit = function(e) {
-  let income = income();
-}
-
-let btn = document.getElementById("Submit");
-if(btn){
-  btn.addEventListener('click', function(event){
-    event.preventDefault();
-    localStorage.setItem('income', document.getElementById('Income').value);
-
-    const e = document.getElementById('Income2');
-    const strUser = e.options[e.selectedIndex].value;
-    localStorage.setItem('Income2', strUser);
-    window.document.location = 'expenses.html';
-  }); 
-}
-
-const income = function(e){
-  let expensesIncome = document.getElementById('Income') - localStorage.getElementById('Income');
-}
-=======
 const inc = document.getElementById('Income');
 const incFrequency = document.getElementById('inc-frequency');
 const incSubmitBtn = document.getElementById('inc-submit');
@@ -79,7 +55,6 @@ document.addEventListener('readystatechange', _ => {
     weeklyBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
 });
->>>>>>> afd7a8162f9585ab97eb0f6091f16c2e0666b589
 
 
 
