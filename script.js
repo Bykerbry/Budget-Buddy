@@ -11,10 +11,13 @@ const expCategory = document.getElementById("exp-category-selector");
 const expAmount = document.getElementById("exp-amount");
 const expRecurring = document.getElementById("recurring");
 const expFrequency = document.getElementById("exp-frequency-selector");
+const expListOutput = document.getElementById("exp-list-output");
+const listPlaceholder = document.getElementById('list-placeholder')
 
 // Values assigned to below variables upon submit btn click.
 let incFrequencyValue;
 let incValue;
+let liveBudget;
 
 /******************* 
     Home Section 
@@ -69,29 +72,44 @@ document.addEventListener('readystatechange', _ => {
 let expenses = [];
 
 class Expense {
-  constructor (description, category, amount, recurring, frequency){
-    this.description=description;
-    this.category=category;
-    this.amount=amount;
-    this.recurring=recurring;
-    this.frequency=frequency; 
+  constructor (description, amount, frequency, category, recurring){
+    this.description = description;
+    this.amount = amount;
+    this.frequency = frequency;
+    this.category = category;
+    this.recurring = recurring;
   };
 };
 
 let createExpense = () => {
-  expenses.push(new Expense(expDescription.value, expCategory.value, 
-    Number(expAmount.value), expRecurring.checked, expFrequency.value));
+  if (listPlaceholder.style.display !== "none") {
+    listPlaceholder.style.display = 'none';
+    liveBudget = Number(weeklyBudget.innerText.split('').filter(i => i !== '$').join(''));
+  };
+
+  let expAmountValue = Number(expAmount.value);
+  expenses.push(new Expense(expDescription.value, expAmountValue, 
+    expFrequency.value, expCategory.value, expRecurring.checked));
   console.log(expenses);
+
+  expListOutput.insertAdjacentHTML('beforeend', 
+  `<div class="list-item">
+    <div class="item-description">${expDescription.value}</div>
+    <div class="item-amount">- $${expAmountValue} </div>
+    <i class="rmv-item-icon material-icons">highlight_off</i>
+  </div>`);
+  liveBudget -= expAmountValue;
+  weeklyBudget.innerText = `$ ${Math.round(liveBudget)}`; 
 };
 
 /** Loops through expenses array, creates & stores an object containing category sums. */
 const getExpData = _ => {
-  // 1. Initialize empty object & iterate through expCategory options to set object keys.
+  // 1. Set object keys from category options.
   let expCategorySums = {}
   for (let i = 1; i < expCategory.options.length; i++) {
     expCategorySums[expCategory.options[i].value] = 0;
   };
-  // 2. Iterate through expenses array, sum amounts & set as values in expCategorySums object.
+  // 2. Set object values as sums of each category.
   expenses.map(i => Object.keys(expCategorySums).map(c => {
     if (c === i.category) {
       expCategorySums[c] += i.amount;

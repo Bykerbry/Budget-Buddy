@@ -44,6 +44,7 @@
                     <label for="exp-frequency-selector">How often do you pay this amount?</label>
                     <select name="exp-frequency-selector" id="exp-frequency-selector">
                         <option value="default">-Select Frequency-</option>
+                        <option value="once">Single Payment</option>
                         <option value="weekly">Weekly</option>
                         <option value="bi-weekly">Bi-Weekly</option>
                         <option value="monthly">Monthly</option>
@@ -70,12 +71,17 @@
                     <button type="button" id="exp-add-btn">Add</button>
                 </div>
             </form>
-            <div id="exp-list-output">
-                <!-- JS will push new expense items here -->
+            <div id="exp-list-container">
+                <h2 id="exp-list-header">Expense List</h2>
+                <div id="exp-list-output">
+                    <div class="item-amount" id="list-placeholder">No expenses created</div>
+                    <!-- JS will push new expense items here -->
+                </div>
+                <div class="exp-btn-container" id="exp-finish-btn-container">
+                    <button type="button" id="exp-finish-btn" onClick="drawChart()">Finish</button>
+                </div>
             </div>
-            <div class="exp-btn-container">
-                <button type="button" id="exp-finish-btn" onClick="drawChart()">Finish</button>
-            </div>
+            
         </main>
         <script src="script.js" defer></script>
     </body>
