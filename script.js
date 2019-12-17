@@ -77,8 +77,8 @@ let createExpense = () => {
   return; 
 }
 
-document.getElementById("exp-add-btn").addEventListener("click", createExpense());
-document.getElementById("exp-finish-btn").addEventListener("click", );
+document.querySelectorAll("exp-add-btn").addEventListener("click", createExpense());
+document.querySelectorAll("exp-finish-btn").addEventListener("click", );
 
 // function to add all entertainment expenses
 let entertainmentSum = () => {
