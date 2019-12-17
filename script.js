@@ -6,6 +6,11 @@ const incSubmitBtn = document.getElementById('Submit');
 const weeklyBudget = document.getElementById('weekly-budget');
 const expAddBtn = document.getElementById('exp-add-btn');
 const expFinishBtn = document.getElementById("exp-finish-btn");
+const expDescription = document.getElementById("exp-description");
+const expCategory = document.getElementById("exp-category-selector");
+const expAmount = document.getElementById("exp-amount");
+const expRecurring = document.getElementById("recurring");
+const expFrequency = document.getElementById("exp-frequency-selector");
 
 // Values assigned to below variables upon submit btn click.
 let incFrequencyValue;
@@ -74,11 +79,11 @@ class Expense {
 }
 
 let createExpense = () => {
-  description = document.getElementById("exp-description").value;
-  category = document.getElementById("exp-category-selector").value;
-  amount = Number(document.getElementById("exp-amount").value); 
-  recurring = document.getElementById("recurring").checked;
-  frequency = document.getElementById("exp-frequency-selector").value;
+  description = expDescription.value;
+  category = expCategory.value;
+  amount = Number(expAmount.value); 
+  recurring = expRecurring.checked;
+  frequency = expFrequency.value;
   expenses.push(new Expense(description, category, amount, recurring, frequency));
   console.log(expenses);
 };
