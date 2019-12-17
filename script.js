@@ -3,11 +3,13 @@ const inc = document.getElementById('Income');
 const incFrequency = document.getElementById('inc-frequency');
 const incSubmitBtn = document.getElementById('inc-submit');
 const weeklyBudget = document.getElementById('weekly-budget');
-const expAddBtn = document.getElementById('exp-add-btn')
+const expAddBtn = document.getElementById('exp-add-btn');
+const expFinishBtn = document.getElementById("exp-finish-btn");
 
 // Values assigned to below variables upon submit btn click.
 let incFrequencyValue;
 let incValue;
+let expCategorySums;
 
 /** Default incFrequencyValue is 'Weekly'. This listens for changes. */
 const getIncFrequency = e => {
@@ -73,34 +75,56 @@ class Expense {
 }
 
 let createExpense = () => {
-  description=document.getElementById("exp-description").value;
-  category=document.getElementById("exp-category-selector").value;
-  amount=Number(document.getElementById("exp-amount").value); 
-  recurring=document.getElementById("recurring").checked;
-  frequency=document.getElementById("exp-frequency-selector").value;
+  description = document.getElementById("exp-description").value;
+  category = document.getElementById("exp-category-selector").value;
+  amount = Number(document.getElementById("exp-amount").value); 
+  recurring = document.getElementById("recurring").checked;
+  frequency = document.getElementById("exp-frequency-selector").value;
   expenses.push(new Expense(description, category, amount, recurring, frequency));
   console.log(expenses);
 };
 
+/** Loops through expenses array & sets expCategorySums equal to an object containing the sum of each category */
+const getExpData = _ => {
+  let entertainment = 0;
+  let food = 0;
+  let clothing = 0;
+  let bills = 0;
+  let other = 0;
 
-if(document.getElementById('exp-add-btn')) {
-  console.log("In If");
-  document.getElementById("exp-add-btn").addEventListener("click", createExpense);
-}
+  expenses.map(i => {
+    switch(i.category) {
+      case 'entertainment':
+        entertainment += i.amount;
+        break;
+      case 'food':
+        food += i.amount;
+        break;
+      case 'clothing':
+        clothing += i.amount;
+        break;
+      case 'bills':
+        bills =+ i.amount;
+        break;
+      default:
+        other += i.amount;
+    };
+  });
+  
+  expCategorySums = {
+    "entertainment" : entertainment, 
+    "food" : food, 
+    "clothing" : clothing, 
+    "bills" : bills, 
+    "other" : other
+  };
+  localStorage.setItem('expenseCategorySums', expCategorySums);
+};
 
-
-//document.getElementById("exp-add-btn").addEventListener("click", createExpense);
-//document.querySelectorAll("#exp-finish-btn").addEventListener("click", );
-
-// function to add all entertainment expenses
-let entertainmentSum = () => {
-  let total=0;
-  for (i=0; i<expenses.length; i++){
-    total += expenses[i].amount; 
-  }
-  return total;
-}
-
+if(expAddBtn) {
+  expAddBtn.addEventListener("click", createExpense);
+  expFinishBtn.addEventListener("click", getExpData);
+};
 
 /*** Commented out Pie Chart section so console would not through errors */
 
