@@ -122,6 +122,7 @@ const getExpData = _ => {
     "bills" : bills, 
     "other" : other
   };
+  console.log(expCategorySums);
   localStorage.setItem('expenseCategorySums', expCategorySums);
 };
 
