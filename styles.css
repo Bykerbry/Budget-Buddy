@@ -38,7 +38,8 @@ button {
     outline: none;
 }
 
-button:hover {
+button:hover,
+button:focus {
     background-color: #2D5D7C;
     color: #FEEEDA;
     border: 1px solid #FEEEDA;
@@ -315,7 +316,8 @@ select{
     margin-bottom: 1em;
 }
 
-#exp-finish-btn:hover {
+#exp-finish-btn:hover,
+#exp-finish-btn:focus {
     background-color: #FEEEDA;
     color: #2D5D7C;
     border: 1px solid #2D5D7C;

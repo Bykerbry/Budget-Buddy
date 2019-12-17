@@ -4,14 +4,15 @@
 const $inc = document.getElementById('Income');
 const $incFrequency = document.getElementById('Income2');
 const $incSubmitBtn = document.getElementById('Submit');
-const $weeklyBudget = document.getElementById('weekly-budget');
+const $staticBudget = document.getElementById('weekly-budget-static')
+const $liveBudget = document.getElementById('weekly-budget-live');
 const $expAddBtn = document.getElementById('exp-add-btn');
-const $expFinishBtn = document.getElementById("exp-finish-btn");
-const $expDescription = document.getElementById("exp-description");
-const $expCategory = document.getElementById("exp-category-selector");
-const $expAmount = document.getElementById("exp-amount");
-const $expFrequency = document.getElementById("exp-frequency-selector");
-const $expListOutput = document.getElementById("exp-list-output");
+const $expFinishBtn = document.getElementById('exp-finish-btn');
+const $expDescription = document.getElementById('exp-description');
+const $expCategory = document.getElementById('exp-category-selector');
+const $expAmount = document.getElementById('exp-amount');
+const $expFrequency = document.getElementById('exp-frequency-selector');
+const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder');
 
 // Global Variables that will get values from eventListeners.
@@ -55,8 +56,9 @@ const weeklyBudgetCalc = _ => {
 // Retrieves the value of weekly budget from home.html
 document.addEventListener('readystatechange', _ => {
   console.log(localStorage.getItem('incomeValue'));
-  if($weeklyBudget) {
-    $weeklyBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
+  if($liveBudget) {
+    $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
+    $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
 });
 
@@ -81,7 +83,7 @@ class Expense {
 let createExpense = () => {
   if ($listPlaceholder.style.display !== "none") {
     $listPlaceholder.style.display = 'none';
-    liveBudget = Number($weeklyBudget.innerText.split('').filter(i => i !== '$').join(''));
+    liveBudget = Number($liveBudget.innerText.split('').filter(i => i !== '$').join(''));
   };
 
   let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
@@ -96,7 +98,7 @@ let createExpense = () => {
   </div>`);
   liveBudget -= expAmountValue;
   console.log(liveBudget);
-  $weeklyBudget.innerText = `$ ${Math.round(liveBudget)}`; 
+  $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
 
   $expDescription.value = '';
   $expAmount.value = '';

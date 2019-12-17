@@ -25,13 +25,17 @@
             <div id="exp-header-right">
                 <div>
                     <p>Weekly Budget</p>
-                    <p id="weekly-budget"></p>
+                    <p id="weekly-budget-static"></p>
                 </div>
             </div>
         </header>
         <hr>
         <main>
             <form action="submit" id="exp-form">
+                <div class="exp-form-child">
+                    <p>Budget Remaining</p>
+                    <h1 id="weekly-budget-live"></h1>
+                </div>
                 <div class="exp-form-child">
                     <label for="exp-description">Description</label>
                     <input type="text" name="exp-description" id="exp-description">
