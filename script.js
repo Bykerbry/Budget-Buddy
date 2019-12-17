@@ -72,18 +72,17 @@ class Expense {
 }
 
 let createExpense = () => {
-  description=document.querySelectorAll("#exp-description").value;
-  category=document.querySelectorAll("#exp-frequency-selector").value;
-  amount=document.querySelectorAll("#exp-amount").value; 
-  recurring=document.querySelectorAll("#recurring").check;
-  frequency=document.querySelectorAll("#exp-frequency-selector").value;
-  expenses.push(new Expense (description, category, amount, recurring, frequency));
+  description = document.getElementById("exp-description").value;
+  category=document.getElementById("exp-frequency-selector").value;
+  amount=document.getElementById("exp-amount").value; 
+  recurring=document.getElementById("recurring").checked;
+  frequency=document.getElementById("exp-frequency-selector").value;
+  expenses.push(new Expense(description, category, amount, recurring, frequency));
   console.log(expenses);
-   
-}
+};
 
-document.getElementById("#exp-add-btn").addEventListener("click", createExpense);
-document.querySelectorAll("#exp-finish-btn").addEventListener("click", );
+document.getElementById("exp-add-btn").addEventListener("click", createExpense);
+//document.querySelectorAll("#exp-finish-btn").addEventListener("click", );
 
 // function to add all entertainment expenses
 let entertainmentSum = () => {
