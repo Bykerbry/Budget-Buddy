@@ -1,3 +1,4 @@
+"use strict"
 
 const inc = document.getElementById('Income');
 const incFrequency = document.getElementById('inc-frequency');

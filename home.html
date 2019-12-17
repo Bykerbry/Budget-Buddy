@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Budget Buddy Home</title>
+        <title>Budget Buddy</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
@@ -18,12 +18,13 @@
         <div id="Homepage_form">
             <header>Budget Buddy</header>
             <form>
-                <div id="Income_form">What is your income?<br>
-                    <input type="text" name="Income" class="Income" id="Income" placeholder="  $"><br>
+                <div id="Income_form">Your Income:<br>
+                    <span id="Dollar">$</span>
+                    <input type="number" name="Income" id="Income"><br>
                 </div>
 
-                <div id="Income_form">How often do you make this?<br>
-                    <select class="Income" id="inc-frequency">
+                <div id="Income_form">Paycheck Occurence:<br>
+                    <select id="Income2">
                         <option value="Weekly" id="Weekly">Weekly</option>
                         <option value="BiWeekly" id="BiWeekly">Bi-Weekly</option>
                         <option value="Monthly"  id="Monthly">Monthly</option>
@@ -31,7 +32,7 @@
                     </select>
                 </div>
             </form>                
-            <button id="inc-submit"><a href="expenses.html">Submit</a></button>
+            <button><a href="expenses.html" id="Submit">Submit</a></button>
             <a href="#" id="Account">Create Account</a>
         </div>
         <script src="script.js"></script>
