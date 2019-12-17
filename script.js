@@ -1,8 +1,8 @@
 "use strict"
 
 const inc = document.getElementById('Income');
-const incFrequency = document.getElementById('inc-frequency');
-const incSubmitBtn = document.getElementById('inc-submit');
+const incFrequency = document.getElementById('Income2');
+const incSubmitBtn = document.getElementById('Submit');
 const weeklyBudget = document.getElementById('weekly-budget');
 const expAddBtn = document.getElementById('exp-add-btn');
 const expFinishBtn = document.getElementById("exp-finish-btn");
@@ -20,6 +20,8 @@ const getIncFrequency = e => {
 /** On submit btn click, uses inc & incFrequency values to set incValue. */
 const weeklyBudgetCalc = _ => {
   let valueStr = inc.value.split('').filter(i => i !== '$').join('');
+  console.log(valueStr);
+  console.log("btn-clicked");
   if (Number(valueStr)) {
     let value = Number(valueStr);
     
@@ -36,6 +38,7 @@ const weeklyBudgetCalc = _ => {
       default:  
         incValue = value;
     };
+    console.log(incValue);
     localStorage.setItem('incomeValue', incValue);
   } else {
     // Maybe call a function here that throws an error & tells user to input a number.
@@ -45,6 +48,7 @@ const weeklyBudgetCalc = _ => {
 
 // Retrieves the value of weekly budget from home.html
 document.addEventListener('readystatechange', _ => {
+  console.log(localStorage.getItem('incomeValue'));
   if(weeklyBudget) {
     weeklyBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
