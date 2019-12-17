@@ -3,6 +3,7 @@ const inc = document.getElementById('Income');
 const incFrequency = document.getElementById('inc-frequency');
 const incSubmitBtn = document.getElementById('inc-submit');
 const weeklyBudget = document.getElementById('weekly-budget');
+const expAddBtn = document.getElementById('exp-add-btn')
 
 // Values assigned to below variables upon submit btn click.
 let incFrequencyValue;
@@ -72,16 +73,23 @@ class Expense {
 }
 
 let createExpense = () => {
-  description = document.getElementById("exp-description").value;
-  category=document.getElementById("exp-frequency-selector").value;
-  amount=document.getElementById("exp-amount").value; 
+  description=document.getElementById("exp-description").value;
+  category=document.getElementById("exp-category-selector").value;
+  amount=Number(document.getElementById("exp-amount").value); 
   recurring=document.getElementById("recurring").checked;
   frequency=document.getElementById("exp-frequency-selector").value;
   expenses.push(new Expense(description, category, amount, recurring, frequency));
   console.log(expenses);
 };
 
-document.getElementById("exp-add-btn").addEventListener("click", createExpense);
+
+if(document.getElementById('exp-add-btn')) {
+  console.log("In If");
+  document.getElementById("exp-add-btn").addEventListener("click", createExpense);
+}
+
+
+//document.getElementById("exp-add-btn").addEventListener("click", createExpense);
 //document.querySelectorAll("#exp-finish-btn").addEventListener("click", );
 
 // function to add all entertainment expenses
