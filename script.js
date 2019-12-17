@@ -10,7 +10,6 @@ const expFinishBtn = document.getElementById("exp-finish-btn");
 const expDescription = document.getElementById("exp-description");
 const expCategory = document.getElementById("exp-category-selector");
 const expAmount = document.getElementById("exp-amount");
-const expRecurring = document.getElementById("recurring");
 const expFrequency = document.getElementById("exp-frequency-selector");
 const expListOutput = document.getElementById("exp-list-output");
 const listPlaceholder = document.getElementById('list-placeholder')
@@ -71,12 +70,11 @@ document.addEventListener('readystatechange', _ => {
 let expenses = [];
 
 class Expense {
-  constructor (description, amount, frequency, category, recurring){
+  constructor (description, amount, frequency, category){
     this.description = description;
     this.amount = amount;
     this.frequency = frequency;
     this.category = category;
-    this.recurring = recurring;
   };
 };
 
@@ -86,10 +84,10 @@ let createExpense = () => {
     liveBudget = Number(weeklyBudget.innerText.split('').filter(i => i !== '$').join(''));
   };
 
-  expenses.push(new Expense(expDescription.value, expAmountValue, 
-    expFrequency.value, expCategory.value, expRecurring.checked));
-
   let expAmountValue = convertToWeekly(expFrequency.value, Number(expAmount.value));
+  expenses.push(new Expense(expDescription.value, expAmountValue, 
+    expFrequency.value, expCategory.value));
+
   expListOutput.insertAdjacentHTML('beforeend', 
   `<div class="list-item">
     <div class="item-description">${expDescription.value}</div>
