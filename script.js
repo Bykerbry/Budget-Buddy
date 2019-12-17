@@ -62,7 +62,8 @@ document.addEventListener('readystatechange', _ => {
 let expenses = []
 
 class Expense {
-  constructor (category, amount, recurring, frequency){
+  constructor (description, category, amount, recurring, frequency){
+    this.description=description;
     this.category=category;
     this.amount=amount;
     this.recurring=recurring;
@@ -71,14 +72,18 @@ class Expense {
 }
 
 let createExpense = () => {
-  amount=document.querySelectorAll("exp-amount").value; 
-  category=document.querySelectorAll("exp-frequency-selector").value;
-  expenses.push(new Expense (category, amount, recurring, frequency));
-  return; 
+  description=document.querySelectorAll("#exp-description").value;
+  category=document.querySelectorAll("#exp-frequency-selector").value;
+  amount=document.querySelectorAll("#exp-amount").value; 
+  recurring=document.querySelectorAll("#recurring").check;
+  frequency=document.querySelectorAll("#exp-frequency-selector").value;
+  expenses.push(new Expense (description, category, amount, recurring, frequency));
+  console.log(expenses);
+   
 }
 
-document.querySelectorAll("exp-add-btn").addEventListener("click", createExpense());
-document.querySelectorAll("exp-finish-btn").addEventListener("click", );
+document.getElementById("#exp-add-btn").addEventListener("click", createExpense);
+document.querySelectorAll("#exp-finish-btn").addEventListener("click", );
 
 // function to add all entertainment expenses
 let entertainmentSum = () => {
