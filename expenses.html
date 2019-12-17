@@ -6,14 +6,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Budget Buddy Expenses</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
         <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
-    <body>
+    <body id="exp-body">
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -23,10 +23,13 @@
                 <h1 id="exp-title">Expenses</h1>
             </div>
             <div id="exp-header-right">
-                <p>Weekly Budget</p>
-                <p>$2000</p>
+                <div>
+                    <p>Weekly Budget</p>
+                    <p id="weekly-budget">$1000</p>
+                </div>
             </div>
         </header>
+        <hr>
         <main>
             <form action="submit" id="exp-form">
                 <div class="exp-form-child">
@@ -35,38 +38,45 @@
                 </div>
                 <div class="exp-form-child">
                     <label for="exp-amount">Amount</label>
-                    <input type="text" id="exp-amount"> 
+                    <input type="text" id="exp-amount" placeholder=" $"> 
                 </div>
                 <div class="exp-form-child">
-                    <label for="category"></label>
-                    <select name="category" id="category">
-                        <option value="default">Pick a Category</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="Food">Food</option>
-                        <option value="Clothing">Clothing</option>
-                        <option value="Bills">Bills</option>
-                        <option value="Other">Other</option>
+                    <label for="exp-frequency-selector">How often do you pay this amount?</label>
+                    <select name="exp-frequency-selector" id="exp-frequency-selector">
+                        <option value="default">-Select Frequency-</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="bi-weekly">Bi-Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="semi-annually">Semi-Annually</option>
+                        <option value="annually">Annually</option>
+                    </select>
+                </div>
+                <div class="exp-form-child">
+                    <label for="exp-category-selector">Pick a Category</label>
+                    <select name="exp-category-selector" id="exp-category-selector">
+                        <option value="default">-Select Category-</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="food">Food</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="bills">Bills</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
                 <div class="exp-form-child">
                     <label for="recurring">Recurring?</label>
                     <input type="checkbox" id="recurring">
                 </div>
-                <div class="exp-form-child">
-                    <label for="frequency">How often do you pay this amount?</label>
-                    <select name="frequency" id="frequency">
-                        <option value="Not recurring">Not recurring</option>
-                        <option value="Weekly">Weekly</option>
-                        <option value="Bi-Weekly">Bi-Weekly</option>
-                        <option value="Monthly">Monthly</option>
-                        <option value="Semi-Annually">Semi-Annually</option>
-                        <option value="Annually">Annually</option>
-                    </select>
+                <div class="exp-btn-container">
+                    <button type="button" id="exp-add-btn">Add</button>
                 </div>
-                <button type="submit" id="exp-add-btn">Add</button>
             </form>
-            <button id="exp-finish-btn" href="analysis.html">Finish</button>
+            <div id="exp-list-output">
+                <!-- JS will push new expense items here -->
+            </div>
+            <div class="exp-btn-container">
+                <button type="button" id="exp-finish-btn" href="analysis.html" onClick="drawChart()">Finish</button>
+            </div>
         </main>
-        <script src="script.js" async defer></script>
+        <script src="script.js" defer></script>
     </body>
 </html>

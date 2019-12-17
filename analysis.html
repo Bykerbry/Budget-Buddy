@@ -6,22 +6,37 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Budget Buddy</title>
+        <title>Budget Buddy Analysis</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     </head>
-    <body>
-        <div class="upper-bar">
-            <header>analysis</header>
-        </div>
-        <p class="page-explanation">See how your weekly expenses break down!</p>
-            <div id="piechart"></div>
-        <p>Budgeting is hard. Let us help!</p>
-        <div class="emoji">&#x1F447</div>
-        <button id="report">
-            <a href="report.html">View Report</a>
-        </button>
+    <body id="exp-body">
+        <header id="exp-header">
+                <div id="exp-header-left">
+                    <i class="material-icons menu-icon">menu</i>
+                    <h1 id="exp-title">Analysis</h1>
+                </div>
+                <div id="exp-header-right">
+                    <div>
+                        <p>Weekly Budget</p>
+                        <p id="weekly-budget">$1000</p>
+                    </div>
+                </div>
+            </header>
+            <hr>
+        <main id="analysis-main">
+            <p class="page-explanation">See how your weekly expenses break down!</p>
+                <div id="piechart"></div>
+            <p>Budgeting is hard. Let us help!</p>
+            <div class="emoji">&#x1F447</div>
+            <button id="report">
+                <a href="report.html">View Report</a>
+            </button>
+        </main>
 
 
         
