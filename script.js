@@ -1,5 +1,6 @@
 "use strict"
 
+// DOM selectors
 const inc = document.getElementById('Income');
 const incFrequency = document.getElementById('Income2');
 const incSubmitBtn = document.getElementById('Submit');
@@ -14,10 +15,28 @@ const expFrequency = document.getElementById("exp-frequency-selector");
 const expListOutput = document.getElementById("exp-list-output");
 const listPlaceholder = document.getElementById('list-placeholder')
 
-// Values assigned to below variables upon submit btn click.
+// Global Variables that will get values from eventListeners.
 let incFrequencyValue;
 let incValue;
 let liveBudget;
+
+const convertToWeekly = (frequencyStr, amount) => {
+  console.log(frequencyStr, amount);
+  switch(frequencyStr) {
+    case 'Bi-Weekly':
+      return amount / 2;
+    case 'Monthly':
+      return Math.floor(amount / 4.345);
+    case 'Quarterly':
+      return Math.floor(amount / 13.044);
+    case 'Semi-Annually':
+      return Math.floor(amount / 26.088);
+    case 'Annually':
+      return Math.floor(amount / 52.1775);
+    default:  
+      return amount;
+  };
+}
 
 /******************* 
     Home Section 
@@ -30,28 +49,8 @@ const getIncFrequency = e => {
 
 /** On submit btn click, uses inc & incFrequency values to set incValue. */
 const weeklyBudgetCalc = _ => {
-  let valueStr = inc.value.split('').filter(i => i !== '$').join(''); 
-  if (Number(valueStr)) {
-    let value = Number(valueStr);
-    
-    switch(incFrequencyValue) {
-      case 'BiWeekly':
-        incValue = value / 2;
-        break;
-      case 'Monthly':
-        incValue = Math.floor(value / 4.345);
-        break;
-      case 'Yearly':
-        incValue = Math.floor(value / 52.1775);
-        break;
-      default:  
-        incValue = value;
-    };
+    incValue = convertToWeekly(incFrequencyValue, Number(inc.value));
     localStorage.setItem('incomeValue', incValue);
-  } else {
-    // Maybe call a function here that throws an error & tells user to input a number.
-    console.log('Error');
-  }
 };
 
 // Retrieves the value of weekly budget from home.html
@@ -87,11 +86,10 @@ let createExpense = () => {
     liveBudget = Number(weeklyBudget.innerText.split('').filter(i => i !== '$').join(''));
   };
 
-  let expAmountValue = Number(expAmount.value);
   expenses.push(new Expense(expDescription.value, expAmountValue, 
     expFrequency.value, expCategory.value, expRecurring.checked));
-  console.log(expenses);
 
+  let expAmountValue = convertToWeekly(expFrequency.value, Number(expAmount.value));
   expListOutput.insertAdjacentHTML('beforeend', 
   `<div class="list-item">
     <div class="item-description">${expDescription.value}</div>
@@ -99,8 +97,10 @@ let createExpense = () => {
     <i class="rmv-item-icon material-icons">highlight_off</i>
   </div>`);
   liveBudget -= expAmountValue;
+  console.log(liveBudget);
   weeklyBudget.innerText = `$ ${Math.round(liveBudget)}`; 
 };
+
 
 /** Loops through expenses array, creates & stores an object containing category sums. */
 const getExpData = _ => {
@@ -124,6 +124,7 @@ const getExpData = _ => {
 if(incSubmitBtn) {
   incFrequency.addEventListener('change', getIncFrequency);
   incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
+
 };
 
 if(expAddBtn) {
