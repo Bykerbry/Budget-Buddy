@@ -4,7 +4,7 @@
 const $inc = document.getElementById('Income');
 const $incFrequency = document.getElementById('Income2');
 const $incSubmitBtn = document.getElementById('Submit');
-const $staticBudget = document.getElementById('weekly-budget-static')
+const $staticBudget = document.getElementById('weekly-budget-static');
 const $liveBudget = document.getElementById('weekly-budget-live');
 const $expAddBtn = document.getElementById('exp-add-btn');
 const $expFinishBtn = document.getElementById('exp-finish-btn');
@@ -20,8 +20,12 @@ let incFrequencyValue;
 let incValue;
 let liveBudget;
 
+/**
+ * Takes payment frequency + amount & returns the amount as a weekly payment.
+ * @param {string} frequencyStr 
+ * @param {number} amount 
+ */
 const convertToWeekly = (frequencyStr, amount) => {
-  console.log(frequencyStr, amount);
   switch(frequencyStr) {
     case 'Bi-Weekly':
       return amount / 2;
@@ -36,20 +40,16 @@ const convertToWeekly = (frequencyStr, amount) => {
     default:  
       return amount;
   };
-}
+};
+
 
 /******************* 
     Home Section 
 ********************/
 
-/** Default incFrequencyValue is 'Weekly'. This listens for changes. */
-const getIncFrequency = e => {
-  incFrequencyValue = e.target.value;
-};
-
 /** On submit btn click, uses inc & incFrequency values to set incValue. */
 const weeklyBudgetCalc = _ => {
-    incValue = convertToWeekly(incFrequencyValue, Number($inc.value));
+    incValue = convertToWeekly($incFrequency.value, Number($inc.value));
     localStorage.setItem('incomeValue', incValue);
 };
 
@@ -104,33 +104,35 @@ let createExpense = () => {
   $expAmount.value = '';
   $expFrequency.value = $expFrequency.options[0].value;
   $expCategory.value = $expCategory.options[0].value;
-  $expDescription.select()
+  $expDescription.select();
 };
 
 
-/** Loops through expenses array, creates & stores an object containing category sums. */
+/** 
+ * Loops through expenses array, creates & stores an object containing category sums. 
+ * 1. Sets object keys from category options.
+ * 2. Sets object values as sums of each category.
+ * 3. Stores newly created expCategorySums object for use in analysis.html
+ * */
 const getExpData = _ => {
-  // 1. Set object keys from category options.
-  let expCategorySums = {}
+  let expCategorySums = {};
   for (let i = 1; i < $expCategory.options.length; i++) {
     expCategorySums[$expCategory.options[i].value] = 0;
   };
-  // 2. Set object values as sums of each category.
-  expenses.map(i => Object.keys(expCategorySums).map(c => {
-    if (c === i.category) {
-      expCategorySums[c] += i.amount;
-    };
-  }));
-  // 3. Store newly created expCategorySums object for use in analysis.html
+  expenses.map(i => {
+    Object.keys(expCategorySums).map(c => {
+      if (c === i.category) {
+        expCategorySums[c] += i.amount;
+      };
+    })
+  });
   localStorage.setItem('expenseCategorySums', expCategorySums);
   console.log(expCategorySums);
 };
 
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
 if($incSubmitBtn) {
-  $incFrequency.addEventListener('change', getIncFrequency);
   $incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
-
 };
 
 if($expAddBtn) {
