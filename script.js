@@ -144,53 +144,11 @@ if($expAddBtn) {
   Analysis Section 
 ********************/
 
+// grab sum of amount from each category
 
+// divide sums by income for %
 
-/*** Commented out Pie Chart section so console would not through errors */
+// used % to create a bar: %=color leftover=white
+  // default is white space
 
-// /**
-//  * Shows piechart of user spending
-//  * 
-//  * 
-//  */
-// google.charts.load('current', {'packages':['corechart']});
-// google.charts.setOnLoadCallback(drawChart);
-
-// // Draws the chart and sets the chart values
-// function drawChart() {
-//   var data = google.visualization.arrayToDataTable([
-//   ['Task', 'Dollars per Week'],
-//   ['Entertainment', entertainmentSum()],
-//   ['Food', document.querySelectorAll("exp-amount").value],
-//   ['Bills', document.querySelectorAll("exp-amount").value],
-//   ['Clothes', document.querySelectorAll("exp-amount").value],
-//   ['Other', document.querySelectorAll("exp-amount").value],
-//   ['Available', ]
-// ]);
-
-//   // Optional; add a title and set the width and height of the chart
-//   var options = {
-//     'title':'Your Spending',
-//     'titleTextStyle': { color: '#FEEEDA',
-//         fontName: 'Lato',
-//         fontSize: 14,
-//         bold: true,
-//         },
-//     'width':500, 
-//     'height':300,
-//     'backgroundColor': '#2D5D7C',
-//     'fontSize': 14,
-//     'pieSliceText': 'percentage',
-//     'legend': {position: 'right', textStyle: {color: '#FEEEDA', fontSize: 11}},
-//     'legend.alignment': 'end',
-//     'legend.position':'labeled',
-//     'tooltip.text':'both'
-//   }
-
-//   // Display the chart inside the <div> element with id="piechart"
-//   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-//   chart.draw(data, options);
-  
-// } 
-// // end piechart code
 
