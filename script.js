@@ -55,7 +55,6 @@ const weeklyBudgetCalc = _ => {
 
 // Retrieves the value of weekly budget from home.html
 document.addEventListener('readystatechange', _ => {
-  console.log(localStorage.getItem('incomeValue'));
   if($liveBudget) {
     $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
@@ -80,26 +79,26 @@ class Expense {
   };
 };
 
-let createExpense = () => {
+let onAddExpense = () => {
   if ($listPlaceholder.style.display !== "none") {
     $listPlaceholder.style.display = 'none';
     liveBudget = Number($liveBudget.innerText.split('').filter(i => i !== '$').join(''));
   };
 
   let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
+
   expenses.push(new Expense($expDescription.value, expAmountValue, 
     $expFrequency.value, $expCategory.value));
-    console.log(expenses);
+
   $expListOutput.insertAdjacentHTML('beforeend', 
   `<div class="list-item">
     <div class="item-description">${$expDescription.value}</div>
     <div class="item-amount">- $${expAmountValue} </div>
     <i class="rmv-item-icon material-icons">highlight_off</i>
   </div>`);
-  liveBudget -= expAmountValue;
-  console.log(liveBudget);
-  $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
 
+  liveBudget -= expAmountValue;
+  $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
   $expDescription.value = '';
   $expAmount.value = '';
   $expFrequency.value = $expFrequency.options[0].value;
@@ -127,7 +126,6 @@ const getExpData = _ => {
     })
   });
   localStorage.setItem('expenseCategorySums', expCategorySums);
-  console.log(expCategorySums);
 };
 
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
@@ -136,7 +134,7 @@ if($incSubmitBtn) {
 };
 
 if($expAddBtn) {
-  $expAddBtn.addEventListener("click", createExpense);
+  $expAddBtn.addEventListener("click", onAddExpense);
   $expFinishBtn.addEventListener("click", getExpData);
 };
 
