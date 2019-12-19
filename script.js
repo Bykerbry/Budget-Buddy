@@ -173,21 +173,39 @@ let percentageBills = () => {
   return (percentageBillsObj/incValue)*100;
 }
 let percentageFood = () => {
-  let percentageFoodObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']; 
+  let percentageFoodObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['food']; 
   return (percentageFoodObj/incValue)*100; 
 }
 let percentageEntertainment = () => {
-  let percentageEntertainmentObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']; 
+  let percentageEntertainmentObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment']; 
   return (percentageEntertainmentObj/incValue)*100; 
 }
 let percentageClothes = () => {
-  let percentageClothesObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']; 
+  let percentageClothesObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes']; 
   return (percentageClothesObj/incValue)*100; 
 }
 let percentageOther = () => {
-  let percentageOtherObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']; 
+  let percentageOtherObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['other']; 
   return (percentageOtherObj/incValue)*100; 
 }
+
+// converts category % to modify div width
 if(document.getElementById('billsPercentage')) {
   document.getElementById('billsPercentage').style.width = `${percentageBills().toString()}%`;
+}
+
+if(document.getElementById('foodPercentage')) {
+  document.getElementById('foodPercentage').style.width = `${percentageFood().toString()}%`;
+}
+
+if(document.getElementById('entertainmentPercentage')) {
+  document.getElementById('entertainmentPercentage').style.width = `${percentageEntertainment().toString()}%`;
+}
+
+if(document.getElementById('clothingPercentage')) {
+  document.getElementById('clothingPercentage').style.width = `${percentageClothing().toString()}%`;
+}
+
+if(document.getElementById('otherPercentage')) {
+  document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
 }
