@@ -61,6 +61,28 @@ a:hover {
     cursor: pointer;
     opacity: 50%;
 }
+.next-page-link {
+    background:#FEEEDA; 
+    color: #2D5D7C; 
+    border-style: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px; 
+    height: 50px; 
+    width: 200px;   
+    font-size: 15px; 
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+}
+
+#Submit:hover {
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
 
 select{
     cursor: pointer;
