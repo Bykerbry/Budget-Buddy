@@ -360,10 +360,45 @@ select{
     margin-bottom: 1em;
 }
 
+@media  only screen and (min-width: 1200px) {
 
+    .header-budget-buddy {
+        display: flex;
+        justify-content: center;
+        font-size: 5em;
+    }
 
+    #Homepage_form {
+        padding: 8em;
+    }
 
+    #Income_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding-bottom: 4em;
+    }
 
+    #Account {
+        padding: 3em;
+    }
+
+    main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 6em;
+    }
+
+    #exp-header-left {
+        font-size: 1.5em;
+    }
+
+    #exp-header-right {
+        font-size: 1em;
+    }
+    
+}
 
 
 
