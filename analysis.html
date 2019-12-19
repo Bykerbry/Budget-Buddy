@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="styles.css">
         <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     </head>
     <body id="exp-body">
         <header id="exp-header">
@@ -30,13 +29,40 @@
             <hr>
         <main id="analysis-main">
             <p class="page-explanation">See how your weekly expenses break down!</p>
-                <div id="piechart"></div>
+            <div class="graph-bar-parent">
+                <div>Bills</div>
+                <div class="graph-bar">
+                    <div id="billsPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <div class="graph-bar-parent">
+                <div>Food</div>
+                <div class="graph-bar">
+                    <div id="foodPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <div class="graph-bar-parent">
+                <div>Entertainment</div>
+                <div class="graph-bar">
+                    <div id="entertainmentPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <div class="graph-bar-parent">
+                <div>Clothing</div>
+                <div class="graph-bar">
+                    <div id="clothingPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <div class="graph-bar-parent">
+                <div>Other</div>
+                <div class="graph-bar">
+                    <div id="otherPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
             <p>Budgeting is hard. Let us help!</p>
             <div class="emoji">&#x1F447</div>
             <button type="button" id="view-report" href="report.html">View Report</button>
         </main>
-
-
         
         <script src="script.js" async defer></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
