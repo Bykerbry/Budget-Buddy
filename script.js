@@ -32,13 +32,13 @@ const convertToWeekly = (frequencyStr, amount) => {
     case 'Bi-Weekly':
       return amount / 2;
     case 'Monthly':
-      return Math.floor(amount / 4.345);
+      return amount / 4.345;
     case 'Quarterly':
-      return Math.floor(amount / 13.044);
+      return amount / 13.044;
     case 'Semi-Annually':
-      return Math.floor(amount / 26.088);
+      return amount / 26.088;
     case 'Annually':
-      return Math.floor(amount / 52.1775);
+      return amount / 52.1775;
     default:  
       return amount;
   };
@@ -51,7 +51,7 @@ const convertToWeekly = (frequencyStr, amount) => {
 
 /** On submit btn click, uses inc & incFrequency values to set incValue. */
 const weeklyBudgetCalc = _ => {
-    incValue = convertToWeekly($incFrequency.value, Number($inc.value));
+    incValue = Math.floor(convertToWeekly($incFrequency.value, Number($inc.value)));
     localStorage.setItem('incomeValue', incValue);
 };
 
@@ -90,14 +90,14 @@ let onAddExpense = () => {
   };
 
   let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
-
+  console.log(expAmountValue);
   expenses.push(new Expense($expDescription.value, expAmountValue, 
     $expFrequency.value, $expCategory.value));
-
+  console.log(expenses);
   $expListOutput.insertAdjacentHTML('beforeend', 
   `<div class="list-item">
     <div class="item-description">${$expDescription.value}</div>
-    <div class="item-amount">- $${expAmountValue} </div>
+    <div class="item-amount">- $${Math.round(expAmountValue)} </div>
     <div class="rmv-item-icon" onclick="onRemoveItem(event)">
       <i class="rmv-item-icon material-icons">highlight_off</i>
     </div>
@@ -134,10 +134,20 @@ const getExpData = _ => {
   console.log(expCategorySums);
 };
 
+/** Removes selected item from DOM, updates budget remaining & expenses array */
 const onRemoveItem = e => {
+  expenses = expenses.filter(i => {
+    if (i.description !== e.target.parentNode.parentNode.childNodes[1].innerText) {
+      return true;
+    } else {
+      liveBudget += i.amount;
+      $liveBudget.innerText = `$ ${Math.round(liveBudget)}`;
+      return false;
+    };
+  });
   e.target.parentNode.parentNode.remove();
-  console.log(e.target.parentNode.childNodes);
 }
+
 
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
 if($incSubmitBtn) {

@@ -89,32 +89,6 @@ select{
 }
 
 /***************
-    Analysis 
-***************/
-
-#analysis-main {
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#nav-toggle {
-    color: #FEEEDA;
-    background: none; 
-    font-size: 30px; 
-}
-
-.emoji{
-    font-size: 30px; 
-    margin-bottom: 16px; 
-}
-
-.page-explanation {  
-    font-size: 16px;   
-}
-
-/***************
     Input Form 
 ***************/
 
@@ -191,7 +165,7 @@ select{
     Expenses 
 ***************/
 
-/*** Header ***/
+/****** Header ******/
 
 #exp-body {
     display: block
@@ -229,7 +203,7 @@ select{
     margin: .5em 0;
 }
 
-/*** Exp Form ***/
+/****** Exp Form ******/
 
 .exp-form-child {
     display: block;
@@ -277,14 +251,17 @@ select{
     cursor: pointer;
 }
 
-/*** Expense list ***/
+/****** Expense list ******/
+
 #exp-list-container * {
     background-color: #FEEEDA;
     color: #2D5D7C;
 }
+
 #exp-list-container {
     border-radius: 5px;
 }
+
 #exp-list-header {
     text-align: center;
     margin: 2.5rem 0  0  0;
@@ -301,6 +278,7 @@ select{
 #list-placeholder {
     border-top: 1px solid #2D5D7C75;
 }
+
 .list-item {
     position: relative;
     display: flex;
@@ -376,9 +354,36 @@ select{
     align-items: center;
 }
 
+/***************
+    Analysis 
+***************/
+
+#analysis-main {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#nav-toggle {
+    color: #FEEEDA;
+    background: none; 
+    font-size: 30px; 
+}
+
+.emoji{
+    font-size: 30px; 
+    margin-bottom: 16px; 
+}
+
+.page-explanation {  
+    font-size: 16px;   
+}
+
 .graph-bar-parent{
     margin: 20px; 
 }
+
 .graph-bar {
     display: flex; 
     background:  #FEEEDA; 
@@ -389,30 +394,30 @@ select{
     margin-top: 10px; 
     border-radius: 5px; 
 }
+
+.percent-bar {
+    border-top-left-radius: 5px; 
+    border-bottom-left-radius: 5px;
+}
+
 #billsPercentage{
     background: #DB4437;
-    border-top-left-radius: 5px; 
-    border-bottom-left-radius: 5px; 
 }
+
 #foodPercentage{
     background: #C46210; 
-    border-top-left-radius: 5px; 
-    border-bottom-left-radius: 5px; 
 }
+
 #entertainmentPercentage{
     background: #F4B400;
-    border-top-left-radius: 5px; 
-    border-bottom-left-radius: 5px; 
 }
+
 #clothingPercentage{
     background: #0F9D58;
-    border-top-left-radius: 5px; 
-    border-bottom-left-radius: 5px; 
 }
+
 #otherPercentage{
     background:#B284BE; 
-    border-top-left-radius: 5px; 
-    border-bottom-left-radius: 5px; 
 }
 
 @media  only screen and (min-width: 1200px) {
