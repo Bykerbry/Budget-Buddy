@@ -78,7 +78,7 @@ a:hover {
     text-decoration: none;
 }
 
-#Submit:hover {
+a#Submit:hover {
     background-color: #2D5D7C;
     color: #FEEEDA;
     border: 1px solid #FEEEDA;
