@@ -20,6 +20,7 @@ let incFrequencyValue;
 let incValue;
 let liveBudget;
 
+
 /**
  * Takes payment frequency + amount & returns the amount as a weekly payment.
  * @param {string} frequencyStr 
@@ -62,7 +63,6 @@ document.addEventListener('readystatechange', _ => {
 });
 
 
-
 /******************* 
   Expenses Section 
 ********************/
@@ -94,7 +94,9 @@ let onAddExpense = () => {
   `<div class="list-item">
     <div class="item-description">${$expDescription.value}</div>
     <div class="item-amount">- $${expAmountValue} </div>
-    <i class="rmv-item-icon material-icons">highlight_off</i>
+    <div class="rmv-item-icon" onclick="onRemoveItem(event)">
+      <i class="rmv-item-icon material-icons">highlight_off</i>
+    </div>
   </div>`);
 
   liveBudget -= expAmountValue;
@@ -105,7 +107,6 @@ let onAddExpense = () => {
   $expCategory.value = $expCategory.options[0].value;
   $expDescription.select();
 };
-
 
 /** 
  * Loops through expenses array, creates & stores an object containing category sums. 
@@ -126,7 +127,12 @@ const getExpData = _ => {
     })
   });
   localStorage.setItem('expenseCategorySums', expCategorySums);
+  console.log(expCategorySums);
 };
+
+const onRemoveItem = e => {
+  e.target.parentNode.parentNode.remove();
+}
 
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
 if($incSubmitBtn) {
@@ -137,6 +143,7 @@ if($expAddBtn) {
   $expAddBtn.addEventListener("click", onAddExpense);
   $expFinishBtn.addEventListener("click", getExpData);
 };
+
 
 
 
