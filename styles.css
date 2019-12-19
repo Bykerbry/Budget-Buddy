@@ -38,7 +38,8 @@ button {
     outline: none;
 }
 
-button:hover {
+button:hover,
+button:focus {
     background-color: #2D5D7C;
     color: #FEEEDA;
     border: 1px solid #FEEEDA;
@@ -54,6 +55,11 @@ a:hover {
     background-color: #2D5D7C;
     color: #FEEEDA;
     border: none; 
+}
+
+.material-icons:hover {
+    cursor: pointer;
+    opacity: 50%;
 }
 
 select{
@@ -245,25 +251,92 @@ select{
     margin: auto;
 }
 
-.exp-btn-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
-}
-
 #recurring {
     cursor: pointer;
 }
 
-.menu-icon:hover {
-    cursor: pointer;
-    opacity: 50%;
+/*** Expense list ***/
+#exp-list-container * {
+    background-color: #FEEEDA;
+    color: #2D5D7C;
+}
+#exp-list-container {
+    border-radius: 5px;
+}
+#exp-list-header {
+    text-align: center;
+    margin: 2.5rem 0  0  0;
+    padding: .75em 0;
+    border-top-left-radius: .75em;
+    border-top-right-radius: .75em;
+}
+#exp-list-output {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/*** Expense list ***/
+#list-placeholder {
+    border-top: 1px solid #2D5D7C75;
+}
+.list-item {
+    position: relative;
+    display: flex;
+    height: 10vh;
+    flex-direction: column;
+    border-top: 1px solid #2D5D7C75; 
+    width: 90%;
+}
 
+.item-description,
+.item-amount {
+    display: flex;
+    width: 100%;
+}
 
+.item-description{
+    text-decoration: underline;
+    padding-left: .25em;
+}
 
+.item-amount {
+    justify-content: center;
+    font-size: 1.25em;
+}
+
+.list-item > .rmv-item-icon {
+    position: absolute;
+    font-size: 2em;
+    right: .75rem;
+    top: 50%;
+    transform:translateY(-50%);
+}
+
+.exp-btn-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 1em;
+    border-bottom-left-radius: .75em;
+    border-bottom-right-radius: .75em;
+}
+
+#exp-finish-btn-container {
+    border-top: 1px solid #2D5D7C75;
+}
+
+#exp-finish-btn {
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    margin-bottom: 1em;
+}
+
+#exp-finish-btn:hover,
+#exp-finish-btn:focus {
+    background-color: #FEEEDA;
+    color: #2D5D7C;
+    border: 1px solid #2D5D7C;
+    margin-bottom: 1em;
+}
 
 
 

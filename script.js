@@ -1,61 +1,63 @@
 "use strict"
 
-const inc = document.getElementById('Income');
-const incFrequency = document.getElementById('Income2');
-const incSubmitBtn = document.getElementById('Submit');
-const weeklyBudget = document.getElementById('weekly-budget');
-const expAddBtn = document.getElementById('exp-add-btn');
-const expFinishBtn = document.getElementById("exp-finish-btn");
-const expDescription = document.getElementById("exp-description");
-const expCategory = document.getElementById("exp-category-selector");
-const expAmount = document.getElementById("exp-amount");
-const expRecurring = document.getElementById("recurring");
-const expFrequency = document.getElementById("exp-frequency-selector");
+// DOM selectors
+const $inc = document.getElementById('Income');
+const $incFrequency = document.getElementById('Income2');
+const $incSubmitBtn = document.getElementById('Submit');
+const $staticBudget = document.getElementById('weekly-budget-static');
+const $liveBudget = document.getElementById('weekly-budget-live');
+const $expAddBtn = document.getElementById('exp-add-btn');
+const $expFinishBtn = document.getElementById('exp-finish-btn');
+const $expDescription = document.getElementById('exp-description');
+const $expCategory = document.getElementById('exp-category-selector');
+const $expAmount = document.getElementById('exp-amount');
+const $expFrequency = document.getElementById('exp-frequency-selector');
+const $expListOutput = document.getElementById('exp-list-output');
+const $listPlaceholder = document.getElementById('list-placeholder');
 
-// Values assigned to below variables upon submit btn click.
+// Global Variables that will get values from eventListeners.
 let incFrequencyValue;
 let incValue;
+let liveBudget;
+
+/**
+ * Takes payment frequency + amount & returns the amount as a weekly payment.
+ * @param {string} frequencyStr 
+ * @param {number} amount 
+ */
+const convertToWeekly = (frequencyStr, amount) => {
+  switch(frequencyStr) {
+    case 'Bi-Weekly':
+      return amount / 2;
+    case 'Monthly':
+      return Math.floor(amount / 4.345);
+    case 'Quarterly':
+      return Math.floor(amount / 13.044);
+    case 'Semi-Annually':
+      return Math.floor(amount / 26.088);
+    case 'Annually':
+      return Math.floor(amount / 52.1775);
+    default:  
+      return amount;
+  };
+};
+
 
 /******************* 
     Home Section 
 ********************/
 
-/** Default incFrequencyValue is 'Weekly'. This listens for changes. */
-const getIncFrequency = e => {
-  incFrequencyValue = e.target.value;
-};
-
 /** On submit btn click, uses inc & incFrequency values to set incValue. */
 const weeklyBudgetCalc = _ => {
-  let valueStr = inc.value.split('').filter(i => i !== '$').join(''); 
-  if (Number(valueStr)) {
-    let value = Number(valueStr);
-    
-    switch(incFrequencyValue) {
-      case 'BiWeekly':
-        incValue = value / 2;
-        break;
-      case 'Monthly':
-        incValue = Math.floor(value / 4.345);
-        break;
-      case 'Yearly':
-        incValue = Math.floor(value / 52.1775);
-        break;
-      default:  
-        incValue = value;
-    };
+    incValue = convertToWeekly($incFrequency.value, Number($inc.value));
     localStorage.setItem('incomeValue', incValue);
-  } else {
-    // Maybe call a function here that throws an error & tells user to input a number.
-    console.log('Error');
-  }
 };
 
 // Retrieves the value of weekly budget from home.html
 document.addEventListener('readystatechange', _ => {
-  console.log(localStorage.getItem('incomeValue'));
-  if(weeklyBudget) {
-    weeklyBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
+  if($liveBudget) {
+    $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
+    $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
 });
 
@@ -69,48 +71,71 @@ document.addEventListener('readystatechange', _ => {
 let expenses = [];
 
 class Expense {
-  constructor (description, category, amount, recurring, frequency){
-    this.description=description;
-    this.category=category;
-    this.amount=amount;
-    this.recurring=recurring;
-    this.frequency=frequency; 
+  constructor (description, amount, frequency, category){
+    this.description = description;
+    this.amount = amount;
+    this.frequency = frequency;
+    this.category = category;
   };
 };
 
-let createExpense = () => {
-  expenses.push(new Expense(expDescription.value, expCategory.value, 
-    Number(expAmount.value), expRecurring.checked, expFrequency.value));
-  console.log(expenses);
+let onAddExpense = () => {
+  if ($listPlaceholder.style.display !== "none") {
+    $listPlaceholder.style.display = 'none';
+    liveBudget = Number($liveBudget.innerText.split('').filter(i => i !== '$').join(''));
+  };
+
+  let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
+
+  expenses.push(new Expense($expDescription.value, expAmountValue, 
+    $expFrequency.value, $expCategory.value));
+
+  $expListOutput.insertAdjacentHTML('beforeend', 
+  `<div class="list-item">
+    <div class="item-description">${$expDescription.value}</div>
+    <div class="item-amount">- $${expAmountValue} </div>
+    <i class="rmv-item-icon material-icons">highlight_off</i>
+  </div>`);
+
+  liveBudget -= expAmountValue;
+  $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
+  $expDescription.value = '';
+  $expAmount.value = '';
+  $expFrequency.value = $expFrequency.options[0].value;
+  $expCategory.value = $expCategory.options[0].value;
+  $expDescription.select();
 };
 
-/** Loops through expenses array, creates & stores an object containing category sums. */
+
+/** 
+ * Loops through expenses array, creates & stores an object containing category sums. 
+ * 1. Sets object keys from category options.
+ * 2. Sets object values as sums of each category.
+ * 3. Stores newly created expCategorySums object for use in analysis.html
+ * */
 const getExpData = _ => {
-  // 1. Initialize empty object & iterate through expCategory options to set object keys.
-  let expCategorySums = {}
-  for (let i = 1; i < expCategory.options.length; i++) {
-    expCategorySums[expCategory.options[i].value] = 0;
+  let expCategorySums = {};
+  for (let i = 1; i < $expCategory.options.length; i++) {
+    expCategorySums[$expCategory.options[i].value] = 0;
   };
-  // 2. Iterate through expenses array, sum amounts & set as values in expCategorySums object.
-  expenses.map(i => Object.keys(expCategorySums).map(c => {
-    if (c === i.category) {
-      expCategorySums[c] += i.amount;
-    };
-  }));
-  // 3. Store newly created expCategorySums object for use in analysis.html
+  expenses.map(i => {
+    Object.keys(expCategorySums).map(c => {
+      if (c === i.category) {
+        expCategorySums[c] += i.amount;
+      };
+    })
+  });
   localStorage.setItem('expenseCategorySums', expCategorySums);
-  console.log(expCategorySums);
 };
 
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
-if(incSubmitBtn) {
-  incFrequency.addEventListener('change', getIncFrequency);
-  incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
+if($incSubmitBtn) {
+  $incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
 };
 
-if(expAddBtn) {
-  expAddBtn.addEventListener("click", createExpense);
-  expFinishBtn.addEventListener("click", getExpData);
+if($expAddBtn) {
+  $expAddBtn.addEventListener("click", onAddExpense);
+  $expFinishBtn.addEventListener("click", getExpData);
 };
 
 

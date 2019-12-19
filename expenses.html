@@ -25,13 +25,17 @@
             <div id="exp-header-right">
                 <div>
                     <p>Weekly Budget</p>
-                    <p id="weekly-budget">$1000</p>
+                    <p id="weekly-budget-static"></p>
                 </div>
             </div>
         </header>
         <hr>
         <main>
             <form action="submit" id="exp-form">
+                <div class="exp-form-child">
+                    <p>Budget Remaining</p>
+                    <h1 id="weekly-budget-live"></h1>
+                </div>
                 <div class="exp-form-child">
                     <label for="exp-description">Description</label>
                     <input type="text" name="exp-description" id="exp-description">
@@ -44,11 +48,13 @@
                     <label for="exp-frequency-selector">How often do you pay this amount?</label>
                     <select name="exp-frequency-selector" id="exp-frequency-selector">
                         <option value="default">-Select Frequency-</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="bi-weekly">Bi-Weekly</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="semi-annually">Semi-Annually</option>
-                        <option value="annually">Annually</option>
+                        <option value="Once">Single Payment</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Bi-Weekly">Bi-Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Quarterly">Quarterly</option>
+                        <option value="Semi-Annually">Semi-Annually</option>
+                        <option value="Annually">Annually</option>
                     </select>
                 </div>
                 <div class="exp-form-child">
@@ -62,20 +68,21 @@
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <div class="exp-form-child">
-                    <label for="recurring">Recurring?</label>
-                    <input type="checkbox" id="recurring">
-                </div>
                 <div class="exp-btn-container">
                     <button type="button" id="exp-add-btn">Add</button>
                 </div>
             </form>
-            <div id="exp-list-output">
-                <!-- JS will push new expense items here -->
+            <div id="exp-list-container">
+                <h2 id="exp-list-header">Expense List</h2>
+                <div id="exp-list-output">
+                    <div class="item-amount" id="list-placeholder">No expenses created</div>
+                    <!-- JS will push new expense items here -->
+                </div>
+                <div class="exp-btn-container" id="exp-finish-btn-container">
+                    <button type="button" id="exp-finish-btn" onClick="drawChart()">Finish</button>
+                </div>
             </div>
-            <div class="exp-btn-container">
-                <button type="button" id="exp-finish-btn" onClick="drawChart()">Finish</button>
-            </div>
+            
         </main>
         <script src="script.js" defer></script>
     </body>
