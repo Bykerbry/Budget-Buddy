@@ -56,15 +56,16 @@ const weeklyBudgetCalc = _ => {
 };
 
 // Retrieves the value of weekly budget from home.html
-window.onload = document.addEventListener('readystatechange', _ => {
-  if($staticBudget) {
+document.addEventListener('readystatechange', _ => {
+  if($liveBudget) {
     $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
 });
 
+
 // gets income value and converts to number either on expenses.html or analysis.html
-if ($staticBudget) {
+if ($liveBudget || $graphBar) {
   incValue = Number(localStorage.getItem('incomeValue'));
 };
 
@@ -191,22 +192,20 @@ let percentageOther = () => {
 }
 
 // converts category % to modify div width
-if(document.getElementById('billsPercentage')) {
+if(true) {
   document.getElementById('billsPercentage').style.width = `${percentageBills().toString()}%`;
-}
+  document.getElementById('billsTotal').innerHTML = `Bills Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']}`;
 
-if(document.getElementById('foodPercentage')) {
   document.getElementById('foodPercentage').style.width = `${percentageFood().toString()}%`;
-}
-
-if(document.getElementById('entertainmentPercentage')) {
+  document.getElementById('foodTotal').innerHTML = `Food Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['food']}`;
+  
   document.getElementById('entertainmentPercentage').style.width = `${percentageEntertainment().toString()}%`;
-}
+  document.getElementById('entertainmentTotal').innerHTML = `Entertainment Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment']}`;
 
-if(document.getElementById('clothingPercentage')) {
   document.getElementById('clothingPercentage').style.width = `${percentageClothes().toString()}%`;
-}
+  document.getElementById('clothesTotal').innerHTML = `Clothes Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes']}`;
 
-if(document.getElementById('otherPercentage')) {
   document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
+  document.getElementById('otherTotal').innerHTML = `Other Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['other']}`;
+
 }
