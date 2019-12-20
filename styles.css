@@ -364,11 +364,6 @@ select{
     align-items: center;
 }
 
-#nav-toggle {
-    color: #FEEEDA;
-    background: none; 
-    font-size: 30px; 
-}
 
 .emoji{
     font-size: 30px; 
@@ -376,7 +371,7 @@ select{
 }
 
 .page-explanation {  
-    font-size: 16px;   
+    font-size: 18px;    
 }
 
 .graph-bar-parent{
@@ -411,7 +406,7 @@ select{
     background: #F4B400;
 }
 
-#clothingPercentage{
+#clothesPercentage{
     background: #0F9D58;
 }
 
@@ -420,6 +415,10 @@ select{
 }
 
 @media  only screen and (min-width: 1200px) {
+
+    /*********
+    Homepage
+    **********/
 
     .header-budget-buddy {
         display: flex;
@@ -435,12 +434,40 @@ select{
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        padding-bottom: 4em;
+        position: relative;
+    }
+
+    .income-text {
+        font-size: 2em;
+    }
+
+    #Dollar {
+        font-size: 1.5em;
+        bottom: 0;
+        z-index: 9;
+    }
+
+    #Income {
+        width: 15vw;
+        height: 5vh;
+        font-size: 1.5em;
+        position: relative;
+    }
+
+    #Income2 {
+        width: 15vw;
+        height: 5vh;
+        font-size: 1.2em;
     }
 
     #Account {
         padding: 3em;
+        font-size: 1.5em;
     }
+
+    /********
+    Expenses
+    *********/
 
     main {
         display: flex;
@@ -456,7 +483,107 @@ select{
     #exp-header-right {
         font-size: 1em;
     }
+
+    .exp-form-child {
+        width: 20vw;
+    }
+
+    #expenses-label {
+        font-size: 2em;
+    }
+
+    .budget-remaining {
+        font-size: 2em;
+    }
+
+    #exp-description,
+    #exp-amount {
+        width: 15vw;
+        height: 5vh;
+        font-size: 1.5em;
+    }
+
+    #exp-frequency-selector,
+    #exp-category-selector {
+        font-size: 1.5em;
+    }
+
+    #exp-add-btn {
+        font-size: 1.5em;
+    }
     
+    .list-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20vw;
+        font-size: 2em;
+    }
+
+    .item-description,
+    .item-amount {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /********
+    Analysis
+    *********/
+
+    .page-explanation {
+        font-size: 2em;
+    }
+
+    .graph-bar-parent {
+        font-size: 2em;
+    }
+
+    .hard_budget {
+        font-size: 2em;
+    }
+
+    .next-page-link {
+        font-size: 1.5em;
+    }
+
+    .graph-bar {
+        width: 50vw;
+    }
+
+    /******
+    Account
+    *******/
+
+    #Dollar-account{
+        position: absolute;
+        align-items: center;
+        color: #2D5D7C;
+        background-color: #FEEEDA;
+        text-align: center;
+        border: 1px solid gray;
+        border-radius: 50%;
+        padding: 15px;  
+        box-sizing: border-box;
+        height: 50px;
+        width: 55px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border: none;
+        font-size: 1.5em;
+        bottom: 0;
+        z-index: 9;
+    }
+
+    #Info {
+        width: 15vw;
+        height: 5vh;
+        font-size: 1.2em;
+    }
+
+    #Submit {
+        font-size: 1.5em;
+    }
 }
 
 

@@ -18,24 +18,29 @@
         <div id="Homepage_form">
             <header class="header-budget-buddy">Budget Buddy</header>
             <form>
-                <div id="Income_form">Name:<br>
-                    <input type="text" name="Name" id="Info"><br>
+                <div id="Income_form">
+                    <p class="income-text">Name:</p>
+                    <input type="text" name="Name" id="Info">
                 </div>
 
-                <div id="Income_form">E-Mail Address:<br>
-                    <input type="email" name="Email" id="Info"><br>
+                <div id="Income_form">
+                    <p class="income-text">E-mail Address:</p>
+                    <input type="email" name="Email" id="Info">
                 </div>
 
-                <div id="Income_form">Password:<br>
-                    <input type="password" name="password" id="Info"><br>
+                <div id="Income_form">
+                    <p class="income-text">Password:</p>
+                    <input type="password" name="password" id="Info">
                 </div>
 
-                <div id="Income_form">Your Income:<br>
-                    <span id="Dollar">$</span>
-                    <input type="number" name="Income" id="Income"><br>
+                <div id="Income_form">
+                    <p class="income-text">Your Income:</p>
+                    <span id="Dollar-account">$</span>
+                    <input type="number" name="Income" id="Income"> 
                 </div>
 
-                <div id="Income_form">Paycheck Occurence:<br>
+                <div id="Income_form">
+                    <p class="income-text">Paycheck Occurence:</p>
                     <select id="Income2">
                         <option value="Weekly" id="Weekly">Weekly</option>
                         <option value="Bi-Weekly" id="Bi-Weekly">Bi-Weekly</option>
@@ -45,8 +50,9 @@
                         <option value="Annually" id="Annually">Annually</option>
                     </select>
                 </div>
-            </form>                
-            <button onclick="window.location.href='expenses.html';" id="Submit">Submit</button>
-    <script src="script.js"436></script>
+            </form>  
+            <a href="expenses.html" class="next-page-link" id="Submit">Submit</a>  
+        </div>            
+    <script src="script.js"></script>
     </body>
 </html>

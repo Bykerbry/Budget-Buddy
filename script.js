@@ -197,20 +197,18 @@ let percentageOther = () => {
 // converts category % to modify div width
 if(document.getElementById('billsPercentage')) {
   document.getElementById('billsPercentage').style.width = `${percentageBills().toString()}%`;
-}
+  document.getElementById('billsTotal').innerHTML = `Bills Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['bills'])}`;
 
-if(document.getElementById('foodPercentage')) {
   document.getElementById('foodPercentage').style.width = `${percentageFood().toString()}%`;
-}
-
-if(document.getElementById('entertainmentPercentage')) {
+  document.getElementById('foodTotal').innerHTML = `Food Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['food'])}`;
+  
   document.getElementById('entertainmentPercentage').style.width = `${percentageEntertainment().toString()}%`;
-}
+  document.getElementById('entertainmentTotal').innerHTML = `Entertainment Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment'])}`;
 
-if(document.getElementById('clothingPercentage')) {
-  document.getElementById('clothingPercentage').style.width = `${percentageClothes().toString()}%`;
-}
+  document.getElementById('clothesPercentage').style.width = `${percentageClothes().toString()}%`;
+  document.getElementById('clothesTotal').innerHTML = `Clothes Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes'])}`;
 
-if(document.getElementById('otherPercentage')) {
   document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
+  document.getElementById('otherTotal').innerHTML = `Other Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['other'])}`;
+
 }
