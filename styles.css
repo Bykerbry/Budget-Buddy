@@ -457,12 +457,6 @@ select{
     #exp-header-right {
         font-size: 1em;
     }
-
-    #exp-form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
     
     .list-item {
         display: flex;
