@@ -172,12 +172,6 @@ select{
     text-align-last: center;
     outline: none;
     padding: .5em;
-    /* padding: .5em;
-    outline: none;
-    font-size: 1em; */
-    /* Both for improved browser support */
-    /* text-align: center;
-    text-align-last: center; */
 }
 
 #Account {
@@ -448,13 +442,14 @@ select{
     **********/
     #homepage {
         height: 100vh;
-        margin: 0
+        margin: 0;
     }
 
     .header-budget-buddy {
         display: flex;
         justify-content: center;
         font-size: 4.5em;
+        padding-top: 1rem;
     }
 
     #Homepage_form {
@@ -486,7 +481,10 @@ select{
 
     #Account {
         padding-top: 1em;
-        font-size: 1.5em;
+        font-size: 1.25em;
+    }
+    #Submit {
+        margin-top: 2em;
     }
 
     /********
