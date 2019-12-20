@@ -259,10 +259,20 @@ select{
     padding: .5em;
     margin-top: .5em;
     font-size: 1em;
-    /* Both for improved browser support */
     text-align: center;
     text-align-last: center;
+    border-radius: 2em;
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    border: 1px solid #2D5D7C;
 }
+
+.exp-form-child > select:focus {
+    color: #FEEEDA;
+    background-color: #2D5D7C;
+    border: 1px solid #FEEEDA;
+}
+
 
 #exp-form > input {
     margin: auto;
@@ -519,10 +529,6 @@ select{
         flex-basis: 100%;
         font-size: 1.75em;
     }
-    .break{
-        display: flex;
-        flex-basis: 100%;
-    }
     .exp-form-child {
         display: flex;
         flex-direction: column;
@@ -530,74 +536,34 @@ select{
     .exp-btn-container{
         align-items: center;
     }
+    /* #list-placeholder-container > div{
+        border-top: none;
+    } */
     .list-item{
-        height: 5em;
+        height: 6em;
+    }
+    .list-item > #list-placeholder {
+        border-top: none;
     }
     .item-description{
+        position: absolute;
         font-size: 1.5em;
         text-decoration: none;;
+        width: auto;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .item-amount{
+        position: absolute;
+        font-size: 1.75em;
+        width: auto;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
     .list-item > .rmv-item-icon > .rmv-item-icon {
         font-size: 1.25em;;
     }
-/* 
-    #exp-header-left {
-        font-size: 1em;
-        padding-left: 1em;
-    }
-
-    #exp-header-right {
-        font-size: .7em;
-        padding-right: 1em;
-    }
-
-    main {
-        display: flex;
-        padding: 3em;
-    }
-
-    .exp-form-child {
-        width: 20vw;
-    }
-
-    #expenses-label {
-        font-size: 2em;
-    }
-
-    .budget-remaining {
-        font-size: 2em;
-    }
-
-    #exp-description,
-    #exp-amount {
-        width: 15vw;
-        height: 5vh;
-        font-size: 1.5em;
-    }
-
-    #exp-frequency-selector,
-    #exp-category-selector {
-        font-size: 1.5em;
-    }
-
-    #exp-add-btn {
-        font-size: 1.5em;
-    }
-    
-    .list-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 20vw;
-        font-size: 2em;
-    }
-
-    .item-description,
-    .item-amount {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    } */
 
     /********
     Analysis

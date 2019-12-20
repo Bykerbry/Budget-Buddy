@@ -13,13 +13,14 @@ const $expCategory = document.getElementById('exp-category-selector');
 const $expAmount = document.getElementById('exp-amount');
 const $expFrequency = document.getElementById('exp-frequency-selector');
 const $expListOutput = document.getElementById('exp-list-output');
-const $listPlaceholder = document.getElementById('list-placeholder');
+const $listPlaceholder = document.getElementById('list-placeholder-container');
 const $graphBar = document.getElementsByClassName('graph-bar');
 
 // Global Variables that will get values from eventListeners.
 let incFrequencyValue;
 let incValue;
 let liveBudget;
+let categorySumsObj
 
 /**
  * Takes payment frequency + amount & returns the amount as a weekly payment.
@@ -69,7 +70,6 @@ const getValues = _ => {
   }
 }
 incValue = getValues();
-document.addEventListener('readystatechange', getValues)
 
 
 /******************* 
@@ -95,7 +95,6 @@ let onAddExpense = () => {
   };
 
   let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
-  console.log(expAmountValue);
   expenses.push(new Expense($expDescription.value, expAmountValue, 
     $expFrequency.value, $expCategory.value));
   console.log(expenses);
@@ -136,7 +135,6 @@ const getExpData = _ => {
     })
   });
   localStorage.setItem('expenseCategorySums', JSON.stringify(expCategorySums));
-  console.log(expCategorySums);
 };
 
 /** Removes selected item from DOM, updates budget remaining & expenses array */
@@ -171,44 +169,67 @@ if($expAddBtn) {
 ********************/
 
 // grab sum of amount from each category & converts to %
+categorySumsObj = JSON.parse(localStorage.getItem('expenseCategorySums'))
+
+const getPercent = key => ((categorySumsObj[key]/incValue) * 100).toString();
+
+const setAnalysis = (divId, textId, key) => {
+  document.getElementById(divId).style.width = `${getPercent(key)}%`;
+  document.getElementById(textId).innerHTML = `${key.charAt(0).toUpperCase() 
+    + key.substring(1)} Total: $${Math.round(categorySumsObj[key])}`;
+};
+
+if(document.getElementById('billsPercentage')) {
+  setAnalysis('billsPercentage', 'billsTotal', 'bills');
+  setAnalysis('foodPercentage','foodTotal','food');
+  setAnalysis('entertainmentPercentage','entertainmentTotal','entertainment');
+  setAnalysis('clothesPercentage', 'clothesTotal', 'clothes');
+  setAnalysis('otherPercentage', 'otherTotal', 'other');
+};
+
+
+
+// grab sum of amount from each category & converts to %
 // console.log(JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']);
 // ^^^ to verify the budget is correct
-let percentageBills = () => {
-  let percentageBillsObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']; 
-  return (percentageBillsObj/incValue)*100;
-}
-let percentageFood = () => {
-  let percentageFoodObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['food']; 
-  return (percentageFoodObj/incValue)*100; 
-}
-let percentageEntertainment = () => {
-  let percentageEntertainmentObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment']; 
-  return (percentageEntertainmentObj/incValue)*100; 
-}
-let percentageClothes = () => {
-  let percentageClothesObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes']; 
-  return (percentageClothesObj/incValue)*100; 
-}
-let percentageOther = () => {
-  let percentageOtherObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['other']; 
-  return (percentageOtherObj/incValue)*100; 
-}
+
+// let percentageBills = () => {
+//   let percentageBillsObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']; 
+//   return (percentageBillsObj/incValue)*100;
+// }
+// let percentageFood = () => {
+//   let percentageFoodObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['food']; 
+//   return (percentageFoodObj/incValue)*100; 
+// }
+// let percentageEntertainment = () => {
+//   let percentageEntertainmentObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment']; 
+//   return (percentageEntertainmentObj/incValue)*100; 
+// }
+// let percentageClothes = () => {
+//   let percentageClothesObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes']; 
+//   return (percentageClothesObj/incValue)*100; 
+// }
+// let percentageOther = () => {
+//   let percentageOtherObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['other']; 
+//   return (percentageOtherObj/incValue)*100; 
+// }
+
+
 
 // converts category % to modify div width
-if(document.getElementById('billsPercentage')) {
-  document.getElementById('billsPercentage').style.width = `${percentageBills().toString()}%`;
-  document.getElementById('billsTotal').innerHTML = `Bills Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['bills'])}`;
+// if(document.getElementById('billsPercentage')) {
+  // document.getElementById('billsPercentage').style.width = `${percentageBills().toString()}%`;
+  // document.getElementById('billsTotal').innerHTML = `Bills Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['bills'])}`;
 
-  document.getElementById('foodPercentage').style.width = `${percentageFood().toString()}%`;
-  document.getElementById('foodTotal').innerHTML = `Food Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['food'])}`;
+  // document.getElementById('foodPercentage').style.width = `${percentageFood().toString()}%`;
+  // document.getElementById('foodTotal').innerHTML = `Food Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['food'])}`;
   
-  document.getElementById('entertainmentPercentage').style.width = `${percentageEntertainment().toString()}%`;
-  document.getElementById('entertainmentTotal').innerHTML = `Entertainment Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment'])}`;
+  // document.getElementById('entertainmentPercentage').style.width = `${percentageEntertainment().toString()}%`;
+  // document.getElementById('entertainmentTotal').innerHTML = `Entertainment Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment'])}`;
 
-  document.getElementById('clothesPercentage').style.width = `${percentageClothes().toString()}%`;
-  document.getElementById('clothesTotal').innerHTML = `Clothes Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes'])}`;
+  // document.getElementById('clothesPercentage').style.width = `${percentageClothes().toString()}%`;
+  // document.getElementById('clothesTotal').innerHTML = `Clothes Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes'])}`;
 
-  document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
-  document.getElementById('otherTotal').innerHTML = `Other Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['other'])}`;
-
-}
+  // document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
+  // document.getElementById('otherTotal').innerHTML = `Other Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['other'])}`;
+// }

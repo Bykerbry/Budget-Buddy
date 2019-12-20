@@ -36,7 +36,6 @@
                     <p class="budget-remaining">Budget Remaining</p>
                     <h1 id="weekly-budget-live"></h1>
                 </div>
-                <div class="break"></div>
                 <div class="exp-form-child">
                     <label for="exp-description" id="expenses-label">Description</label>
                     <input type="text" name="exp-description" id="exp-description">
@@ -76,7 +75,9 @@
             <div id="exp-list-container">
                 <h2 id="exp-list-header">Expense List</h2>
                 <div id="exp-list-output">
-                    <div class="item-amount" id="list-placeholder">No expenses created</div>
+                    <div class="list-item" id='list-placeholder-container'>
+                        <div class="item-amount" id="list-placeholder">No expenses created</div>
+                    </div>
                     <!-- JS will push new expense items here -->
                 </div>
                 <div class="exp-btn-container" id="exp-finish-btn-container">
