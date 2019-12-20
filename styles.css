@@ -102,6 +102,11 @@ select{
 
 #Income_form {
     margin: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    text-align: center;
 }
 
 #Dollar {
@@ -113,6 +118,7 @@ select{
     border: 1px solid gray;
     border-radius: 50%;
     padding: 15px;  
+    bottom: 0;
     box-sizing: border-box;
     height: 50px;
     width: 55px;
@@ -446,14 +452,6 @@ select{
 
     #Homepage_form {
         padding: 8em;
-    }
-
-    #Income_form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        text-align: center;
     }
 
     .income-text {
