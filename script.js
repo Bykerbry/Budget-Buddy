@@ -56,14 +56,15 @@ const weeklyBudgetCalc = _ => {
 };
 
 // Retrieves the value of weekly budget from home.html
-document.addEventListener('readystatechange', _ => {
-  if($liveBudget) {
+window.onload = document.addEventListener('readystatechange', _ => {
+  if($staticBudget) {
     $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
 });
+
 // gets income value and converts to number either on expenses.html or analysis.html
-if ($liveBudget || $graphBar) {
+if ($staticBudget) {
   incValue = Number(localStorage.getItem('incomeValue'));
 };
 
@@ -203,7 +204,7 @@ if(document.getElementById('entertainmentPercentage')) {
 }
 
 if(document.getElementById('clothingPercentage')) {
-  document.getElementById('clothingPercentage').style.width = `${percentageClothing().toString()}%`;
+  document.getElementById('clothingPercentage').style.width = `${percentageClothes().toString()}%`;
 }
 
 if(document.getElementById('otherPercentage')) {
