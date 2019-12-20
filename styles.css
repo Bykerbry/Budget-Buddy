@@ -465,6 +465,7 @@ select{
         bottom: 0;
         z-index: 9;
         padding: 10px;
+        height: 4.5vh;
     }
 
     #Income {
