@@ -158,6 +158,7 @@ select{
     padding: 15px 0px;
     font-size: large;
     text-align: right;
+    content: "$";
 }
 
 #Income2 {
@@ -450,8 +451,9 @@ select{
     #Income_form {
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: center;
         position: relative;
+        text-align: center;
     }
 
     .income-text {
@@ -462,17 +464,18 @@ select{
         font-size: 1.5em;
         bottom: 0;
         z-index: 9;
+        padding: 10px;
     }
 
     #Income {
-        width: 15vw;
+        width: 100%;
         height: 5vh;
         font-size: 1.5em;
         position: relative;
     }
 
     #Income2 {
-        width: 15vw;
+        width: 100%;
         height: 5vh;
         font-size: 1.2em;
     }
