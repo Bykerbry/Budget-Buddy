@@ -194,18 +194,18 @@ let percentageOther = () => {
 // converts category % to modify div width
 if(true) {
   document.getElementById('billsPercentage').style.width = `${percentageBills().toString()}%`;
-  document.getElementById('billsTotal').innerHTML = `Bills Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']}`;
+  document.getElementById('billsTotal').innerHTML = `Bills Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['bills'])}`;
 
   document.getElementById('foodPercentage').style.width = `${percentageFood().toString()}%`;
-  document.getElementById('foodTotal').innerHTML = `Food Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['food']}`;
+  document.getElementById('foodTotal').innerHTML = `Food Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['food'])}`;
   
   document.getElementById('entertainmentPercentage').style.width = `${percentageEntertainment().toString()}%`;
-  document.getElementById('entertainmentTotal').innerHTML = `Entertainment Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment']}`;
+  document.getElementById('entertainmentTotal').innerHTML = `Entertainment Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment'])}`;
 
   document.getElementById('clothesPercentage').style.width = `${percentageClothes().toString()}%`;
-  document.getElementById('clothesTotal').innerHTML = `Clothes Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes']}`;
+  document.getElementById('clothesTotal').innerHTML = `Clothes Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes'])}`;
 
   document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
-  document.getElementById('otherTotal').innerHTML = `Other Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['other']}`;
+  document.getElementById('otherTotal').innerHTML = `Other Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['other'])}`;
 
 }
