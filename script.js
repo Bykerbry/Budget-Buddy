@@ -202,7 +202,7 @@ if(true) {
   document.getElementById('entertainmentPercentage').style.width = `${percentageEntertainment().toString()}%`;
   document.getElementById('entertainmentTotal').innerHTML = `Entertainment Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment']}`;
 
-  document.getElementById('clothingPercentage').style.width = `${percentageClothes().toString()}%`;
+  document.getElementById('clothesPercentage').style.width = `${percentageClothes().toString()}%`;
   document.getElementById('clothesTotal').innerHTML = `Clothes Total: $${JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes']}`;
 
   document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
