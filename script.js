@@ -14,11 +14,13 @@ const $expAmount = document.getElementById('exp-amount');
 const $expFrequency = document.getElementById('exp-frequency-selector');
 const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder');
+const $graphBar = document.getElementsByClassName('graph-bar');
 
 // Global Variables that will get values from eventListeners.
 let incFrequencyValue;
 let incValue;
 let liveBudget;
+
 
 /**
  * Takes payment frequency + amount & returns the amount as a weekly payment.
@@ -30,13 +32,13 @@ const convertToWeekly = (frequencyStr, amount) => {
     case 'Bi-Weekly':
       return amount / 2;
     case 'Monthly':
-      return Math.floor(amount / 4.345);
+      return amount / 4.345;
     case 'Quarterly':
-      return Math.floor(amount / 13.044);
+      return amount / 13.044;
     case 'Semi-Annually':
-      return Math.floor(amount / 26.088);
+      return amount / 26.088;
     case 'Annually':
-      return Math.floor(amount / 52.1775);
+      return amount / 52.1775;
     default:  
       return amount;
   };
@@ -49,7 +51,7 @@ const convertToWeekly = (frequencyStr, amount) => {
 
 /** On submit btn click, uses inc & incFrequency values to set incValue. */
 const weeklyBudgetCalc = _ => {
-    incValue = convertToWeekly($incFrequency.value, Number($inc.value));
+    incValue = Math.floor(convertToWeekly($incFrequency.value, Number($inc.value)));
     localStorage.setItem('incomeValue', incValue);
 };
 
@@ -60,8 +62,10 @@ document.addEventListener('readystatechange', _ => {
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
 });
-
-
+// gets income value and converts to number either on expenses.html or analysis.html
+if ($liveBudget || $graphBar) {
+  incValue = Number(localStorage.getItem('incomeValue'));
+};
 
 /******************* 
   Expenses Section 
@@ -86,15 +90,17 @@ let onAddExpense = () => {
   };
 
   let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
-
+  console.log(expAmountValue);
   expenses.push(new Expense($expDescription.value, expAmountValue, 
     $expFrequency.value, $expCategory.value));
-
+  console.log(expenses);
   $expListOutput.insertAdjacentHTML('beforeend', 
   `<div class="list-item">
     <div class="item-description">${$expDescription.value}</div>
-    <div class="item-amount">- $${expAmountValue} </div>
-    <i class="rmv-item-icon material-icons">highlight_off</i>
+    <div class="item-amount">- $${Math.round(expAmountValue)} </div>
+    <div class="rmv-item-icon" onclick="onRemoveItem(event)">
+      <i class="rmv-item-icon material-icons">highlight_off</i>
+    </div>
   </div>`);
 
   liveBudget -= expAmountValue;
@@ -105,7 +111,6 @@ let onAddExpense = () => {
   $expCategory.value = $expCategory.options[0].value;
   $expDescription.select();
 };
-
 
 /** 
  * Loops through expenses array, creates & stores an object containing category sums. 
@@ -125,8 +130,24 @@ const getExpData = _ => {
       };
     })
   });
-  localStorage.setItem('expenseCategorySums', expCategorySums);
+  localStorage.setItem('expenseCategorySums', JSON.stringify(expCategorySums));
+  console.log(expCategorySums);
 };
+
+/** Removes selected item from DOM, updates budget remaining & expenses array */
+const onRemoveItem = e => {
+  expenses = expenses.filter(i => {
+    if (i.description !== e.target.parentNode.parentNode.childNodes[1].innerText) {
+      return true;
+    } else {
+      liveBudget += i.amount;
+      $liveBudget.innerText = `$ ${Math.round(liveBudget)}`;
+      return false;
+    };
+  });
+  e.target.parentNode.parentNode.remove();
+}
+
 
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
 if($incSubmitBtn) {
@@ -144,53 +165,47 @@ if($expAddBtn) {
   Analysis Section 
 ********************/
 
+// grab sum of amount from each category & converts to %
+// console.log(JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']);
+// ^^^ to verify the budget is correct
+let percentageBills = () => {
+  let percentageBillsObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']; 
+  return (percentageBillsObj/incValue)*100;
+}
+let percentageFood = () => {
+  let percentageFoodObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['food']; 
+  return (percentageFoodObj/incValue)*100; 
+}
+let percentageEntertainment = () => {
+  let percentageEntertainmentObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment']; 
+  return (percentageEntertainmentObj/incValue)*100; 
+}
+let percentageClothes = () => {
+  let percentageClothesObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes']; 
+  return (percentageClothesObj/incValue)*100; 
+}
+let percentageOther = () => {
+  let percentageOtherObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['other']; 
+  return (percentageOtherObj/incValue)*100; 
+}
 
+// converts category % to modify div width
+if(document.getElementById('billsPercentage')) {
+  document.getElementById('billsPercentage').style.width = `${percentageBills().toString()}%`;
+}
 
-/*** Commented out Pie Chart section so console would not through errors */
+if(document.getElementById('foodPercentage')) {
+  document.getElementById('foodPercentage').style.width = `${percentageFood().toString()}%`;
+}
 
-// /**
-//  * Shows piechart of user spending
-//  * 
-//  * 
-//  */
-// google.charts.load('current', {'packages':['corechart']});
-// google.charts.setOnLoadCallback(drawChart);
+if(document.getElementById('entertainmentPercentage')) {
+  document.getElementById('entertainmentPercentage').style.width = `${percentageEntertainment().toString()}%`;
+}
 
-// // Draws the chart and sets the chart values
-// function drawChart() {
-//   var data = google.visualization.arrayToDataTable([
-//   ['Task', 'Dollars per Week'],
-//   ['Entertainment', entertainmentSum()],
-//   ['Food', document.querySelectorAll("exp-amount").value],
-//   ['Bills', document.querySelectorAll("exp-amount").value],
-//   ['Clothes', document.querySelectorAll("exp-amount").value],
-//   ['Other', document.querySelectorAll("exp-amount").value],
-//   ['Available', ]
-// ]);
+if(document.getElementById('clothingPercentage')) {
+  document.getElementById('clothingPercentage').style.width = `${percentageClothing().toString()}%`;
+}
 
-//   // Optional; add a title and set the width and height of the chart
-//   var options = {
-//     'title':'Your Spending',
-//     'titleTextStyle': { color: '#FEEEDA',
-//         fontName: 'Lato',
-//         fontSize: 14,
-//         bold: true,
-//         },
-//     'width':500, 
-//     'height':300,
-//     'backgroundColor': '#2D5D7C',
-//     'fontSize': 14,
-//     'pieSliceText': 'percentage',
-//     'legend': {position: 'right', textStyle: {color: '#FEEEDA', fontSize: 11}},
-//     'legend.alignment': 'end',
-//     'legend.position':'labeled',
-//     'tooltip.text':'both'
-//   }
-
-//   // Display the chart inside the <div> element with id="piechart"
-//   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-//   chart.draw(data, options);
-  
-// } 
-// // end piechart code
-
+if(document.getElementById('otherPercentage')) {
+  document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
+}
