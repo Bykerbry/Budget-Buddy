@@ -491,19 +491,69 @@ select{
     Expenses
     *********/
 
-    main {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 6em;
+    #exp-header {
+        margin: 0 1em;
     }
-
     #exp-header-left {
         font-size: 1.5em;
     }
+    #exp-header-left > .material-icons {
+        font-size: .75em;
+    }
+    #exp-title {
+        margin: .5em;
+        padding-left: 0;
+    }
+    #exp-header-right {
+        font-size: .7em;
+    }
+
+    /****** Form ******/
+    #exp-form{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    #budget-remaining-container {
+        display: flex;
+        flex-basis: 100%;
+        font-size: 1.75em;
+    }
+    .break{
+        display: flex;
+        flex-basis: 100%;
+    }
+    .exp-form-child {
+        display: flex;
+        flex-direction: column;
+    }
+    .exp-btn-container{
+        align-items: center;
+    }
+    .list-item{
+        height: 5em;
+    }
+    .item-description{
+        font-size: 1.5em;
+        text-decoration: none;;
+    }
+    .list-item > .rmv-item-icon > .rmv-item-icon {
+        font-size: 1.25em;;
+    }
+/* 
+    #exp-header-left {
+        font-size: 1em;
+        padding-left: 1em;
+    }
 
     #exp-header-right {
-        font-size: 1em;
+        font-size: .7em;
+        padding-right: 1em;
+    }
+
+    main {
+        display: flex;
+        padding: 3em;
     }
 
     .exp-form-child {
@@ -547,7 +597,7 @@ select{
         display: flex;
         justify-content: center;
         align-items: center;
-    }
+    } */
 
     /********
     Analysis
