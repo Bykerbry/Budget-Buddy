@@ -269,7 +269,6 @@ select{
 }
 
 /****** Expense list ******/
-
 #exp-list-container * {
     background-color: #FEEEDA;
     color: #2D5D7C;
@@ -299,7 +298,7 @@ select{
 .list-item {
     position: relative;
     display: flex;
-    height: 10vh;
+    height: 4em;
     flex-direction: column;
     border-top: 1px solid #2D5D7C75; 
     width: 90%;
