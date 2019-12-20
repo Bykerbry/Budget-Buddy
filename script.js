@@ -21,7 +21,6 @@ let incFrequencyValue;
 let incValue;
 let liveBudget;
 
-
 /**
  * Takes payment frequency + amount & returns the amount as a weekly payment.
  * @param {string} frequencyStr 
@@ -56,16 +55,22 @@ const weeklyBudgetCalc = _ => {
 };
 
 // Retrieves the value of weekly budget from home.html
-document.addEventListener('readystatechange', _ => {
+
+
+const getValues = _ => {
   if($liveBudget) {
     $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
-});
-// gets income value and converts to number either on expenses.html or analysis.html
-if ($liveBudget || $graphBar) {
-  incValue = Number(localStorage.getItem('incomeValue'));
-};
+  if($staticBudget) {
+    $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`
+    incValue = Number(localStorage.getItem('incomeValue'));
+    return incValue
+  }
+}
+incValue = getValues();
+document.addEventListener('readystatechange', getValues)
+
 
 /******************* 
   Expenses Section 
@@ -203,7 +208,7 @@ if(document.getElementById('entertainmentPercentage')) {
 }
 
 if(document.getElementById('clothingPercentage')) {
-  document.getElementById('clothingPercentage').style.width = `${percentageClothing().toString()}%`;
+  document.getElementById('clothingPercentage').style.width = `${percentageClothes().toString()}%`;
 }
 
 if(document.getElementById('otherPercentage')) {
