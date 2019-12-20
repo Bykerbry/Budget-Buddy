@@ -465,19 +465,19 @@ select{
         bottom: 0;
         z-index: 9;
         padding: 10px;
-        height: 4.5vh;
+        height: 25%;
     }
 
     #Income {
         width: 100%;
-        height: 5vh;
+        height: 25%;
         font-size: 1.5em;
         position: relative;
     }
 
     #Income2 {
         width: 100%;
-        height: 5vh;
+        height: 25%;
         font-size: 1.2em;
     }
 
@@ -598,7 +598,7 @@ select{
 
     #Info {
         width: 100%;
-        height: 5vh;
+        height: 25%;
         font-size: 1.2em;
     }
 
