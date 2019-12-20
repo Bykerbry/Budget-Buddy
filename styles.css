@@ -121,6 +121,23 @@ select{
     border: none;
 }
 
+#Dollar-account{
+    position: absolute;
+    align-items: center;
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 50%;
+    padding: 15px;  
+    box-sizing: border-box;
+    height: 50px;
+    width: 55px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: none;
+}
+
 #Info {
     color: #2D5D7C;
     background-color: #FEEEDA;
