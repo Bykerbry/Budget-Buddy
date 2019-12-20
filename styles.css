@@ -453,6 +453,20 @@ select{
         font-size: 1em;
     }
     
+    .list-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3em;
+        font-size: 2em;
+    }
+
+    .item-description,
+    .item-amount {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 
