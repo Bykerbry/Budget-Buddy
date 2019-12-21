@@ -4,6 +4,7 @@
 const $inc = document.getElementById('Income');
 const $incFrequency = document.getElementById('Income2');
 const $incSubmitBtn = document.getElementById('Submit');
+const $menuBtn = document.querySelector('.menu-icon');
 const $staticBudget = document.getElementById('weekly-budget-static');
 const $liveBudget = document.getElementById('weekly-budget-live');
 const $expAddBtn = document.getElementById('exp-add-btn');
@@ -15,6 +16,7 @@ const $expFrequency = document.getElementById('exp-frequency-selector');
 const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder-container');
 const $graphBar = document.getElementsByClassName('graph-bar');
+
 
 // Global Variables that will get values from eventListeners.
 let incFrequencyValue;
@@ -44,6 +46,9 @@ const convertToWeekly = (frequencyStr, amount) => {
   };
 };
 
+const menuToggler = _ => {
+  document.querySelector('.nav-menu').classList.toggle('toggler');
+}
 
 /******************* 
     Home Section 
@@ -155,12 +160,17 @@ const onRemoveItem = e => {
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
 if($incSubmitBtn) {
   $incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
+  $menuBtn.addEventListener('click', menuToggler)
 };
 
 if($expAddBtn) {
   $expAddBtn.addEventListener("click", onAddExpense);
   $expFinishBtn.addEventListener("click", getExpData);
+  $menuBtn.addEventListener('click', menuToggler);
 };
+if($graphBar) {
+  $menuBtn.addEventListener('click', menuToggler);
+}
 
 
 
