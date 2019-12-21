@@ -16,7 +16,6 @@ const $expAmount = document.getElementById('exp-amount');
 const $expFrequency = document.getElementById('exp-frequency-selector');
 const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder-container');
-const $graphBar = document.getElementsByClassName('graph-bar');
 const $savingsPercent = document.getElementById('savingsPercentage');
 const $savingsTotal = document.getElementById('savingsTotal');
 
@@ -24,7 +23,7 @@ const $savingsTotal = document.getElementById('savingsTotal');
 let incFrequencyValue;
 let incValue;
 let liveBudget;
-let categorySumsObj
+let categorySumsObj;
 
 /**
  * Takes payment frequency + amount & returns the amount as a weekly payment.
@@ -50,7 +49,7 @@ const convertToWeekly = (frequencyStr, amount) => {
 
 const menuToggler = _ => {
   $navMenu.classList.toggle('toggler');
-}
+};
 
 /******************* 
     Home Section 
@@ -63,19 +62,17 @@ const weeklyBudgetCalc = _ => {
 };
 
 // Retrieves the value of weekly budget from home.html
-
-
 const getValues = _ => {
   if($liveBudget) {
     $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
   if($staticBudget) {
-    $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`
+    $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     incValue = Number(localStorage.getItem('incomeValue'));
-    return incValue
-  }
-}
+    return incValue;
+  };
+};
 incValue = getValues();
 
 
@@ -96,27 +93,32 @@ class Expense {
 };
 
 const checkInputs = _ => {
+  let e = 0;
   if (!$expDescription.value) {
     document.getElementById('exp-description-label').style.color = 'red';
+    e++;
   };
   if (!$expAmount.value) {
-    document.getElementById('exp-amount-label').style.color = 'red';
+    document.getElementById('exp-amount-label').style.color = 'red'; 
+    e++;
   };
   if ($expFrequency.value === 'default') {
     document.getElementById('exp-frequency-label').style.color = 'red';
+    e++;
   };
   if ($expCategory.value === 'default') {
     document.getElementById('exp-category-label').style.color = 'red';
+    e++;
   };
+  return !e 
 };
 
 const onAddExpense = () => {
-  if($expDescription.value && $expAmount.value && $expFrequency.value !== 'default' && $expCategory.value !== 'default') {
+  if (checkInputs()){
     if ($listPlaceholder.style.display !== "none") {
       $listPlaceholder.style.display = 'none';
       liveBudget = Number($liveBudget.innerText.split('').filter(i => i !== '$').join(''));
     };
-
     let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
     $expListOutput.insertAdjacentHTML('beforeend', 
     `<div class="list-item">
@@ -140,8 +142,6 @@ const onAddExpense = () => {
     $expFrequency.value = $expFrequency.options[0].value;
     $expCategory.value = $expCategory.options[0].value;
     $expDescription.select();
-  } else {
-    checkInputs();
   };
 };
 
@@ -149,7 +149,7 @@ const onAddExpense = () => {
  * Loops through expenses array, creates & stores an object containing category sums. 
  * 1. Sets object keys from category options.
  * 2. Sets object values as sums of each category.
- * 3. Stores newly created expCategorySums object for use in analysis.html
+ * 3. Stores newly created expCategorySums object & liveBudget value for use in analysis.html
  * */
 const getExpData = _ => {
   let expCategorySums = {};
@@ -185,21 +185,6 @@ const onRemoveItem = e => {
 };
 
 
-// Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
-if($incSubmitBtn) {
-  $incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
-};
-
-if($expAddBtn) {
-  $expAddBtn.addEventListener("click", onAddExpense);
-  $expFinishBtn.addEventListener("click", getExpData);
-};
-if($menuBtn) {
-  $menuBtn.addEventListener('click', menuToggler);
-};
-
-
-
 /******************* 
   Analysis Section 
 ********************/
@@ -224,7 +209,7 @@ if($savingsPercent) {
   let getSavings = localStorage.getItem('savings');
   let getSavingsPercent = getSavings/incValue * 100;
   $savingsPercent.style.width = `${getSavingsPercent}%`;
-  $savingsTotal.innerHTML = `Savings Total: $${getSavings} \u00A0 (${getSavingsPercent}%)` 
+  $savingsTotal.innerHTML = `Savings Total: $${getSavings} \u00A0 (${getSavingsPercent}%)`;
 };
 
 
@@ -273,3 +258,16 @@ if($savingsPercent) {
   // document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
   // document.getElementById('otherTotal').innerHTML = `Other Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['other'])}`;
 // }
+
+
+// Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
+if($incSubmitBtn) {
+  $incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
+};
+if($expAddBtn) {
+  $expAddBtn.addEventListener("click", onAddExpense);
+  $expFinishBtn.addEventListener("click", getExpData);
+};
+if($menuBtn) {
+  $menuBtn.addEventListener('click', menuToggler);
+};

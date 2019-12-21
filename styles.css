@@ -344,7 +344,13 @@ select{
 }
 
 #list-placeholder {
-    border-top: 1px solid #2D5D7C75;
+    position: absolute;
+    font-size: 1em;
+    width: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .list-item {
@@ -577,9 +583,6 @@ select{
     .exp-btn-container{
         align-items: center;
     }
-    /* #list-placeholder-container > div{
-        border-top: none;
-    } */
     .list-item{
         height: 6em;
     }
