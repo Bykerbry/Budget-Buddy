@@ -192,12 +192,12 @@ const onRemoveItem = e => {
 // grab sum of amount from each category & converts to %
 categorySumsObj = JSON.parse(localStorage.getItem('expenseCategorySums'));
 
-const getPercent = key => ((categorySumsObj[key]/incValue) * 100).toString();
+const getPercent = key => ((categorySumsObj[key]/incValue) * 100);
 
 const setAnalysis = (divId, textId, key) => {
   document.getElementById(divId).style.width = `${getPercent(key)}%`;
   document.getElementById(textId).innerHTML = `${key.charAt(0).toUpperCase() 
-    + key.substring(1)} Total: $${Math.round(categorySumsObj[key])} \u00A0 (${getPercent(key)}%)`;
+    + key.substring(1)} Total: $${Math.round(categorySumsObj[key])} \u00A0 (${Math.round(getPercent(key))}%)`;
 };
 
 if($savingsPercent) {
@@ -207,9 +207,9 @@ if($savingsPercent) {
   setAnalysis('clothesPercentage', 'clothesTotal', 'clothes');
   setAnalysis('otherPercentage', 'otherTotal', 'other');
   let getSavings = localStorage.getItem('savings');
-  let getSavingsPercent = getSavings/incValue * 100;
+  let getSavingsPercent = Math.round(getSavings/incValue * 100);
   $savingsPercent.style.width = `${getSavingsPercent}%`;
-  $savingsTotal.innerHTML = `Savings Total: $${getSavings} \u00A0 (${getSavingsPercent}%)`;
+  $savingsTotal.innerHTML = `Savings Total: $${Math.round(getSavings)} \u00A0 (${getSavingsPercent}%)`;
 };
 
 
