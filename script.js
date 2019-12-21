@@ -17,7 +17,8 @@ const $expFrequency = document.getElementById('exp-frequency-selector');
 const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder-container');
 const $graphBar = document.getElementsByClassName('graph-bar');
-
+const $savingsPercent = document.getElementById('savingsPercentage');
+const $savingsTotal = document.getElementById('savingsTotal');
 
 // Global Variables that will get values from eventListeners.
 let incFrequencyValue;
@@ -129,7 +130,7 @@ const onAddExpense = () => {
     liveBudget -= expAmountValue;
     if (liveBudget < 0) {
       $liveBudget.style.color = "red";
-    }
+    };
     
     expenses.push(new Expense($expDescription.value, expAmountValue, $expFrequency.value, $expCategory.value));
     console.log(expenses);
@@ -162,6 +163,7 @@ const getExpData = _ => {
       };
     })
   });
+  localStorage.setItem('savings', liveBudget);
   localStorage.setItem('expenseCategorySums', JSON.stringify(expCategorySums));
 };
 
@@ -172,12 +174,15 @@ const onRemoveItem = e => {
       return true;
     } else {
       liveBudget += i.amount;
+      if (liveBudget > 0) {
+        $liveBudget.style.color = "#FEEEDA";
+      };
       $liveBudget.innerText = `$ ${Math.round(liveBudget)}`;
       return false;
     };
   });
   e.target.parentNode.parentNode.remove();
-}
+};
 
 
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
@@ -188,11 +193,10 @@ if($incSubmitBtn) {
 if($expAddBtn) {
   $expAddBtn.addEventListener("click", onAddExpense);
   $expFinishBtn.addEventListener("click", getExpData);
-  //$menuBtn.addEventListener('click', menuToggler);
 };
 if($menuBtn) {
   $menuBtn.addEventListener('click', menuToggler);
-}
+};
 
 
 
@@ -201,23 +205,26 @@ if($menuBtn) {
 ********************/
 
 // grab sum of amount from each category & converts to %
-categorySumsObj = JSON.parse(localStorage.getItem('expenseCategorySums'))
+categorySumsObj = JSON.parse(localStorage.getItem('expenseCategorySums'));
 
-console.log(categorySumsObj);
 const getPercent = key => ((categorySumsObj[key]/incValue) * 100).toString();
 
 const setAnalysis = (divId, textId, key) => {
   document.getElementById(divId).style.width = `${getPercent(key)}%`;
   document.getElementById(textId).innerHTML = `${key.charAt(0).toUpperCase() 
-    + key.substring(1)} Total: $${Math.round(categorySumsObj[key])}`;
+    + key.substring(1)} Total: $${Math.round(categorySumsObj[key])} \u00A0 (${getPercent(key)}%)`;
 };
 
-if(document.getElementById('billsPercentage')) {
+if($savingsPercent) {
   setAnalysis('billsPercentage', 'billsTotal', 'bills');
   setAnalysis('foodPercentage','foodTotal','food');
   setAnalysis('entertainmentPercentage','entertainmentTotal','entertainment');
   setAnalysis('clothesPercentage', 'clothesTotal', 'clothes');
   setAnalysis('otherPercentage', 'otherTotal', 'other');
+  let getSavings = localStorage.getItem('savings');
+  let getSavingsPercent = getSavings/incValue * 100;
+  $savingsPercent.style.width = `${getSavingsPercent}%`;
+  $savingsTotal.innerHTML = `Savings Total: $${getSavings} \u00A0 (${getSavingsPercent}%)` 
 };
 
 
