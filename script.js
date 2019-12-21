@@ -5,6 +5,7 @@ const $inc = document.getElementById('Income');
 const $incFrequency = document.getElementById('Income2');
 const $incSubmitBtn = document.getElementById('Submit');
 const $menuBtn = document.querySelector('.menu-icon');
+const $navMenu = document.querySelector('.nav-menu');
 const $staticBudget = document.getElementById('weekly-budget-static');
 const $liveBudget = document.getElementById('weekly-budget-live');
 const $expAddBtn = document.getElementById('exp-add-btn');
@@ -47,7 +48,7 @@ const convertToWeekly = (frequencyStr, amount) => {
 };
 
 const menuToggler = _ => {
-  document.querySelector('.nav-menu').classList.toggle('toggler');
+  $navMenu.classList.toggle('toggler');
 }
 
 /******************* 
@@ -93,32 +94,54 @@ class Expense {
   };
 };
 
-let onAddExpense = () => {
-  if ($listPlaceholder.style.display !== "none") {
-    $listPlaceholder.style.display = 'none';
-    liveBudget = Number($liveBudget.innerText.split('').filter(i => i !== '$').join(''));
+const checkInputs = _ => {
+  if (!$expDescription.value) {
+    document.getElementById('exp-description-label').style.color = 'red';
   };
+  if (!$expAmount.value) {
+    document.getElementById('exp-amount-label').style.color = 'red';
+  };
+  if ($expFrequency.value === 'default') {
+    document.getElementById('exp-frequency-label').style.color = 'red';
+  };
+  if ($expCategory.value === 'default') {
+    document.getElementById('exp-category-label').style.color = 'red';
+  };
+};
 
-  let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
-  expenses.push(new Expense($expDescription.value, expAmountValue, 
-    $expFrequency.value, $expCategory.value));
-  console.log(expenses);
-  $expListOutput.insertAdjacentHTML('beforeend', 
-  `<div class="list-item">
-    <div class="item-description">${$expDescription.value}</div>
-    <div class="item-amount">- $${Math.round(expAmountValue)} </div>
-    <div class="rmv-item-icon" onclick="onRemoveItem(event)">
-      <i class="rmv-item-icon material-icons">highlight_off</i>
-    </div>
-  </div>`);
+const onAddExpense = () => {
+  if($expDescription.value && $expAmount.value && $expFrequency.value !== 'default' && $expCategory.value !== 'default') {
+    if ($listPlaceholder.style.display !== "none") {
+      $listPlaceholder.style.display = 'none';
+      liveBudget = Number($liveBudget.innerText.split('').filter(i => i !== '$').join(''));
+    };
 
-  liveBudget -= expAmountValue;
-  $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
-  $expDescription.value = '';
-  $expAmount.value = '';
-  $expFrequency.value = $expFrequency.options[0].value;
-  $expCategory.value = $expCategory.options[0].value;
-  $expDescription.select();
+    let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
+    $expListOutput.insertAdjacentHTML('beforeend', 
+    `<div class="list-item">
+      <div class="item-description">${$expDescription.value}</div>
+      <div class="item-amount">- $${Math.round(expAmountValue)} </div>
+      <div class="rmv-item-icon" onclick="onRemoveItem(event)">
+        <i class="rmv-item-icon material-icons">highlight_off</i>
+      </div>
+    </div>`);
+
+    liveBudget -= expAmountValue;
+    if (liveBudget < 0) {
+      $liveBudget.style.color = "red";
+    }
+    
+    expenses.push(new Expense($expDescription.value, expAmountValue, $expFrequency.value, $expCategory.value));
+    console.log(expenses);
+    $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
+    $expDescription.value = '';
+    $expAmount.value = '';
+    $expFrequency.value = $expFrequency.options[0].value;
+    $expCategory.value = $expCategory.options[0].value;
+    $expDescription.select();
+  } else {
+    checkInputs();
+  };
 };
 
 /** 
@@ -160,15 +183,14 @@ const onRemoveItem = e => {
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
 if($incSubmitBtn) {
   $incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
-  $menuBtn.addEventListener('click', menuToggler)
 };
 
 if($expAddBtn) {
   $expAddBtn.addEventListener("click", onAddExpense);
   $expFinishBtn.addEventListener("click", getExpData);
-  $menuBtn.addEventListener('click', menuToggler);
+  //$menuBtn.addEventListener('click', menuToggler);
 };
-if($graphBar) {
+if($menuBtn) {
   $menuBtn.addEventListener('click', menuToggler);
 }
 
@@ -181,6 +203,7 @@ if($graphBar) {
 // grab sum of amount from each category & converts to %
 categorySumsObj = JSON.parse(localStorage.getItem('expenseCategorySums'))
 
+console.log(categorySumsObj);
 const getPercent = key => ((categorySumsObj[key]/incValue) * 100).toString();
 
 const setAnalysis = (divId, textId, key) => {
