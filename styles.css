@@ -74,9 +74,13 @@ a:hover {
     text-decoration: none;
 }
 
-a#Submit:hover {
+a#Submit:focus {
     background-color: #2D5D7C;
     color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
+
+#Submit:hover {
     border: 1px solid #FEEEDA;
 }
 
@@ -211,13 +215,21 @@ select{
     outline: none;
     padding: .5em;
 }
+#Income2:focus{
+    background: #2D5D7C;
+    color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
 
 #Account {
     text-decoration: none;
     padding: 10px;
     background: none;
     color: white; 
-
+    outline: none;
+}
+#Account:focus {
+    text-decoration: underline;
 }
 
 /***************
@@ -344,7 +356,13 @@ select{
 }
 
 #list-placeholder {
-    border-top: 1px solid #2D5D7C75;
+    position: absolute;
+    font-size: 1em;
+    width: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .list-item {
@@ -435,8 +453,35 @@ select{
 
 
 .emoji{
+    position: relative;
     font-size: 30px; 
     margin-bottom: 16px; 
+    margin-top: 15px;
+    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+}
+
+@-webkit-keyframes bounce {
+    0%       { bottom: 0; }
+    20%      { bottom: 8px; }
+    40%      { bottom:12px; }
+    50%      { bottom:15px; }
+    60%      { bottom:12px; }
+    80%      { bottom: 8px; }
+    100%     { bottom: 0; }
+}
+@keyframes bounce {
+    0%       { bottom: 0; }
+    20%      { bottom: 8px; }
+    40%      { bottom:12px; }
+    50%      { bottom:15px; }
+    60%      { bottom:12px; }
+    80%      { bottom: 8px; }
+    100%     { bottom: 0; }
+}
+
+#view-report:hover {
+    border: 1px solid #FEEEDA;
 }
 
 .page-explanation {  
@@ -481,6 +526,9 @@ select{
 
 #otherPercentage{
     background:#B284BE; 
+}
+#savingsPercentage{
+    background: blue;
 }
 
 
@@ -598,14 +646,12 @@ select{
     .exp-btn-container{
         align-items: center;
     }
-    /* #list-placeholder-container > div{
-        border-top: none;
-    } */
     .list-item{
         height: 6em;
     }
     .list-item > #list-placeholder {
         border-top: none;
+        font-size: 1.5em;
     }
     .item-description{
         position: absolute;
@@ -649,6 +695,9 @@ select{
 
     .graph-bar {
         width: 50vw;
+    }
+    .emoji {
+        font-size: 2.75em;
     }
 
     /******
