@@ -272,8 +272,9 @@ const rating = () => (Number($liveBudget))/Number($staticBudget);
     document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit. You got 2 stars';
     console.log ('you got 2 stars')
   } else {
-    console.log('you need financial help')
+    document.getElementById('star1').style.color='#F4B400'; 
     document.getElementById('rating-summary').innerHTML='...You need financial help.';
+    console.log('You need financial help')
   }
 }
   
