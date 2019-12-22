@@ -251,30 +251,23 @@ if(document.getElementById('billsPercentage')) {
   Report Section 
 ********************/
 
-// try to display leftover budget (live budget) in top right header...not working though
-
 if($rating){
-const rating = () => (Number($liveBudget))/Number($staticBudget);
+const rating = () => Number($liveBudget)/Number($staticBudget);
   if (rating >= 0.5 && rating < 0.75){
     document.getElementById('star1','star2','star3','star4','star5').style.color='#F4B400'; 
-    document.getElementById('rating-summary').innerHTML='Your right on the money! You got 5 stars';
-    console.log('you got 5 stars');
-  } else if (rating >= 0.75){
+    document.getElementById('rating-summary').innerHTML='Your right on the money! You got 5 stars.';
+  } else if (rating >= 0.75 && rating <=1){
     document.getElementById('star1','star2','star3','star4').style.color='#F4B400'; 
-    document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life. You got 4 stars';
-    console.log('you got 4 stars');
+    document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life. You got 4 stars.';
   } else if (rating >= 0.25 && rating < 0.5){
     document.getElementById('star1','star2','star3').style.color='#F4B400';
-    document.getElementById('rating-summary').innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations. You got 3 stars'; 
-    console.log('you got 3 stars');
+    document.getElementById('rating-summary').innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations. You got 3 stars.'; 
   } else if (rating > 0 && rating < 0.25){
     document.getElementById('star1','star2').style.color='#F4B400'; 
-    document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit. You got 2 stars';
-    console.log ('you got 2 stars')
+    document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit. You got 2 stars.';
   } else {
     document.getElementById('star1').style.color='#F4B400'; 
     document.getElementById('rating-summary').innerHTML='...You need financial help.';
-    console.log('You need financial help')
   }
 }
   

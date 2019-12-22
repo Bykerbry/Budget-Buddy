@@ -493,14 +493,12 @@ select{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 #star-container{
     display: flex; 
     font-size: 50px; 
-}
-
-.star1,.star2,.star3,.star4,.star5 {
 }
 
 #rating-summary{
