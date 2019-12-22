@@ -81,7 +81,7 @@ const getValues = _ => {
     return incValue;
   };
   if($rating) {
-    $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
+    $liveBudget.innerText = `$ ${Math.round(localStorage.getItem('savings'))}`;
   }
 }; 
 
@@ -305,9 +305,9 @@ const rating = () => (Number($liveBudget))/Number($staticBudget);
     document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit. You got 2 stars';
     console.log ('you got 2 stars')
   } else {
-    document.getElementById('star1').style.color='#F4B400'; 
-    document.getElementById('rating-summary').innerHTML='...You need financial help.';
-    console.log('You need financial help')
+    // document.getElementById('star1').style.color='#F4B400'; 
+    // document.getElementById('rating-summary').innerHTML='...You need financial help.';
+    // console.log('You need financial help')
   }
 }
   
