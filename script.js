@@ -65,7 +65,7 @@ const weeklyBudgetCalc = _ => {
 
 
 const getValues = _ => {
-  if($liveBudget) {
+  if($expAddBtn) {
     $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
@@ -74,6 +74,9 @@ const getValues = _ => {
     incValue = Number(localStorage.getItem('incomeValue'));
     return incValue;
   };
+  if($rating) {
+    $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
+  }
 }; 
 
 incValue = getValues();
