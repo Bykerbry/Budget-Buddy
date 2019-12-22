@@ -462,16 +462,22 @@ select{
 }
 
 @-webkit-keyframes bounce {
-    0%       { bottom:2px; }
-    25%, 75% { bottom:10px; }
+    0%       { bottom: 0; }
+    20%      { bottom: 8px; }
+    40%      { bottom:12px; }
     50%      { bottom:15px; }
-    100%     { bottom:0; }
+    60%      { bottom:12px; }
+    80%      { bottom: 8px; }
+    100%     { bottom: 0; }
 }
 @keyframes bounce {
-    0%       { bottom:2px; }
-    25%, 75% { bottom:10px; }
+    0%       { bottom: 0; }
+    20%      { bottom: 8px; }
+    40%      { bottom:12px; }
     50%      { bottom:15px; }
-    100%     { bottom:0; }
+    60%      { bottom:12px; }
+    80%      { bottom: 8px; }
+    100%     { bottom: 0; }
 }
 
 #view-report:hover {
