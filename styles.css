@@ -74,9 +74,13 @@ a:hover {
     text-decoration: none;
 }
 
-a#Submit:hover {
+a#Submit:focus {
     background-color: #2D5D7C;
     color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
+
+#Submit:hover {
     border: 1px solid #FEEEDA;
 }
 
@@ -211,13 +215,21 @@ select{
     outline: none;
     padding: .5em;
 }
+#Income2:focus{
+    background: #2D5D7C;
+    color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
 
 #Account {
     text-decoration: none;
     padding: 10px;
     background: none;
     color: white; 
-
+    outline: none;
+}
+#Account:focus {
+    text-decoration: underline;
 }
 
 /***************
@@ -441,8 +453,23 @@ select{
 
 
 .emoji{
+    position: relative;
     font-size: 30px; 
     margin-bottom: 16px; 
+    margin-top: 15px;
+    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+}
+
+@-webkit-keyframes bounce {
+    0%       { bottom:2px; }
+    25%, 75% { bottom:10px; }
+    50%      { bottom:15px; }
+    100%     {bottom:0;}
+}
+
+#view-report:hover {
+    border: 1px solid #FEEEDA;
 }
 
 .page-explanation {  
@@ -588,6 +615,7 @@ select{
     }
     .list-item > #list-placeholder {
         border-top: none;
+        font-size: 1.5em;
     }
     .item-description{
         position: absolute;
@@ -631,6 +659,9 @@ select{
 
     .graph-bar {
         width: 50vw;
+    }
+    .emoji {
+        font-size: 2.75em;
     }
 
     /******

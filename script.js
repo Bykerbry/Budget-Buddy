@@ -135,7 +135,6 @@ const onAddExpense = () => {
     };
     
     expenses.push(new Expense($expDescription.value, expAmountValue, $expFrequency.value, $expCategory.value));
-    console.log(expenses);
     $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
     $expDescription.value = '';
     $expAmount.value = '';
