@@ -746,6 +746,10 @@ Report
     #rating-summary{
         font-size: 2em;
     }
+
+    #savings-statement, #savingsTotal{
+        font-size: 2em; 
+    }
 }
 
 

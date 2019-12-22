@@ -16,14 +16,14 @@ const $expAmount = document.getElementById('exp-amount');
 const $expFrequency = document.getElementById('exp-frequency-selector');
 const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder-container');
-const $graphBar = document.getElementsByClassName('graph-bar');
-const $rating = document.getElementById('rating');
 const $savingsPercent = document.getElementById('savingsPercentage');
 const $savingsTotal = document.getElementById('savingsTotal');
 const $descriptionLabel = document.getElementById('exp-description-label');
 const $amountLabel = document.getElementById('exp-amount-label');
 const $frequencyLabel = document.getElementById('exp-frequency-label');
 const $categoryLabel = document.getElementById('exp-category-label');
+const $graphBar = document.getElementsByClassName('graph-bar');
+const $rating = document.getElementById('rating');
 
 
 
@@ -71,7 +71,7 @@ const weeklyBudgetCalc = _ => {
 
 // Retrieves the value of weekly budget from home.html
 const getValues = _ => {
-  if($liveBudget) {
+  if($expAddBtn) {
     $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
@@ -80,9 +80,10 @@ const getValues = _ => {
     incValue = Number(localStorage.getItem('incomeValue'));
     return incValue;
   };
+  if($rating) {
+    $liveBudget.innerText = `$ ${Math.round(localStorage.getItem('savings'))}`;
+  }
 }; 
-
-incValue = getValues();
 
 incValue = getValues();
 
@@ -232,75 +233,65 @@ if($savingsPercent) {
 
 
 
-// grab sum of amount from each category & converts to %
-// console.log(JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']);
-// ^^^ to verify the budget is correct
-
-// let percentageBills = () => {
-//   let percentageBillsObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['bills']; 
-//   return (percentageBillsObj/incValue)*100;
-// }
-// let percentageFood = () => {
-//   let percentageFoodObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['food']; 
-//   return (percentageFoodObj/incValue)*100; 
-// }
-// let percentageEntertainment = () => {
-//   let percentageEntertainmentObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment']; 
-//   return (percentageEntertainmentObj/incValue)*100; 
-// }
-// let percentageClothes = () => {
-//   let percentageClothesObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes']; 
-//   return (percentageClothesObj/incValue)*100; 
-// }
-// let percentageOther = () => {
-//   let percentageOtherObj = JSON.parse(localStorage.getItem('expenseCategorySums'))['other']; 
-//   return (percentageOtherObj/incValue)*100; 
-// }
-
-
-
-// converts category % to modify div width
-// if(document.getElementById('billsPercentage')) {
-  // document.getElementById('billsPercentage').style.width = `${percentageBills().toString()}%`;
-  // document.getElementById('billsTotal').innerHTML = `Bills Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['bills'])}`;
-
-  // document.getElementById('foodPercentage').style.width = `${percentageFood().toString()}%`;
-  // document.getElementById('foodTotal').innerHTML = `Food Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['food'])}`;
-  
-  // document.getElementById('entertainmentPercentage').style.width = `${percentageEntertainment().toString()}%`;
-  // document.getElementById('entertainmentTotal').innerHTML = `Entertainment Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['entertainment'])}`;
-
-  // document.getElementById('clothesPercentage').style.width = `${percentageClothes().toString()}%`;
-  // document.getElementById('clothesTotal').innerHTML = `Clothes Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['clothes'])}`;
-
-  // document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
-  // document.getElementById('otherTotal').innerHTML = `Other Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['other'])}`;
-// }
-
 /******************* 
   Report Section 
 ********************/
 
-if($rating){
-  let getSavings = localStorage.getItem('savings');
-  const rating = () => Number(getSavings)/Number($staticBudget);
-    if (rating >= 0.5 && rating < 0.75){
-      document.getElementById('star1','star2','star3','star4','star5').style.color='#F4B400'; 
-      document.getElementById('rating-summary').innerHTML='Your right on the money! You got 5 stars.';
-    } else if (rating >= 0.75 && rating <=1){
-      document.getElementById('star1','star2','star3','star4').style.color='#F4B400'; 
-      document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life. You got 4 stars.';
-    } else if (rating >= 0.25 && rating < 0.5){
-      document.getElementById('star1','star2','star3').style.color='#F4B400';
-      document.getElementById('rating-summary').innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations. You got 3 stars.'; 
-    } else if (rating > 0 && rating < 0.25){
-      document.getElementById('star1','star2').style.color='#F4B400'; 
-      document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit. You got 2 stars.';
-    } else {
-      document.getElementById('star1').style.color='#F4B400'; 
-      document.getElementById('rating-summary').innerHTML='...You need financial help.';
-    }
+
+let fiveStars=()=> {
+  let stars=document.querySelectorAll('.star');
+  for (let i=0;i<=4;i++){
+    stars[i].style.color='#F4B400'
   }
+  document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
+}
+
+let fourStars=()=> {
+  let stars=document.querySelectorAll('.star');
+  for (let i=0;i<=3;i++){
+    stars[i].style.color='#F4B400'
+  }
+  document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
+}
+
+let threeStars=()=> {
+  let stars=document.querySelectorAll('.star');
+  for (let i=0;i<=2;i++){
+    stars[i].style.color='#F4B400'
+  }
+  document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
+}
+
+let twoStars=()=> {
+  let stars=document.querySelectorAll('.star');
+  for (let i=0;i<=1;i++){
+    stars[i].style.color='#F4B400'
+  }
+  document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
+}
+
+
+if($rating){
+let getSavings = localStorage.getItem('savings');
+$savingsTotal.innerHTML = `$${Math.round(getSavings)}`;
+const rating = Math.round(getSavings)/(incValue);
+  if (rating >= 0.5 && rating < 0.75){
+    fiveStars(); 
+    document.getElementById('rating-summary').innerHTML="You're right on the money!";
+  } else if (rating >= 0.75){
+    fourStars();
+    document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
+  } else if (rating >= 0.25 && rating < 0.5){
+    threeStars();
+    document.getElementById('rating-summary').innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations.'; 
+  } else if (rating > 0 && rating < 0.25){
+    twoStars()
+    document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit.';
+  } else {
+    document.getElementById("star1").style.color='#F4B400'; 
+    document.getElementById('rating-summary').innerHTML='...You need financial help.';
+  }
+}
   
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
 if($incSubmitBtn) {
