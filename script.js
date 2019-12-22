@@ -5,6 +5,7 @@ const $inc = document.getElementById('Income');
 const $incFrequency = document.getElementById('Income2');
 const $incSubmitBtn = document.getElementById('Submit');
 const $menuBtn = document.querySelector('.menu-icon');
+const $navMenu = document.querySelector('.nav-menu');
 const $staticBudget = document.getElementById('weekly-budget-static');
 const $liveBudget = document.getElementById('weekly-budget-live');
 const $expAddBtn = document.getElementById('exp-add-btn');
@@ -17,6 +18,13 @@ const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder-container');
 const $graphBar = document.getElementsByClassName('graph-bar');
 const $rating = document.getElementById('rating');
+const $savingsPercent = document.getElementById('savingsPercentage');
+const $savingsTotal = document.getElementById('savingsTotal');
+const $descriptionLabel = document.getElementById('exp-description-label');
+const $amountLabel = document.getElementById('exp-amount-label');
+const $frequencyLabel = document.getElementById('exp-frequency-label');
+const $categoryLabel = document.getElementById('exp-category-label');
+
 
 
 // Global Variables that will get values from eventListeners.
@@ -48,8 +56,8 @@ const convertToWeekly = (frequencyStr, amount) => {
 };
 
 const menuToggler = _ => {
-  document.querySelector('.nav-menu').classList.toggle('toggler');
-}
+  $navMenu.classList.toggle('toggler');
+};
 
 /******************* 
     Home Section 
@@ -62,19 +70,19 @@ const weeklyBudgetCalc = _ => {
 };
 
 // Retrieves the value of weekly budget from home.html
-
-
 const getValues = _ => {
   if($liveBudget) {
     $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
   };
   if($staticBudget) {
-    $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`
+    $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
     incValue = Number(localStorage.getItem('incomeValue'));
     return incValue;
   };
 }; 
+
+incValue = getValues();
 
 incValue = getValues();
 
@@ -94,39 +102,72 @@ class Expense {
   };
 };
 
-let onAddExpense = () => {
-  if ($listPlaceholder.style.display !== "none") {
-    $listPlaceholder.style.display = 'none';
-    liveBudget = Number($liveBudget.innerText.split('').filter(i => i !== '$').join(''));
+const resetLabels = _ => {
+  $descriptionLabel.style.color = '#FEEEDA';
+  $amountLabel.style.color = '#FEEEDA';
+  $frequencyLabel.style.color = '#FEEEDA';
+  $categoryLabel.style.color = '#FEEEDA';
+}
+
+const checkInputs = _ => {
+  let e = 0;
+  resetLabels();
+  if (!$expDescription.value) {
+    $descriptionLabel.style.color = 'red';
+    e++;
   };
+  if (!$expAmount.value) {
+    $amountLabel.style.color = 'red'; 
+    e++;
+  };
+  if ($expFrequency.value === 'default') {
+    $frequencyLabel.style.color = 'red';
+    e++;
+  };
+  if ($expCategory.value === 'default') {
+    $categoryLabel.style.color = 'red';
+    e++;
+  };
+  return !e 
+};
 
-  let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
-  expenses.push(new Expense($expDescription.value, expAmountValue, 
-    $expFrequency.value, $expCategory.value));
-  console.log(expenses);
-  $expListOutput.insertAdjacentHTML('beforeend', 
-  `<div class="list-item">
-    <div class="item-description">${$expDescription.value}</div>
-    <div class="item-amount">- $${Math.round(expAmountValue)} </div>
-    <div class="rmv-item-icon" onclick="onRemoveItem(event)">
-      <i class="rmv-item-icon material-icons">highlight_off</i>
-    </div>
-  </div>`);
+const onAddExpense = () => {
+  if (checkInputs()){
+    if ($listPlaceholder.style.display !== "none") {
+      $listPlaceholder.style.display = 'none';
+      liveBudget = Number($liveBudget.innerText.split('').filter(i => i !== '$').join(''));
+    };
+    let expAmountValue = convertToWeekly($expFrequency.value, Number($expAmount.value));
+    $expListOutput.insertAdjacentHTML('beforeend', 
+    `<div class="list-item">
+      <div class="item-description">${$expDescription.value}</div>
+      <div class="item-amount">- $${Math.round(expAmountValue)} </div>
+      <div class="rmv-item-icon" onclick="onRemoveItem(event)">
+        <i class="rmv-item-icon material-icons">highlight_off</i>
+      </div>
+    </div>`);
 
-  liveBudget -= expAmountValue;
-  $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
-  $expDescription.value = '';
-  $expAmount.value = '';
-  $expFrequency.value = $expFrequency.options[0].value;
-  $expCategory.value = $expCategory.options[0].value;
-  $expDescription.select();
+    liveBudget -= expAmountValue;
+    if (liveBudget < 0) {
+      $liveBudget.style.color = "red";
+    };
+    
+    expenses.push(new Expense($expDescription.value, expAmountValue, $expFrequency.value, $expCategory.value));
+    $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
+    resetLabels();
+    $expDescription.value = '';
+    $expAmount.value = '';
+    $expFrequency.value = $expFrequency.options[0].value;
+    $expCategory.value = $expCategory.options[0].value;
+    $expDescription.select();
+  };
 };
 
 /** 
  * Loops through expenses array, creates & stores an object containing category sums. 
  * 1. Sets object keys from category options.
  * 2. Sets object values as sums of each category.
- * 3. Stores newly created expCategorySums object for use in analysis.html
+ * 3. Stores newly created expCategorySums object & liveBudget value for use in analysis.html
  * */
 const getExpData = _ => {
   let expCategorySums = {};
@@ -140,6 +181,7 @@ const getExpData = _ => {
       };
     })
   });
+  localStorage.setItem('savings', liveBudget);
   localStorage.setItem('expenseCategorySums', JSON.stringify(expCategorySums));
 };
 
@@ -150,29 +192,15 @@ const onRemoveItem = e => {
       return true;
     } else {
       liveBudget += i.amount;
+      if (liveBudget > 0) {
+        $liveBudget.style.color = "#FEEEDA";
+      };
       $liveBudget.innerText = `$ ${Math.round(liveBudget)}`;
       return false;
     };
   });
   e.target.parentNode.parentNode.remove();
-}
-
-
-// Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
-if($incSubmitBtn) {
-  $incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
-  $menuBtn.addEventListener('click', menuToggler)
 };
-
-if($expAddBtn) {
-  $expAddBtn.addEventListener("click", onAddExpense);
-  $expFinishBtn.addEventListener("click", getExpData);
-  $menuBtn.addEventListener('click', menuToggler);
-};
-if($graphBar) {
-  $menuBtn.addEventListener('click', menuToggler);
-}
-
 
 
 /******************* 
@@ -180,22 +208,26 @@ if($graphBar) {
 ********************/
 
 // grab sum of amount from each category & converts to %
-categorySumsObj = JSON.parse(localStorage.getItem('expenseCategorySums'))
+categorySumsObj = JSON.parse(localStorage.getItem('expenseCategorySums'));
 
-const getPercent = key => ((categorySumsObj[key]/incValue) * 100).toString();
+const getPercent = key => ((categorySumsObj[key]/incValue) * 100);
 
 const setAnalysis = (divId, textId, key) => {
   document.getElementById(divId).style.width = `${getPercent(key)}%`;
   document.getElementById(textId).innerHTML = `${key.charAt(0).toUpperCase() 
-    + key.substring(1)} Total: $${Math.round(categorySumsObj[key])}`;
+    + key.substring(1)} Total: $${Math.round(categorySumsObj[key])} \u00A0 (${Math.round(getPercent(key))}%)`;
 };
 
-if(document.getElementById('billsPercentage')) {
+if($savingsPercent) {
   setAnalysis('billsPercentage', 'billsTotal', 'bills');
   setAnalysis('foodPercentage','foodTotal','food');
   setAnalysis('entertainmentPercentage','entertainmentTotal','entertainment');
   setAnalysis('clothesPercentage', 'clothesTotal', 'clothes');
   setAnalysis('otherPercentage', 'otherTotal', 'other');
+  let getSavings = localStorage.getItem('savings');
+  let getSavingsPercent = Math.round(getSavings/incValue * 100);
+  $savingsPercent.style.width = `${getSavingsPercent}%`;
+  $savingsTotal.innerHTML = `Savings Total: $${Math.round(getSavings)} \u00A0 (${getSavingsPercent}%)`;
 };
 
 
@@ -245,29 +277,39 @@ if(document.getElementById('billsPercentage')) {
   // document.getElementById('otherTotal').innerHTML = `Other Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['other'])}`;
 // }
 
-
-
 /******************* 
   Report Section 
 ********************/
 
 if($rating){
-const rating = () => Number($liveBudget)/Number($staticBudget);
-  if (rating >= 0.5 && rating < 0.75){
-    document.getElementById('star1','star2','star3','star4','star5').style.color='#F4B400'; 
-    document.getElementById('rating-summary').innerHTML='Your right on the money! You got 5 stars.';
-  } else if (rating >= 0.75 && rating <=1){
-    document.getElementById('star1','star2','star3','star4').style.color='#F4B400'; 
-    document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life. You got 4 stars.';
-  } else if (rating >= 0.25 && rating < 0.5){
-    document.getElementById('star1','star2','star3').style.color='#F4B400';
-    document.getElementById('rating-summary').innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations. You got 3 stars.'; 
-  } else if (rating > 0 && rating < 0.25){
-    document.getElementById('star1','star2').style.color='#F4B400'; 
-    document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit. You got 2 stars.';
-  } else {
-    document.getElementById('star1').style.color='#F4B400'; 
-    document.getElementById('rating-summary').innerHTML='...You need financial help.';
+  let getSavings = localStorage.getItem('savings');
+  const rating = () => Number(getSavings)/Number($staticBudget);
+    if (rating >= 0.5 && rating < 0.75){
+      document.getElementById('star1','star2','star3','star4','star5').style.color='#F4B400'; 
+      document.getElementById('rating-summary').innerHTML='Your right on the money! You got 5 stars.';
+    } else if (rating >= 0.75 && rating <=1){
+      document.getElementById('star1','star2','star3','star4').style.color='#F4B400'; 
+      document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life. You got 4 stars.';
+    } else if (rating >= 0.25 && rating < 0.5){
+      document.getElementById('star1','star2','star3').style.color='#F4B400';
+      document.getElementById('rating-summary').innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations. You got 3 stars.'; 
+    } else if (rating > 0 && rating < 0.25){
+      document.getElementById('star1','star2').style.color='#F4B400'; 
+      document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit. You got 2 stars.';
+    } else {
+      document.getElementById('star1').style.color='#F4B400'; 
+      document.getElementById('rating-summary').innerHTML='...You need financial help.';
+    }
   }
-}
   
+// Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
+if($incSubmitBtn) {
+  $incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
+};
+if($expAddBtn) {
+  $expAddBtn.addEventListener("click", onAddExpense);
+  $expFinishBtn.addEventListener("click", getExpData);
+};
+if($menuBtn) {
+  $menuBtn.addEventListener('click', menuToggler);
+};
