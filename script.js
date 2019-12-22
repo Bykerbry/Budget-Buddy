@@ -18,6 +18,12 @@ const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder-container');
 const $savingsPercent = document.getElementById('savingsPercentage');
 const $savingsTotal = document.getElementById('savingsTotal');
+const $descriptionLabel = document.getElementById('exp-description-label');
+const $amountLabel = document.getElementById('exp-amount-label');
+const $frequencyLabel = document.getElementById('exp-frequency-label');
+const $categoryLabel = document.getElementById('exp-category-label');
+
+
 
 // Global Variables that will get values from eventListeners.
 let incFrequencyValue;
@@ -92,22 +98,30 @@ class Expense {
   };
 };
 
+const resetLabels = _ => {
+  $descriptionLabel.style.color = '#FEEEDA';
+  $amountLabel.style.color = '#FEEEDA';
+  $frequencyLabel.style.color = '#FEEEDA';
+  $categoryLabel.style.color = '#FEEEDA';
+}
+
 const checkInputs = _ => {
   let e = 0;
+  resetLabels();
   if (!$expDescription.value) {
-    document.getElementById('exp-description-label').style.color = 'red';
+    $descriptionLabel.style.color = 'red';
     e++;
   };
   if (!$expAmount.value) {
-    document.getElementById('exp-amount-label').style.color = 'red'; 
+    $amountLabel.style.color = 'red'; 
     e++;
   };
   if ($expFrequency.value === 'default') {
-    document.getElementById('exp-frequency-label').style.color = 'red';
+    $frequencyLabel.style.color = 'red';
     e++;
   };
   if ($expCategory.value === 'default') {
-    document.getElementById('exp-category-label').style.color = 'red';
+    $categoryLabel.style.color = 'red';
     e++;
   };
   return !e 
@@ -136,6 +150,7 @@ const onAddExpense = () => {
     
     expenses.push(new Expense($expDescription.value, expAmountValue, $expFrequency.value, $expCategory.value));
     $liveBudget.innerText = `$ ${Math.round(liveBudget)}`; 
+    resetLabels();
     $expDescription.value = '';
     $expAmount.value = '';
     $expFrequency.value = $expFrequency.options[0].value;
