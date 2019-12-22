@@ -10,10 +10,43 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
-    <body>
-    
+    <body id="exp-body">
+        <header id="exp-header">
+            <div id="exp-header-left">
+                <i class="material-icons menu-icon">menu</i>
+                <h1 id="exp-title">Report</h1>
+            </div>
+            <div id="exp-header-right">
+                <div>
+                    <p>Leftover Budget</p>
+                    <p id="weekly-budget-live"></p>
+                </div>
+            </div>
+        </header>
+        <hr>
+        <div class="nav-menu toggler">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="account.html">Create Account</a></li>
+                    <li><a href="expenses.html">Expenses</a></li>
+                    <li><a href="analysis.html">Analysis</a></li>           
+                </ul>
+            </div>
+        <div id="rating">
+            <p id="your-score">Your Budget Buddy Score is: </p>
+            <div id="star-container">
+                <div class="star1">★</div>
+                <div class="star2">★</div>
+                <div class="star3">★</div>
+                <div class="star4">★</div>
+                <div class="star5">★</div>
+            </div>
+            <p id="rating-summary"></p>
+        </div>
         
-        <script src="script.js" async defer></script>
+        <script src="script.js" defer></script>
     </body>
 </html>

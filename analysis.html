@@ -15,26 +15,26 @@
     </head>
     <body id="exp-body">
         <header id="exp-header">
-                <div id="exp-header-left">
-                    <i class="material-icons menu-icon">menu</i>
-                    <h1 id="exp-title">Analysis</h1>
+            <div id="exp-header-left">
+                <i class="material-icons menu-icon">menu</i>
+                <h1 id="exp-title">Analysis</h1>
+            </div>
+            <div id="exp-header-right">
+                <div>
+                    <p>Weekly Budget</p>
+                    <p id="weekly-budget-static"></p>
                 </div>
-                <div id="exp-header-right">
-                    <div>
-                        <p>Weekly Budget</p>
-                        <p id="weekly-budget-static"></p>
-                    </div>
-                </div>
-            </header>
-            <hr>
+            </div>
+        </header>
+        <hr>
             <div class="nav-menu toggler">
-                    <ul>
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="account.html">Create Account</a></li>
-                        <li><a href="expenses.html">Expenses</a></li>
-                        <li><a href="analysis.html">Analysis</a></li>           
-                    </ul>
-                </div>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="account.html">Create Account</a></li>
+                    <li><a href="expenses.html">Expenses</a></li>
+                    <li><a href="analysis.html">Analysis</a></li>           
+                </ul>
+            </div>
         <main id="analysis-main">
             <p class="page-explanation">See how your weekly expenses break down!</p>
             <div class="graph-bar-parent">
@@ -72,6 +72,6 @@
             <a type="button" class="next-page-link" id="view-report" href="report.html">View Report</a>
         </main>
         
-        <script src="script.js" async></script>
+        <script src="script.js" defer></script>
     </body>
 </html>

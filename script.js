@@ -16,13 +16,14 @@ const $expFrequency = document.getElementById('exp-frequency-selector');
 const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder-container');
 const $graphBar = document.getElementsByClassName('graph-bar');
+const $rating = document.getElementById('rating');
 
 
 // Global Variables that will get values from eventListeners.
 let incFrequencyValue;
 let incValue;
 let liveBudget;
-let categorySumsObj
+let categorySumsObj;
 
 /**
  * Takes payment frequency + amount & returns the amount as a weekly payment.
@@ -71,11 +72,11 @@ const getValues = _ => {
   if($staticBudget) {
     $staticBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`
     incValue = Number(localStorage.getItem('incomeValue'));
-    return incValue
-  }
-}
-incValue = getValues();
+    return incValue;
+  };
+}; 
 
+incValue = getValues();
 
 /******************* 
   Expenses Section 
@@ -243,3 +244,36 @@ if(document.getElementById('billsPercentage')) {
   // document.getElementById('otherPercentage').style.width = `${percentageOther().toString()}%`;
   // document.getElementById('otherTotal').innerHTML = `Other Total: $${Math.round(JSON.parse(localStorage.getItem('expenseCategorySums'))['other'])}`;
 // }
+
+
+
+/******************* 
+  Report Section 
+********************/
+
+// try to display leftover budget (live budget) in top right header...not working though
+
+if($rating){
+const rating = () => (Number($liveBudget))/Number($staticBudget);
+  if (rating >= 0.5 && rating < 0.75){
+    document.getElementById('star1','star2','star3','star4','star5').style.color='#F4B400'; 
+    document.getElementById('rating-summary').innerHTML='Your right on the money! You got 5 stars';
+    console.log('you got 5 stars');
+  } else if (rating >= 0.75){
+    document.getElementById('star1','star2','star3','star4').style.color='#F4B400'; 
+    document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life. You got 4 stars';
+    console.log('you got 4 stars');
+  } else if (rating >= 0.25 && rating < 0.5){
+    document.getElementById('star1','star2','star3').style.color='#F4B400';
+    document.getElementById('rating-summary').innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations. You got 3 stars'; 
+    console.log('you got 3 stars');
+  } else if (rating > 0 && rating < 0.25){
+    document.getElementById('star1','star2').style.color='#F4B400'; 
+    document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit. You got 2 stars';
+    console.log ('you got 2 stars')
+  } else {
+    console.log('you need financial help')
+    document.getElementById('rating-summary').innerHTML='...You need financial help.';
+  }
+}
+  

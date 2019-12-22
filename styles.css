@@ -459,8 +459,8 @@ select{
 }
 
 .percent-bar {
-    border-top-left-radius: 5px; 
-    border-bottom-left-radius: 5px;
+    border-top-left-radius: 4px; 
+    border-bottom-left-radius: 4px;
 }
 
 #billsPercentage{
@@ -481,6 +481,30 @@ select{
 
 #otherPercentage{
     background:#B284BE; 
+}
+
+
+/******
+    Report
+*******/
+
+#rating {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#star-container{
+    display: flex; 
+    font-size: 50px; 
+}
+
+.star1,.star2,.star3,.star4,.star5 {
+}
+
+#rating-summary{
+    font-weight: bold; 
 }
 
 @media  only screen and (min-width: 1200px) {
@@ -659,7 +683,27 @@ select{
     #Submit {
         font-size: 1.5em;
     }
+
+/******
+Report
+*******/
+
+    #star-container{
+        font-size: 100px; 
+    }
+
+    #your-score{
+        font-size: 2em;
+    }
+
+    #rating-summary{
+        font-size: 2em;
+    }
 }
+
+
+
+
 
 
 
