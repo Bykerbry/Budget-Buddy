@@ -16,15 +16,16 @@ const $expAmount = document.getElementById('exp-amount');
 const $expFrequency = document.getElementById('exp-frequency-selector');
 const $expListOutput = document.getElementById('exp-list-output');
 const $listPlaceholder = document.getElementById('list-placeholder-container');
-const $savingsPercent = document.getElementById('savingsPercentage');
-const $savingsTotal = document.getElementById('savingsTotal');
 const $descriptionLabel = document.getElementById('exp-description-label');
 const $amountLabel = document.getElementById('exp-amount-label');
 const $frequencyLabel = document.getElementById('exp-frequency-label');
 const $categoryLabel = document.getElementById('exp-category-label');
-const $graphBar = document.getElementsByClassName('graph-bar');
+const $savingsPercent = document.getElementById('savingsPercentage');
+const $savingsTotal = document.getElementById('savingsTotal');
 const $rating = document.getElementById('rating');
-
+const $ratingSummary = document.getElementById('rating-summary');
+const $saveOrDeficit = document.getElementById('save-or-deficit');
+const $star = document.querySelectorAll('.star');
 
 
 // Global Variables that will get values from eventListeners.
@@ -111,25 +112,25 @@ const resetLabels = _ => {
 }
 
 const checkInputs = _ => {
-  let e = 0;
+  let error = 0;
   resetLabels();
   if (!$expDescription.value) {
-    $descriptionLabel.style.color = 'red';
-    e++;
+    $descriptionLabel.style.color = '#DB4437';
+    error++;
   };
   if (!$expAmount.value) {
-    $amountLabel.style.color = 'red'; 
-    e++;
+    $amountLabel.style.color = '#DB4437'; 
+    error++;
   };
   if ($expFrequency.value === 'default') {
-    $frequencyLabel.style.color = 'red';
-    e++;
+    $frequencyLabel.style.color = '#DB4437';
+    error++;
   };
   if ($expCategory.value === 'default') {
-    $categoryLabel.style.color = 'red';
-    e++;
+    $categoryLabel.style.color = '#DB4437';
+    error++;
   };
-  return !e 
+  return !error 
 };
 
 const onAddExpense = () => {
@@ -225,10 +226,16 @@ if($savingsPercent) {
   setAnalysis('entertainmentPercentage','entertainmentTotal','entertainment');
   setAnalysis('clothesPercentage', 'clothesTotal', 'clothes');
   setAnalysis('otherPercentage', 'otherTotal', 'other');
-  let getSavings = localStorage.getItem('savings');
+  let getSavings = localStorage.getItem('savings') > 0 ? localStorage.getItem('savings') : 0;
   let getSavingsPercent = Math.round(getSavings/incValue * 100);
   $savingsPercent.style.width = `${getSavingsPercent}%`;
   $savingsTotal.innerHTML = `Savings Total: $${Math.round(getSavings)} \u00A0 (${getSavingsPercent}%)`;
+  
+  if (localStorage.getItem('savings') < 0) {
+    let deficit = localStorage.getItem('savings')
+    document.querySelector('.hard_budget').insertAdjacentHTML('beforebegin', 
+    `<div id='deficit'>Your spending exceeded your income by: <div id='deficit-amount'>${Math.round(Math.abs(deficit/incValue) * 100)}% \u00A0($${Math.round(Math.abs(deficit))})</div></div>`)
+  }
 };
 
 
@@ -236,63 +243,45 @@ if($savingsPercent) {
 /******************* 
   Report Section 
 ********************/
+  
 
+// Same code as before, just refactored slightly so 1 function fills the stars & added HTML selectors.
 
-let fiveStars=()=> {
-  let stars=document.querySelectorAll('.star');
-  for (let i=0;i<=4;i++){
-    stars[i].style.color='#F4B400'
-  }
-  document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
-}
-
-let fourStars=()=> {
-  let stars=document.querySelectorAll('.star');
-  for (let i=0;i<=3;i++){
-    stars[i].style.color='#F4B400'
-  }
-  document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
-}
-
-let threeStars=()=> {
-  let stars=document.querySelectorAll('.star');
-  for (let i=0;i<=2;i++){
-    stars[i].style.color='#F4B400'
-  }
-  document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
-}
-
-let twoStars=()=> {
-  let stars=document.querySelectorAll('.star');
-  for (let i=0;i<=1;i++){
-    stars[i].style.color='#F4B400'
-  }
-  document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
-}
-
+const fillStars = num => {
+  for(let i=0; i <= num; i++) {
+    $star[i].style.color = '#F4B400';
+  };
+};
 
 if($rating){
-let getSavings = localStorage.getItem('savings');
-$savingsTotal.innerHTML = `$${Math.round(getSavings)}`;
-const rating = Math.round(getSavings)/(incValue);
-  if (rating >= 0.5 && rating < 0.75){
-    fiveStars(); 
-    document.getElementById('rating-summary').innerHTML="You're right on the money!";
-  } else if (rating >= 0.75){
-    fourStars();
-    document.getElementById('rating-summary').innerHTML='Great job! But you can definitely afford more things in your life.';
+  let getSavings = localStorage.getItem('savings');
+  $savingsTotal.innerHTML = `$${Math.round(getSavings)}`;
+
+  if (getSavings < 0) {
+    $saveOrDeficit.innerText = 'deficit';
+    $savingsTotal.style.color = '#DB4437';
+  };
+
+  const rating = getSavings/incValue;
+  if (rating >= 0.75){
+    fillStars(4); 
+    $ratingSummary.innerHTML="You're right on the money!";
+  } else if (rating >= 0.5 && rating < 0.75){
+    fillStars(3);
+    $ratingSummary.innerHTML='Great job! But you can definitely afford more things in your life.';
   } else if (rating >= 0.25 && rating < 0.5){
-    threeStars();
-    document.getElementById('rating-summary').innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations.'; 
+    fillStars(2);
+    $ratingSummary.innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations.'; 
   } else if (rating > 0 && rating < 0.25){
-    twoStars()
-    document.getElementById('rating-summary').innerHTML='You need to dial the spending back quite a bit.';
+    fillStars(1);
+    $ratingSummary.innerHTML='You need to dial the spending back quite a bit.';
   } else {
-    document.getElementById("star1").style.color='#F4B400'; 
-    document.getElementById('rating-summary').innerHTML='...You need financial help.';
-  }
-}
-  
+    fillStars(0); 
+    $ratingSummary.innerHTML='...You need financial help.';
+  };
+};
+
+
 // Event Listeners --- Wrapped in if statements to avoid errors from multiple linked HTML files.
 if($incSubmitBtn) {
   $incSubmitBtn.addEventListener('click', weeklyBudgetCalc);
