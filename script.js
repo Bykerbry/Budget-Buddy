@@ -70,7 +70,7 @@ const weeklyBudgetCalc = _ => {
     localStorage.setItem('incomeValue', incValue);
 };
 
-// Retrieves the value of weekly budget from home.html
+// Retrieves values from storage 
 const getValues = _ => {
   if($expAddBtn) {
     $liveBudget.innerText = `$ ${localStorage.getItem('incomeValue')}`;
@@ -176,10 +176,10 @@ const getExpData = _ => {
   for (let i = 1; i < $expCategory.options.length; i++) {
     expCategorySums[$expCategory.options[i].value] = 0;
   };
-  expenses.map(i => {
-    Object.keys(expCategorySums).map(c => {
-      if (c === i.category) {
-        expCategorySums[c] += i.amount;
+  expenses.map(exp => {
+    Object.keys(expCategorySums).map(key => {
+      if (key === exp.category) {
+        expCategorySums[key] += exp.amount;
       };
     })
   });
