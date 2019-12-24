@@ -261,14 +261,13 @@ if($rating){
     $saveOrDeficit.innerText = 'deficit';
     $savingsTotal.style.color = '#DB4437';
   };
-
   const rating = getSavings/incValue;
   if (rating >= 0.75){
-    fillStars(4); 
-    $ratingSummary.innerHTML="You're right on the money!";
-  } else if (rating >= 0.5 && rating < 0.75){
-    fillStars(3);
+    fillStars(3); 
     $ratingSummary.innerHTML='Great job! But you can definitely afford more things in your life.';
+  } else if (rating >= 0.5 && rating < 0.75){
+    fillStars(4);
+    $ratingSummary.innerHTML="You're right on the money!";
   } else if (rating >= 0.25 && rating < 0.5){
     fillStars(2);
     $ratingSummary.innerHTML='Pretty solid. But you are cutting it close and we recommend you spend less incase of emergency situations.'; 
