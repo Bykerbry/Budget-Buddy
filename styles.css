@@ -171,6 +171,7 @@ select{
 }
 
 #Income2 {
+    -webkit-appearance: none;
     color: #2D5D7C;
     background-color: #FEEEDA;
     width: 200px;
@@ -281,6 +282,7 @@ select{
     color: #2D5D7C;
     background-color: #FEEEDA;
     border: 1px solid #2D5D7C;
+    -webkit-appearance: none;
 }
 
 .exp-form-child > select:focus {
