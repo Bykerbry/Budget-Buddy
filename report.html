@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Budget Buddy Report</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body id="exp-body">
+        <header id="exp-header">
+            <div id="exp-header-left">
+                <i class="material-icons menu-icon">menu</i>
+                <h1 id="exp-title">Report</h1>
+            </div>
+            <div id="exp-header-right">
+                <div>
+                    <p>Weekly Budget</p>
+                    <p id="weekly-budget-static"></p>
+                </div>
+            </div>
+        </header>
+        <hr>
+        <div class="nav-menu toggler">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="account.html">Create Account</a></li>
+                    <li><a href="expenses.html">Expenses</a></li>
+                    <li><a href="analysis.html">Analysis</a></li>           
+                </ul>
+            </div>
+        <div id="rating">
+            <p id="savings-statement">Given your <span id='save-or-deficit'>savings</span> of:</p>
+            <div id="savingsTotal"></div>
+            <p id="your-score">Your Budget Buddy Score is: </p>
+            <div id="star-container">
+                <div class="star" id="star1">★</div>
+                <div class="star">★</div>
+                <div class="star">★</div>
+                <div class="star">★</div>
+                <div class="star">★</div>
+            </div>
+            <p id="rating-summary"></p>
+        </div>
+        
+        <script src="script.js" defer></script>
+    </body>
+</html>

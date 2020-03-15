@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Budget Buddy Analysis</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body id="exp-body">
+        <header id="exp-header">
+            <div id="exp-header-left">
+                <i class="material-icons menu-icon">menu</i>
+                <h1 id="exp-title">Analysis</h1>
+            </div>
+            <div id="exp-header-right">
+                <div>
+                    <p>Weekly Budget</p>
+                    <p id="weekly-budget-static"></p>
+                </div>
+            </div>
+        </header>
+        <hr>
+            <div class="nav-menu toggler">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="account.html">Create Account</a></li>
+                    <li><a href="expenses.html">Expenses</a></li>
+                    <li><a href="analysis.html">Analysis</a></li>           
+                </ul>
+            </div>
+        <main id="analysis-main">
+            <p class="page-explanation">See how your weekly expenses break down!</p>
+            <div class="graph-bar-parent">
+                <div id="billsTotal">Bills</div>
+                <div class="graph-bar">
+                    <div id="billsPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <div class="graph-bar-parent">
+                <div id="foodTotal">Food</div>
+                <div class="graph-bar">
+                    <div id="foodPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <div class="graph-bar-parent">
+                <div id="entertainmentTotal">Entertainment</div>
+                <div class="graph-bar">
+                    <div id="entertainmentPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <div class="graph-bar-parent">
+                <div id="clothesTotal">Clothes</div>
+                <div class="graph-bar">
+                    <div id="clothesPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <div class="graph-bar-parent">
+                <div id="otherTotal">Other</div>
+                <div class="graph-bar">
+                    <div id="otherPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <div class="graph-bar-parent">
+                <div id="savingsTotal"></div>
+                <div class="graph-bar">
+                    <div id="savingsPercentage" class="percent-bar"></div>
+                </div>   
+            </div>
+            <p class="hard_budget">Budgeting is hard. Let us help!</p>
+            <div class="emoji">&#x1F447</div>
+            <a type="button" class="next-page-link" id="view-report" href="report.html">View Report</a>
+        </main>
+        
+        <script src="script.js" defer></script>
+    </body>
+</html>

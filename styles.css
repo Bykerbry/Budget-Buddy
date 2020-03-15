@@ -1,0 +1,723 @@
+/***************
+Global Selectors 
+***************/
+* {
+    font-family: 'Lato', sans-serif;
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    box-sizing: border-box;
+}
+    
+body {
+    display: flex; 
+    flex-direction: column; 
+    align-content: center;
+    align-items: center; 
+    margin: 10px;
+}
+
+header {
+    font-size: 2em;
+    font-weight: 900;
+}
+
+button {
+    background:#FEEEDA; 
+    color: #2D5D7C; 
+    border-style: none; 
+    border-radius: 50px; 
+    height: 50px; 
+    width: 200px;   
+    font-size: 15px; 
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover,
+button:focus {
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
+
+a {
+    text-decoration: none;
+    background:#FEEEDA; 
+    color: #2D5D7C; 
+}
+
+a:hover {
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    border: none; 
+}
+
+.material-icons:hover {
+    cursor: pointer;
+    opacity: 50%;
+}
+.next-page-link {
+    background:#FEEEDA; 
+    color: #2D5D7C; 
+    border-style: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px; 
+    height: 50px; 
+    width: 200px;   
+    font-size: 15px; 
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+}
+
+a#Submit:focus {
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
+
+#Submit:hover {
+    border: 1px solid #FEEEDA;
+}
+
+select{
+    cursor: pointer;
+}
+
+.nav-menu {
+    margin-left: -11px;
+    position: absolute;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border: 1px solid #111;
+    transition: all .6s ease-in-out;
+}
+.toggler{
+    margin-left: -250px;
+ }
+.nav-menu * {
+    background-color: #FEEEDA;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+
+}
+.nav-menu > ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: none;
+
+}
+.nav-menu > ul > li {
+    padding: .75em;
+}
+.nav-menu > ul > li:hover {
+    opacity: .5;
+    text-decoration: underline;
+    background-color: #FEEEDA;
+    color: #2D5D7C;
+}
+.nav-menu > ul > li > a:hover {
+    background-color: #FEEEDA;
+    color: #2D5D7C;
+}
+
+
+/***************
+    Input Form 
+***************/
+
+#Homepage_form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+#Income_form {
+    margin: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+#Info {
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    width: 200px;
+    border: none;
+    border-radius: 30px; 
+    padding: 15px 0px;
+    font-size: large;
+    text-align: center;
+}
+
+#Income {
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    width: 200px;
+    border: none;
+    border-radius: 30px; 
+    padding: 15px 0px;
+    font-size: large;
+    text-align: center;
+    outline: none;
+}
+
+#Income2 {
+    -webkit-appearance: none;
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    width: 200px;
+    border: none;
+    border-radius: 30px; 
+    font-size: large;
+    text-align-last: center;
+    outline: none;
+    padding: .5em;
+}
+#Income2:focus{
+    background: #2D5D7C;
+    color: #FEEEDA;
+    border: 1px solid #FEEEDA;
+}
+
+#Account {
+    text-decoration: none;
+    padding: 10px;
+    background: none;
+    color: white; 
+    outline: none;
+}
+#Account:focus {
+    text-decoration: underline;
+}
+
+/***************
+    Expenses 
+***************/
+
+/****** Header ******/
+
+#exp-body {
+    display: block
+}
+
+#exp-header {
+    display: flex;
+}
+
+#exp-header-left{
+    display: flex;
+    align-items: center;
+}
+
+#exp-title {
+    display: flex;
+    font-size: 1em;
+    padding-left: 2vw;
+}
+
+#exp-header-right{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    font-size: .5em;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+#exp-header-right > div {
+    text-align: center;
+}
+
+#exp-header-right > div > p {
+    margin: .5em 0;
+}
+
+/****** Exp Form ******/
+
+.exp-form-child {
+    display: block;
+    padding: 2vh;
+}
+
+.exp-form-child > * {
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: .25em;
+}
+
+.exp-form-child > label {
+    font-size: 1.25em;
+}
+
+.exp-form-child > input {
+    font-size: 1em;
+    border-radius: 2em;
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    border: 1px solid #2D5D7C;
+    padding: .5em;
+}
+
+.exp-form-child > input, .exp-form-child > select {
+    outline: none;
+}
+
+.exp-form-child > select {
+    padding: .5em;
+    margin-top: .5em;
+    font-size: 1em;
+    text-align: center;
+    text-align-last: center;
+    border-radius: 2em;
+    color: #2D5D7C;
+    background-color: #FEEEDA;
+    border: 1px solid #2D5D7C;
+    -webkit-appearance: none;
+}
+
+.exp-form-child > select:focus {
+    color: #FEEEDA;
+    background-color: #2D5D7C;
+    border: 1px solid #FEEEDA;
+}
+
+
+#exp-form > input {
+    margin: auto;
+}
+
+#recurring {
+    cursor: pointer;
+}
+
+/****** Expense list ******/
+#exp-list-container * {
+    background-color: #FEEEDA;
+    color: #2D5D7C;
+}
+
+#exp-list-container {
+    border-radius: 5px;
+}
+
+#exp-list-header {
+    text-align: center;
+    margin: 2.5rem 0  0  0;
+    padding: .75em 0;
+    border-top-left-radius: .75em;
+    border-top-right-radius: .75em;
+}
+#exp-list-output {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#list-placeholder {
+    position: absolute;
+    font-size: 1em;
+    width: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.list-item {
+    position: relative;
+    display: flex;
+    height: 4em;
+    flex-direction: column;
+    border-top: 1px solid #2D5D7C75; 
+    width: 90%;
+}
+
+.item-description,
+.item-amount {
+    display: flex;
+    width: 100%;
+}
+
+.item-description{
+    text-decoration: underline;
+    padding-left: .25em;
+}
+
+.item-amount {
+    justify-content: center;
+    font-size: 1.25em;
+}
+
+.list-item > .rmv-item-icon {
+    position: absolute;
+    font-size: 2em;
+    right: .75rem;
+    top: 50%;
+    transform:translateY(-50%);
+}
+
+.exp-btn-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 1em;
+    border-bottom-left-radius: .75em;
+    border-bottom-right-radius: .75em;
+}
+
+#exp-finish-btn-container {
+    border-top: 1px solid #2D5D7C75;
+}
+
+#exp-finish-btn {
+    background-color: #2D5D7C;
+    color: #FEEEDA;
+    margin-bottom: 1em;
+}
+
+#exp-finish-btn:hover,
+#exp-finish-btn:focus {
+    background-color: #FEEEDA;
+    color: #2D5D7C;
+    border: 1px solid #2D5D7C;
+    margin-bottom: 1em;
+}
+
+.next-page-link {
+    background:#FEEEDA; 
+    color: #2D5D7C; 
+    border-style: none; 
+    border-radius: 50px; 
+    height: 50px; 
+    width: 200px;   
+    font-size: 15px; 
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/***************
+    Analysis 
+***************/
+
+#analysis-main {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.emoji{
+    position: relative;
+    font-size: 30px; 
+    margin-bottom: 16px; 
+    margin-top: 15px;
+    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+}
+
+@-webkit-keyframes bounce {
+    0%       { bottom: 0; }
+    20%      { bottom: 8px; }
+    40%      { bottom:11px; }
+    50%      { bottom:12px; }
+    60%      { bottom:11px; }
+    80%      { bottom: 8px; }
+    100%     { bottom: 0; }
+}
+@keyframes bounce {
+    0%       { bottom: 0; }
+    20%      { bottom: 8px; }
+    40%      { bottom:11px; }
+    50%      { bottom:12px; }
+    60%      { bottom:11px; }
+    80%      { bottom: 8px; }
+    100%     { bottom: 0; }
+}
+
+#view-report:hover {
+    border: 1px solid #FEEEDA;
+}
+
+.page-explanation {  
+    font-size: 18px;    
+}
+
+.graph-bar-parent{
+    margin: 20px; 
+}
+
+.graph-bar {
+    display: flex; 
+    background:  #FEEEDA; 
+    color:  #2D5D7C; 
+    width: 300px; 
+    height: 40px; 
+    margin-bottom:10px; 
+    margin-top: 10px; 
+    border-radius: 5px; 
+}
+
+.percent-bar {
+    border-top-left-radius: 4px; 
+    border-bottom-left-radius: 4px;
+}
+
+#billsPercentage{
+    background: #DB4437;
+}
+
+#foodPercentage{
+    background: #C46210; 
+}
+
+#entertainmentPercentage{
+    background: #F4B400;
+}
+
+#clothesPercentage{
+    background: #0F9D58;
+}
+
+#otherPercentage{
+    background:#B284BE; 
+}
+
+#savingsPercentage{
+    background: blue;
+}
+
+#deficit {
+    margin-top: 1rem;
+    font-size: 1em;
+    color:#DB4437;
+    background: #FEEEDA;
+    padding: 1em;
+    border-radius: 2em;
+    text-align: center;
+}
+#deficit-amount{
+    font-size: 1.25em;
+    text-align: center;
+    background: #FEEEDA;
+    color:#DB4437;
+    padding-top: 1rem;
+}
+
+/******
+    Report
+*******/
+
+#rating {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#star-container{
+    display: flex; 
+    font-size: 50px; 
+}
+
+#rating-summary{
+    font-weight: bold; 
+    text-align: center;
+}
+
+@media  only screen and (min-width: 1200px) {
+
+    /*********
+    Homepage
+    **********/
+    #homepage {
+        height: 100vh;
+        margin: 0;
+    }
+
+    .header-budget-buddy {
+        display: flex;
+        justify-content: center;
+        font-size: 4.5em;
+        padding-top: 1rem;
+    }
+
+    #Homepage_form {
+        padding-top: 5vh;
+    }
+
+    .income-text {
+        font-size: 1.5em;
+        margin: 0 0 .5em 0;
+    }
+
+    #Income{
+        width: 100%;
+        height: 25%;
+        font-size: 1.5em;
+        position: relative;
+    }
+
+    #Income2 {
+        width: 100%;
+    }
+
+    #Account {
+        padding-top: 1em;
+        font-size: 1.25em;
+    }
+    #Submit {
+        margin-top: 2em;
+    }
+
+    /********
+    Expenses
+    *********/
+
+    #exp-header {
+        margin: 0 1em;
+    }
+    #exp-header-left {
+        font-size: 1.5em;
+    }
+    #exp-header-left > .material-icons {
+        font-size: .75em;
+    }
+    #exp-title {
+        margin: .5em;
+        padding-left: 0;
+    }
+    #exp-header-right {
+        font-size: .7em;
+    }
+
+    /****** Form ******/
+    #exp-form{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    #budget-remaining-container {
+        display: flex;
+        flex-basis: 100%;
+        font-size: 1.75em;
+    }
+    .exp-form-child {
+        display: flex;
+        flex-direction: column;
+    }
+    .exp-btn-container{
+        align-items: center;
+    }
+    .list-item{
+        height: 6em;
+    }
+    .list-item > #list-placeholder {
+        border-top: none;
+        font-size: 1.5em;
+    }
+    .item-description{
+        position: absolute;
+        font-size: 1.5em;
+        text-decoration: none;;
+        width: auto;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .item-amount{
+        position: absolute;
+        font-size: 1.75em;
+        width: auto;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .list-item > .rmv-item-icon > .rmv-item-icon {
+        font-size: 1.25em;;
+    }
+
+    /********
+    Analysis
+    *********/
+
+    .page-explanation {
+        font-size: 2em;
+    }
+
+    .graph-bar-parent {
+        font-size: 2em;
+    }
+
+    .hard_budget {
+        font-size: 2em;
+    }
+
+    .next-page-link {
+        font-size: 1.5em;
+    }
+
+    .graph-bar {
+        width: 50vw;
+    }
+    .emoji {
+        font-size: 2.75em;
+    }
+    #deficit {
+        font-size: 2em;
+    }
+
+    /******
+    Account
+    *******/
+
+    #Info {
+        width: 100%;
+        height: 25%;
+        font-size: 1.2em;
+    }
+
+    #Submit {
+        font-size: 1.5em;
+    }
+
+/******
+Report
+*******/
+
+    #star-container{
+        font-size: 100px; 
+    }
+
+    #your-score{
+        font-size: 2em;
+    }
+
+    #rating-summary{
+        font-size: 2em;
+    }
+
+    #savings-statement, #savingsTotal{
+        font-size: 2em; 
+    }
+}
+
+
+
+
+
+
+
