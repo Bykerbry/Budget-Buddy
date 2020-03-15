@@ -1,0 +1,23 @@
+{
+  "name": "Budget-Buddy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bykerbry/Budget-Buddy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bykerbry/Budget-Buddy/issues"
+  },
+  "homepage": "https://bykerbry.github.io/Budget-Buddy/",
+  "dependencies": {
+    "gh-pages": "^2.2.0"
+  }
+}
